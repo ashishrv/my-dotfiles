@@ -1,0 +1,18 @@
+#
+# Apple utilities
+#
+
+#
+# Apple script editor
+#
+
+export OSA='osascript -e '
+export SE='"Script Editor"'
+
+# ose : Open Applescript editor
+alias ose='open /Applications/AppleScript/Script\ Editor.app/'
+
+# cse : Close Applescript editor
+alias cse='$OSA "tell app $SE to quit"'
+
+
