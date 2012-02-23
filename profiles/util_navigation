@@ -1,0 +1,52 @@
+#
+# notable file locations
+#
+export DIRSCR=/Users/ashish/Documents/screenshots
+export DIRFOX=/Users/ashish/Downloads/firefox
+export DIRSAF=/Users/ashish/Downloads/safari
+export DIRKINDLE=/Users/ashish/Downloads/kindle/mobi
+
+#
+# navigational aliases
+#
+alias ..='builtin cd ..'
+alias ...='builtin cd ../..'
+
+# cd: use cd to move into a directory and list files
+function cd() { builtin cd "$1"; ls; }
+
+
+#
+# terminal utilities
+#
+
+# clear screen
+alias c="clear"
+
+# showdir: show graphical tree directory on mac
+function showdir ()  { ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'; }
+
+# cppwd :  Copy current path to do Cmd+V after you do Cmd+T
+alias cppwd='eval "echo `pwd` | tr -d \\\\n | pbcopy"'
+
+#
+# utilities for listing files
+#
+
+alias la='ls -a'
+
+# ll: Show colored ls
+function ll ()  { /bin/ls -G "$@" ; }
+
+# lt: Show long version of ls
+function lt ()  { /bin/ls -Glt "$@"; }
+
+# List the most recent files in a directory
+function lsnew() { ls -lt ${1+"$@"} | head -20;}
+
+# list top files 
+function lnew() { ls -lt -r | tail -n $@ ;}
+
+# showTimes: show the modification, metadata-change, and access times of a file
+function showTimes () { stat -f "%N:   %m %c %a" "$@" ; }
+
