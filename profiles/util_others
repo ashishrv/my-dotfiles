@@ -1,0 +1,17 @@
+#
+# miscellaneous utilities
+#
+
+#
+# Firefox
+#
+
+# Open firefox in profile mode
+alias fox='/Applications/Firefox.app/Contents/MacOS/firefox-bin -profilemanager'
+
+#function foxp () { /Applications/Firefox.app/Contents/MacOS/firefox-bin -P"$@" &; }
+
+#alias foxsearch='/Applications/Firefox.app/Contents/MacOS/firefox-bin -search "$@"'
+
+
+
