@@ -8,9 +8,11 @@ To replicate on new machine
 * Install git first
 * Get the env scripts and scripts
 
+
 ::
+
     cd ~
-	git clone git@github.com:ashishrv/my-dotfiles.git Dotfiles
+    git clone git@github.com:ashishrv/my-dotfiles.git Dotfiles
 
 * Get dotfile utility
 
