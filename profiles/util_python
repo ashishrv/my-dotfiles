@@ -1,0 +1,6 @@
+# startup script for python
+export PYTHONSTARTUP=$PROFILE/pythonstartup
+
+# Activate virtual environment
+function pyenv { source /Users/ashish/workspaces/$@/bin/activate ;}
+
