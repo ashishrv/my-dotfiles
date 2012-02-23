@@ -1,9 +1,10 @@
-dotfiles based os environment setup
+Environment setup
 =========================================
 
+This uses `dotfiles <https://github.com/jbernard/dotfiles>`_ 
 
-To replicate on new machine
--------------------------------
+
+**To replicate on new machine**
 
 Install git first
 
