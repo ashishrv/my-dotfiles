@@ -1,8 +1,14 @@
 # Support for macports
 export PATH=/opt/local/bin:$PATH
 
+# DOTFILES Directory
+export DOTFILES=$HOME/Dotfiles
+
+# PROFILES DIRECTORY
+export PROFILE=$DOTFILES/profiles
+
 # Additional information
-[[ -f "$HOME/.profiles/default_bashprofile" ]] && source "$HOME/.profiles/default_bashprofile"
+[[ -f "$PROFILE/default_bashprofile" ]] && source "$PROFILE/default_bashprofile"
 
 # Keep oldclass paths if possible
 export OLDCLASSPATH=$CLASSPATH
