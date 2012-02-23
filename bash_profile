@@ -16,6 +16,9 @@ export OLDCLASSPATH=$CLASSPATH
 # This loads RVM into a shell session
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
 
+# Source private profile, which contains private paths
+[[ -f "$HOME/.private_bashprofile" ]] && source "$HOME/.private_bashprofile"
+
 
 
 
