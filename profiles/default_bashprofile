@@ -1,0 +1,38 @@
+echo "Loading profiles which was last updated on .. $(ls -t -r | tail -n 1 | stat -f "%Sm")"
+
+# MY PLACE FOR ADDITIONAL SCRIPTS
+# export PATH=$PATH:$P_HOME/.scripts
+
+# Terminal utilities
+[[ -f "$PROFILE/util_terminal" ]] && source $PROFILE/util_terminal
+
+# Mercurial support
+[[ -f "$PROFILE/util_mercurial" ]] && source $PROFILE/util_mercurial
+
+# Aliases and helpers for PYTHON
+[[ -f "$PROFILE/util_python" ]] && source $PROFILE/util_python  
+
+# Utilities for files and navigation
+[[ -f "$PROFILE/util_navigation" ]] && source $PROFILE/util_navigation
+
+# Utilities for files
+[[ -f "$PROFILE/util_files" ]] && source $PROFILE/util_files
+
+# Search utilities
+[[ -f "$PROFILE/util_search" ]] && source $PROFILE/util_search
+
+# Mac utilities
+[[ -f "$PROFILE/util_apple" ]] && source $PROFILE/util_apple
+
+# Process utilities
+[[ -f "$PROFILE/util_process" ]] && source $PROFILE/util_process
+
+# Other utilities
+[[ -f "$PROFILE/util_others" ]] && source $PROFILE/util_others
+
+
+
+
+
+
+
