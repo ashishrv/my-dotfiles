@@ -1,0 +1,20 @@
+# A good prompt helps
+PS1="\[\e[1;32m\]\\W \[\e[1;37m\]$ \[\e[0m\]"
+
+# Set a larger history
+HISTFILESIZE=100000
+HISTSIZE=10000
+
+# Ignore duplicate commands
+# Ignore commands that begin with a space, 
+# Ignore 'exit' command
+export HISTIGNORE="&:ls:[ \t]*:[bf]g:exit:clear:c:home:disk:up:history"
+export HISTCONTROL=erasedups
+shopt -s histappend
+
+# Clear terminal logs, useful for "Terminal App" in Mac
+alias terminal_clearlogs='sudo rm -rf /private/var/log/asl/*.asl'
+
+
+
+
