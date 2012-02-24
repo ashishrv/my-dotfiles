@@ -17,14 +17,29 @@ Get *dotfiles* utility::
 
 	cd ~
 	git clone https://github.com/jbernard/dotfiles dotfilecmd
-	cd dotfilecmd
-	bin/dotfiles --help
+	dotfilecmd/bin/dotfiles --help
 
 Now do a simple sync to restore various dot scripts::	
 
-	bin/dotfiles --sync
+	dotfilecmd/bin/dotfiles --sync
 	
 
+Post sync, you will have all the shell utilities and shortcuts::
+
+        ~/
+          |
+          |-dotfilecmd/
+          |       |------ bin/
+          |                |---- dotfiles
+          |-.bash_profile .......
+          |-.profiles"""""""""""""""""""""""""
+          |                     .            "
+          |---- Dotfiles/       .  symlinks  "
+                    |           .            "
+                    |------ bash_profile     "
+                    |                        "
+                    |---------------------profiles/
+                    |
 
 	
 
