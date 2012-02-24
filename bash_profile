@@ -1,5 +1,5 @@
 # Support for macports
-export PATH=/opt/local/bin:$PATH
+export PATH=/opt/local/bin:$PATH:$HOME/.privatescripts:$HOME/.myscripts
 
 # DOTFILES Directory
 export DOTFILES=$HOME/Dotfiles
