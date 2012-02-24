@@ -26,21 +26,26 @@ Now do a simple sync to restore various dot scripts::
 
 Post sync, you will have all the shell utilities and shortcuts::
 
-        ~/
-          |
-          |-dotfilecmd/
-          |       |------ bin/
-          |                |---- dotfiles
-          |-.bash_profile .......
-          |-.profiles"""""""""""""""""""""""""
-          |                     .            "
-          |---- Dotfiles/       .  symlinks  "
-                    |           .            "
-                    |------ bash_profile     "
-                    |                        "
-                    |---------------------profiles/
-                    |
 
+     ~/
+       |
+       |--dotfilecmd/
+       |       |------bin/
+       |               |----dotfiles
+       |
+       |-- Dotfiles/
+       |      |
+       |      |----profiles/
+       |      |            :
+       |      |------------:---myscripts/
+       |      |            :...      :
+       |      |---------------:------:-------privatescripts/
+       |      |--bash_profile :      :               :
+       |           :          :      : symlinks      :
+       |--.bash_profile       :      :               :
+       |-----------------.profiles/  :               :
+       |---------------------------.myscripts/       :
+       |---------------------------------------.privatescripts/
 	
 
 
