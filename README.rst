@@ -19,6 +19,12 @@ Get *dotfiles* utility::
 	git clone https://github.com/jbernard/dotfiles dotfilecmd
 	dotfilecmd/bin/dotfiles --help
 
+Backup existing dotfiles::
+
+    cd ~; mkdir -p dotbackup; 
+    mv .bash_profile dotbackup/; mv .gitconfig dotbackup/; mv .hgrc  dotbackup/;
+    
+
 Now do a simple sync to restore various dot scripts::	
 
 	dotfilecmd/bin/dotfiles --sync
