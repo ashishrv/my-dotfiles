@@ -11,7 +11,7 @@ Install git first
 Get the scripts from github project::
 
     cd ~
-    git clone git@github.com:ashishrv/my-dotfiles.git Dotfiles
+    git clone git://github.com/ashishrv/my-dotfiles.git Dotfiles
 
 Get *dotfiles* utility::
 
