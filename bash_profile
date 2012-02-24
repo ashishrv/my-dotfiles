@@ -5,7 +5,7 @@ export PATH=/opt/local/bin:$PATH
 export DOTFILES=$HOME/Dotfiles
 
 # PROFILES DIRECTORY
-export PROFILE=$DOTFILES/profiles
+export PROFILE=$HOME/.profiles
 
 # Source private profile, which contains private paths
 [[ -f "$HOME/.private_bashprofile" ]] && source "$HOME/.private_bashprofile"
