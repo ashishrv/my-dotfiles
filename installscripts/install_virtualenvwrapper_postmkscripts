@@ -1,0 +1,3 @@
+#! /bin/bash
+
+echo 'pip install yolk' >> $WORKON_HOME/postmkvirtualenv
