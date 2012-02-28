@@ -6,7 +6,8 @@ ignore = [
     '.git',
     '.gitignore',
     '*.swp',
-    '.dotfilesrc'
+    '.hgignore',
+    'README.rst'
     ]
 
 
