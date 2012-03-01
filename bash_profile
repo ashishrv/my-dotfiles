@@ -1,5 +1,5 @@
 # Support for macports
-export PATH=/opt/local/bin:$PATH:$HOME/.privatescripts:$HOME/.myscripts
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH:$HOME/.privatescripts:$HOME/.myscripts
 
 # DOTFILES Directory
 export DOTFILES=$HOME/Dotfiles
@@ -18,15 +18,3 @@ export OLDCLASSPATH=$CLASSPATH
 
 # This loads RVM into a shell session
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
-
-
-
-
-
-
-
-
-
-
-
-
