@@ -100,4 +100,4 @@ changes.gui = True
 cacerts = /Users/ashish/Library/Application Support/MacHg/TrustedCertificates.pem
 
 [ui]
-username = "ashishrv<ashish.vid@gmail.com>"
+username = ashishrv 
