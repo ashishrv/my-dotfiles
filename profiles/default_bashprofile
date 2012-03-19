@@ -31,6 +31,9 @@ echo "Loading profiles which was last updated on .. $(ls -t -r | tail -n 1 | sta
 [[ -f "$PROFILE/util_others" ]] && source $PROFILE/util_others
 
 
+# Latex utilities
+[[ -f "$PROFILE/util_latex" ]] && source $PROFILE/util_latex
+
 
 
 
