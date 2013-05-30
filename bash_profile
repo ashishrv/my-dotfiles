@@ -18,3 +18,12 @@ export OLDCLASSPATH=$CLASSPATH
 
 # This loads RVM into a shell session
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
+
+##
+# Your previous /Users/ashish/.bash_profile file was backed up as /Users/ashish/.bash_profile.macports-saved_2012-09-20_at_13:40:36
+##
+
+# MacPorts Installer addition on 2012-09-20_at_13:40:36: adding an appropriate PATH variable for use with MacPorts.
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH:/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin
+# Finished adapting your PATH environment variable for use with MacPorts.
+

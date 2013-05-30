@@ -15,4 +15,15 @@ alias ose='open /Applications/AppleScript/Script\ Editor.app/'
 # cse : Close Applescript editor
 alias cse='$OSA "tell app $SE to quit"'
 
+# Support for sublime text
+alias slime='open -a "Sublime Text 2"'
+
+# Remove transaction history
+alias download_rm='sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* "delete from LSQuarantineEvent"'
+
+# Read transction history
+alias download_read='sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* "select LSQuarantineDataURLString from LSQuarantineEvent"'
+
+alias rmpyc='find . \( -iname \*\.pyc -o -iname \*\.pyo \) -print0 | xargs -0 rm -f'
+
 

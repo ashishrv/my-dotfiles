@@ -1,9 +1,6 @@
 # startup script for python
 export PYTHONSTARTUP=$PROFILE/pythonstartup
 
-# Activate virtual environment
-function pyenv { source /Users/ashish/workspaces/$@/bin/activate ;}
-
 # For virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
 
@@ -11,15 +8,15 @@ export WORKON_HOME=$HOME/.virtualenvs
 [ -d $WORKON_HOME ] || mkdir -p $WORKON_HOME
 
 # Use macports python
-export VIRTUALENVWRAPPER_PYTHON=/opt/local/Library/Frameworks/Python.framework/Versions/2.7/Resources/Python.app/Contents/MacOS/Python
+#export VIRTUALENVWRAPPER_PYTHON=/opt/local/Library/Frameworks/Python.framework/Versions/2.7/Resources/Python.app/Contents/MacOS/Python
 
 # Use macports virtual env
-export VIRTUALENVWRAPPER_VIRTUALENV=/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin/virtualenv
+#export VIRTUALENVWRAPPER_VIRTUALENV=/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin/virtualenv
 
 # Check if the virtualenvwrapper is installed
-[ -e /opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin/virtualenvwrapper.sh ] || echo "virtualenvwrapper is not installed - sudo pip install virtualenvwrapper"
+#[ -e /opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin/virtualenvwrapper.sh ] || echo "virtualenvwrapper is not installed - sudo pip install virtualenvwrapper"
 # Source it
-[ -e /opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin/virtualenvwrapper.sh ] && source /opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin/virtualenvwrapper.sh
+#[ -e /opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin/virtualenvwrapper.sh ] && source /opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin/virtualenvwrapper.sh
 
 
 
