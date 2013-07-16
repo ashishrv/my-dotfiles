@@ -15,6 +15,7 @@ shopt -s histappend
 # Clear terminal logs, useful for "Terminal App" in Mac
 alias terminal_clearlogs='sudo rm -rf /private/var/log/asl/*.asl'
 
-
-
-
+# function for setting terminal titles in OSX
+function title {
+  printf "\033]0;%s\007" "$1"
+}

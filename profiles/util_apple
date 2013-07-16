@@ -16,7 +16,8 @@ alias ose='open /Applications/AppleScript/Script\ Editor.app/'
 alias cse='$OSA "tell app $SE to quit"'
 
 # Support for sublime text
-alias slime='open -a "Sublime Text 2"'
+alias slime='open -a "Sublime Text"'
+alias slime22='open -a "Sublime Text 2"'
 
 # Remove transaction history
 alias download_rm='sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* "delete from LSQuarantineEvent"'
