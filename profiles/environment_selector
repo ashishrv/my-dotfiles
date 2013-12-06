@@ -1,0 +1,73 @@
+##
+#
+# Environment Selecter: macport, boxen
+#
+##
+
+
+# Required only for Mac OSX 
+if [ "$(uname)" == "Darwin" ]; then
+
+unset MY_ENV_SELECT
+
+# setup macports environment
+env_macport(){
+# Activate macport env
+if [ -z "$MY_ENV_SELECT" ]; then
+   export MY_ENV_SELECT="MACPORTS"
+   export MY_ENV_OLDPATH=$PATH
+   export MY_ENV_OLDPS1=$PS1
+   export PATH=/opt/local/bin:/opt/local/sbin:$PATH:/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin
+   export PS1="(macports)$MY_ENV_OLDPS1"
+   echo "Macports environment added to path"
+
+deactivate_macports(){
+# Deactivate macport env
+export PATH=$MY_ENV_OLDPATH
+export PS1=$MY_ENV_OLDPS1
+unset MY_ENV_OLDPATH
+unset MY_ENV_OLDPS1
+unset MY_ENV_SELECT
+echo "Macports environment deactivated from the path"
+unset deactivate_macports
+}
+else
+   echo "Already in an environment. Please deactivate it first."
+   return;
+fi
+
+}
+
+# setup	boxen environment
+env_boxen(){
+# Activate macport env
+if [ -z "$MY_ENV_SELECT" ]; then
+   export MY_ENV_SELECT="BOXEN"
+   export MY_ENV_OLDPATH=$PATH
+   export MY_ENV_OLDPS1=$PS1
+   export PATH=$PATH
+   #[ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
+   export PS1="(boxen)$MY_ENV_OLDPS1"
+   echo "Macports environment added to path"
+
+deactivate_boxen(){
+# Deactivate macport env
+export PATH=$MY_ENV_OLDPATH
+export PS1=$MY_ENV_OLDPS1
+unset MY_ENV_OLDPATH
+unset MY_ENV_OLDPS1
+unset MY_ENV_SELECT
+echo "Macports environment deactivated from the path"
+unset deactivate_boxen
+}
+else
+   echo "Already in an environment. Please deactivate it first."
+   return;
+fi
+
+}
+
+
+
+
+fi
