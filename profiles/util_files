@@ -36,8 +36,13 @@ extract ()
 # Man pages
 #
 
-# Open a manpage in Preview, which can be saved to PDF
-function pman() { man -t "${1}" | open -f -a /Applications/Preview.app ; }
+# Required only for Mac OSX
+if [ "$(uname)" == "Darwin" ]; then
+
+   # Open a manpage in Preview, which can be saved to PDF
+   function pman() { man -t "${1}" | open -f -a /Applications/Preview.app ; }
+fi
+
 
 
 

@@ -20,14 +20,15 @@ function cd() { builtin cd "$1"; ls; }
 # terminal utilities
 #
 
-# clear screen
-alias c="clear"
+if [ "$(uname)" == "Darwin" ]; then
 
-# showdir: show graphical tree directory on mac
-function showdir ()  { ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'; }
+   # showdir: show graphical tree directory on mac
+   function showdir ()  { ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'; }
 
-# cppwd :  Copy current path to do Cmd+V after you do Cmd+T
-alias cppwd='eval "echo `pwd` | tr -d \\\\n | pbcopy"'
+   # cppwd :  Copy current path to do Cmd+V after you do Cmd+T
+   alias cppwd='eval "echo `pwd` | tr -d \\\\n | pbcopy"'
+fi
+
 
 #
 # utilities for listing files

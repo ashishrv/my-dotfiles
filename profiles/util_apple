@@ -6,25 +6,30 @@
 # Apple script editor
 #
 
-export OSA='osascript -e '
-export SE='"Script Editor"'
+# Required only for Mac OSX 
+if [ "$(uname)" == "Darwin" ]; then
 
-# ose : Open Applescript editor
-alias ose='open /Applications/AppleScript/Script\ Editor.app/'
+   export OSA='osascript -e '
+   export SE='"Script Editor"'
 
-# cse : Close Applescript editor
-alias cse='$OSA "tell app $SE to quit"'
+   # ose : Open Applescript editor
+   alias ose='open /Applications/AppleScript/Script\ Editor.app/'
 
-# Support for sublime text
-alias slime='open -a "Sublime Text"'
-alias slime22='open -a "Sublime Text 2"'
+   # cse : Close Applescript editor
+   alias cse='$OSA "tell app $SE to quit"'
 
-# Remove transaction history
-alias download_rm='sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* "delete from LSQuarantineEvent"'
+   # Support for sublime text
+   alias slime='open -a "Sublime Text"'
+   alias slime22='open -a "Sublime Text 2"'
 
-# Read transction history
-alias download_read='sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* "select LSQuarantineDataURLString from LSQuarantineEvent"'
+   # Remove transaction history
+   alias download_rm='sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* "delete from LSQuarantineEvent"'
 
-alias rmpyc='find . \( -iname \*\.pyc -o -iname \*\.pyo \) -print0 | xargs -0 rm -f'
+   # Read transction history
+   alias download_read='sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* "select LSQuarantineDataURLString from LSQuarantineEvent"'
+
+   alias rmpyc='find . \( -iname \*\.pyc -o -iname \*\.pyo \) -print0 | xargs -0 rm -f'
+
+fi
 
 
