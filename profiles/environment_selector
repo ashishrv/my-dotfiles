@@ -10,6 +10,7 @@ if [ "$(uname)" == "Darwin" ]; then
 
 # Some initialization
 unset MY_ENV_SELECT
+export GIT_CONFIG=$HOME/Dotfiles/gitconfig
 
 # setup macports environment
 env_macport(){
@@ -54,6 +55,7 @@ if [ -z "$MY_ENV_SELECT" ]; then
    export MY_ENV_OLDPS1=$PS1
 
    # boxen git and mac git do not work togather
+   export GIT_CONFIG=$HOME/Dotfiles/gitconfig_boxen
    unlink $HOME/.gitconfig
    ln -s $HOME/Dotfiles/gitconfig_boxen $HOME/.gitconfig
    
@@ -145,8 +147,7 @@ unset MY_ENV_OLDPS1
 unset MY_ENV_SELECT
 
 # boxen git and mac git do not work togather
-unlink $HOME/.gitconfig
-ln -s $HOME/Dotfiles/gitconfig $HOME/.gitconfig
+export GIT_CONFIG=$HOME/Dotfiles/gitconfig
 unalias git
 
 echo "Boxen environment deactivated from the path"
