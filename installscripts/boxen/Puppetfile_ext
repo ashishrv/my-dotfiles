@@ -1,0 +1,12 @@
+# Additional custom modules
+github "textmate",   "1.0.0"
+github "skitch"
+github "wunderlist"
+github "virtualbox"
+github "alfred"
+github "appcleaner"
+github "dropbox"
+github "evernote"
+github "firefox"
+github "slate"
+
