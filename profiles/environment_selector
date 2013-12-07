@@ -51,6 +51,10 @@ if [ -z "$MY_ENV_SELECT" ]; then
    export MY_ENV_SELECT="BOXEN"
    export MY_ENV_OLDPATH=$PATH
    export MY_ENV_OLDPS1=$PS1
+
+   # boxen git and mac git do not work togather
+   unlink $HOME/.gitconfig
+   ln -s $HOME/Dotfiles/gitconfig_boxen $HOME/.gitconfig
    
    # Start setting boxes environment
    [ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
@@ -137,8 +141,13 @@ export PATH=$MY_ENV_OLDPATH
 export PS1=$MY_ENV_OLDPS1
 unset MY_ENV_OLDPATH
 unset MY_ENV_OLDPS1
-
 unset MY_ENV_SELECT
+
+# boxen git and mac git do not work togather
+unlink $HOME/.gitconfig
+ln -s $HOME/Dotfiles/gitconfig $HOME/.gitconfig
+unalias git
+
 echo "Boxen environment deactivated from the path"
 unset deactivate_boxen
 }
