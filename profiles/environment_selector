@@ -8,6 +8,7 @@
 # Required only for Mac OSX 
 if [ "$(uname)" == "Darwin" ]; then
 
+# Some initialization
 unset MY_ENV_SELECT
 
 # setup macports environment
@@ -157,8 +158,5 @@ else
 fi
 
 }
-
-
-
 
 fi
