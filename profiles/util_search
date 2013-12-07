@@ -21,10 +21,10 @@ if [ "$(uname)" == "Darwin" ]; then
    # Requires environment variable
    #
 
-   [ -z "$EBOOKS" ] && echo "environment variable 'EBOOKS' should be set to correct location of ebooks"
-   [ -z "$EJOURNALS" ] && echo "environment variable 'EJOURNALS' should be set to correct location of journal archives"
-   [ -z "$NOTES" ] && echo "environment variable 'NOTES' should be set to correct location of notes"
-   [ -z "$MUSIC" ] && echo "environment variable 'MUSIC' should be set to correct location of music files"
+   #[ -z "$EBOOKS" ] && echo "environment variable 'EBOOKS' should be set to correct location of ebooks"
+   #[ -z "$EJOURNALS" ] && echo "environment variable 'EJOURNALS' should be set to correct location of journal archives"
+   #[ -z "$NOTES" ] && echo "environment variable 'NOTES' should be set to correct location of notes"
+   #[ -z "$MUSIC" ] && echo "environment variable 'MUSIC' should be set to correct location of music files"
    
    
    # spotmd: to search for a file using Spotlight's metadata
