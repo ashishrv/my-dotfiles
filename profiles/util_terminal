@@ -1,6 +1,3 @@
-# A good prompt helps
-#PS1="\[\e[1;32m\]\\W \[\e[1;37m\]$ \[\e[0m\]"
-
 # Set a larger history
 HISTFILESIZE=100000
 HISTSIZE=10000
@@ -23,4 +20,15 @@ if [ "$(uname)" == "Darwin" ]; then
    }
 
 fi
+
+
+# Add paths to well known utilities from macport
+if [ "$(uname)" == "Darwin" ]; then
+
+	[[ -f "/opt/local/bin/emacs" ]] && alias emacs='/opt/local/bin/emacs'
+	[[ -f "/opt/local/bin/tmux" ]] && alias tmux='/opt/local/bin/tmux'
+fi
+
+
+
 

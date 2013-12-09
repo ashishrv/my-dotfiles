@@ -1,8 +1,5 @@
 echo "Loading profiles which was last updated on .. $(ls -t -r | tail -n 1 | stat -f "%Sm")"
 
-# MY PLACE FOR ADDITIONAL SCRIPTS
-# export PATH=$PATH:$P_HOME/.scripts
-
 # Terminal utilities
 [[ -f "$PROFILE/util_terminal" ]] && source $PROFILE/util_terminal
 
@@ -29,7 +26,6 @@ echo "Loading profiles which was last updated on .. $(ls -t -r | tail -n 1 | sta
 
 # Other utilities
 [[ -f "$PROFILE/util_others" ]] && source $PROFILE/util_others
-
 
 # Latex utilities
 [[ -f "$PROFILE/util_latex" ]] && source $PROFILE/util_latex
