@@ -1,8 +1,18 @@
+if [ -f /etc/profile ]; then
+    PATH=""
+    source /etc/profile
+fi
+
 # Set Prompt
 export PS1="\[\e[1;32m\]\W \[\e[1;37m\]\[\e[0m\]$"
 
-# Support for macports
-export PATH=$PATH:$HOME/.privatescripts:$HOME/.myscripts
+# Additional environment paths
+if [[ "$PATH" != *"$HOME/.privatescripts"* ]]; then
+	export PATH=$HOME/.privatescripts:$PATH
+fi
+if [[ "$PATH" != *"$HOME/.myscripts"* ]]; then
+	export PATH=$HOME/.myscripts:$PATH
+fi
 
 # DOTFILES Directory
 export DOTFILES=$HOME/Dotfiles
@@ -24,4 +34,9 @@ export OLDCLASSPATH=$CLASSPATH
 
 # Tmux remote terminal type support
 alias ssh='TERM=xterm ssh'
+
+
+
+
+
 

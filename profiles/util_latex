@@ -1,1 +1,6 @@
-export PATH=$PATH:/usr/texbin/
+# Additional environment paths
+if [[ "$PATH" != *"/usr/texbin"* ]]; then
+	export PATH=$PATH:/usr/texbin/
+fi
+
+
