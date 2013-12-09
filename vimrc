@@ -1,7 +1,7 @@
 " pathogen
-let g:pathogen_disabled = [ 'pathogen' ] "don't load self
-call pathogen#infect()   " load everyhting else
-call pathogen#helptags() " load plugin help files
+" let g:pathogen_disabled = [ 'pathogen' ] "don't load self
+" call pathogen#infect()   " load everyhting else
+" call pathogen#helptags() " load plugin help files
 
 " code folding
 set foldmethod=indent
@@ -26,7 +26,7 @@ filetype on                 " enables filetype detection
 filetype plugin indent on   " enables filetype specific plugins
 
 " colorpack
-colorscheme vibrantink
+" colorscheme vibrantink
 
 " gundo
 nnoremap <F5> :GundoToggle<CR>
