@@ -1,4 +1,0 @@
-#!/bin/bash
-
-source $HOME/Dotfiles/myscripts/env_boxen_script
-
