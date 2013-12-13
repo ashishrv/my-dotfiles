@@ -8,168 +8,48 @@
 # Required only for Mac OSX 
 if [ "$(uname)" == "Darwin" ]; then
 
-	# Some initialization
-	unset MY_ENV_SELECT
+	# Some default initialization
 	export GIT_CONFIG=$HOME/Dotfiles/gitconfig
 
 	# setup macports environment
 	env_macport(){
-		# Activate macport env
-		if [ -z "$MY_ENV_SELECT" ]; then
-				export MY_ENV_SELECT="MACPORTS"
-				export MY_ENV_OLDPATH=$PATH
-				export MY_ENV_OLDPS1=$PS1
-				if [[ "$PATH" != *"/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin"* ]]; then
-					export PATH=/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin:$PATH
-				fi
-				if [[ "$PATH" != *"/opt/local/sbin"* ]]; then
-					export PATH=/opt/local/sbin:$PATH
-				fi
-				if [[ "$PATH" != *"/opt/local/bin"* ]]; then
-					export PATH=/opt/local/bin:$PATH
-				fi
-				export PS1="(macports)$MY_ENV_OLDPS1"
-				echo "Macports environment added to path"
 
-				deactivate_macports(){
-				# Deactivate macport env
-				export PATH=$MY_ENV_OLDPATH
-				export PS1=$MY_ENV_OLDPS1
-				unset MY_ENV_OLDPATH
-				unset MY_ENV_OLDPS1
-				unset MY_ENV_SELECT
-				echo "Macports environment deactivated from the path"
-				unset deactivate_macports
-				}
-				else
-				   echo "Already in an environment. Please deactivate it first."
-				   return;
-				fi
-
+		MY_ENV_OLDPS1=$PS1
+		export GIT_CONFIG=$HOME/Dotfiles/gitconfig
+		# Start setting macport environment
+		if [[ "$PATH" != *"/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin"* ]]; then
+			export PATH=/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin:$PATH
+		fi
+	
+		if [[ "$PATH" != *"/opt/local/sbin"* ]]; then
+			export PATH=/opt/local/sbin:$PATH
+		fi
+	
+		if [[ "$PATH" != *"/opt/local/bin"* ]]; then
+			export PATH=/opt/local/bin:$PATH
+		fi
+	
+		export PS1="(macports)$MY_ENV_OLDPS1"
+		echo "Macports environment added to path"
+		alias deactivate_macports="exit"
+		unset env_macport
+		unset env_boxen
 	}
 
 	# setup	boxen environment
 	env_boxen(){
-		# Activate macport env
-		if [ -z "$MY_ENV_SELECT" ]; then
-			# Store previous environment in a temporary file
-			TMP_ENV_FILE="${TMPDIR}${TERM_SESSION_ID}.txt"
-			[[ -f "$TMP_ENV_FILE" ]] && rm -f $TMP_ENV_FILE
-			env > $TMP_ENV_FILE
-
-			# Some recovery requirements
-			export MY_ENV_SELECT="BOXEN"
-			export MY_ENV_OLDPATH=$PATH
-			export MY_ENV_OLDPS1=$PS1
-
-			# boxen git and mac git do not work togather
-			export GIT_CONFIG=$HOME/Dotfiles/gitconfig_boxen
-			unlink $HOME/.gitconfig
-			ln -s $HOME/Dotfiles/gitconfig_boxen $HOME/.gitconfig
-
-			# Start setting boxes environment
-			[ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
-			export PS1="(boxen)$MY_ENV_OLDPS1"
-			echo "Boxen environment added to path"
-
-
-		deactivate_boxen(){
-			TMP_ENV_FILE="${TMPDIR}${TERM_SESSION_ID}.txt"
-			TMP_ENV_UNSET_FILE="${TMPDIR}${TERM_SESSION_ID}_1.txt"
-			TMP_ENV_SET_FILE="${TMPDIR}${TERM_SESSION_ID}_2.txt"
-
-			# unset most of the environment variables
-			env | while read LINE
-			do
-			       data1=`echo $LINE | cut -f 1 -d =`;
-			       data2=`echo $LINE | cut -f 2 -d =`;
-			       case "$data1" in
-				  'TERM_PROGRAM') ;;
-			          'SHELL') ;;
-			          'TMPDIR') ;;
-			          'Apple_PubSub_Socket_Render') ;;
-			          'TERM_PROGRAM_VERSION') ;;
-			          'TERM_SESSION_ID') ;;
-			          'SSH_AUTH_SOCK') ;;
-			          'Apple_Ubiquity_Message') ;;
-			          '__CF_USER_TEXT_ENCODING') ;;
-			          'PWD') ;;
-			          'OLDPWD') ;;
-			          'HISTIGNORE') ;;
-			          'HISTCONTROL') ;;
-			          'SHLVL') ;;
-			          'PATH') ;;
-			          'MY_ENV_OLDPATH') ;;
-			          'MY_ENV_OLDPS1') ;;
-			          'OSA') ;;
-			          '_') ;;
-			          'env_boxen') ;;
-					  'env_macports') ;;
-			          *) echo unset `printf "%q" $data1` >> $TMP_ENV_UNSET_FILE
-				     ;;
-			       esac
-
-			done
-
-			# Now unset the current environment variables
-			source $TMP_ENV_UNSET_FILE
-
-			[[ -f "$TMP_ENV_UNSET_FILE" ]] && rm -f $TMP_ENV_UNSET_FILE
-
-			# Now restore previous environmental variables
-			cat $TMP_ENV_FILE | while read LINE
-			do
-			       data1=`echo $LINE | cut -f 1 -d =`;
-			       data2=`echo $LINE | cut -f 2 -d =`;
-			       case "$data1" in
-				  	  'TERM_PROGRAM') ;;
-			          'SHELL') ;;
-			          'TMPDIR') ;;
-			          'Apple_PubSub_Socket_Render') ;;
-			          'TERM_PROGRAM_VERSION') ;;
-			          'TERM_SESSION_ID') ;;
-			          'SSH_AUTH_SOCK') ;;
-			          'Apple_Ubiquity_Message') ;;
-			          '__CF_USER_TEXT_ENCODING') ;;
-			          'PWD') ;;
-			          'OLDPWD') ;;
-			          'HISTIGNORE') ;;
-			          'HISTCONTROL') ;;
-			          'SHLVL') ;;
-			          'OSA') ;;
-			          '_') ;;
-					  'env_boxen') ;;
-					  'env_macports') ;;
-			          *) echo export `printf "%q" $data1`=`printf "%q" $data2` >> $TMP_ENV_SET_FILE
-				         ;;
-			       esac
-			done
-
-			# Restore configuration
-			source $TMP_ENV_SET_FILE
-			[[ -f "$TMP_ENV_SET_FILE" ]] && rm -f $TMP_ENV_SET_FILE
-			# Now remove the tmp file
-			[[ -f "$TMP_ENV_FILE" ]] && rm -f $TMP_ENV_FILE
-
-			# Deactivate boxen env
-			export PATH=$MY_ENV_OLDPATH
-			export PS1=$MY_ENV_OLDPS1
-			unset MY_ENV_OLDPATH
-			unset MY_ENV_OLDPS1
-			unset MY_ENV_SELECT
-
-			# boxen git and mac git do not work togather
-			export GIT_CONFIG=$HOME/Dotfiles/gitconfig
-			unalias git
-
-			echo "Boxen environment deactivated from the path"
-			unset deactivate_boxen
-		}
-		else
-		   echo "Already in an environment. Please deactivate it first."
-		   return;
-		fi
-
+		MY_ENV_OLDPS1=$PS1
+		export GIT_CONFIG=$HOME/Dotfiles/gitconfig_boxen
+		# Start setting boxes environment
+		[ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
+		export PS1="(boxen)$MY_ENV_OLDPS1"
+		echo "Boxen environment added to path"
+		alias deactivate_boxen="exit"
+		unset env_boxen
+		unset env_macport
 	}
-
+else
+   echo "Already in an environment. Please deactivate it first."
+   return;
 fi
+
