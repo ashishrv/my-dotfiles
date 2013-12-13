@@ -27,7 +27,7 @@ export OLDCLASSPATH=$CLASSPATH
 [[ -f "$HOME/.private_bashprofile" ]] && source "$HOME/.private_bashprofile"
 
 # Source environment selector
-[[ -f "$PROFILE/environment_selector" ]] && source "$PROFILE/environment_selector"
+#[[ -f "$PROFILE/environment_selector" ]] && source "$PROFILE/environment_selector"
 
 # Additional information
 [[ -f "$PROFILE/default_bashprofile" ]] && source "$PROFILE/default_bashprofile"
