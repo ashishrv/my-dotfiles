@@ -1,0 +1,34 @@
+#
+# Activate boxen environment
+# Exit from the environment to get out
+#
+
+
+
+# Required only for Mac OSX 
+if [ "$(uname)" == "Darwin" ]; then
+	
+	MY_ENV_OLDPS1=$PS1
+	export GIT_CONFIG=$HOME/Dotfiles/gitconfig
+	# Start setting macport environment
+	if [[ "$PATH" != *"/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin"* ]]; then
+		export PATH=/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin:$PATH
+	fi
+	
+	if [[ "$PATH" != *"/opt/local/sbin"* ]]; then
+		export PATH=/opt/local/sbin:$PATH
+	fi
+	
+	if [[ "$PATH" != *"/opt/local/bin"* ]]; then
+		export PATH=/opt/local/bin:$PATH
+	fi
+	
+	export PS1="(macports)$MY_ENV_OLDPS1"
+	echo "Macports environment added to path"
+	alias deactivate_macports="exit"
+	
+else
+	echo "Environment only for Mac"
+	
+fi
+

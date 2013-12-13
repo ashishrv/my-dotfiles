@@ -1,0 +1,22 @@
+#
+# Activate boxen environment
+# Exit from the environment to get out
+#
+
+
+# Required only for Mac OSX 
+if [ "$(uname)" == "Darwin" ]; then
+	
+	MY_ENV_OLDPS1=$PS1
+	export GIT_CONFIG=$HOME/Dotfiles/gitconfig_boxen
+	# Start setting boxes environment
+	[ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
+	export PS1="(boxen)$MY_ENV_OLDPS1"
+	echo "Boxen environment added to path"
+	alias deactivate_boxen="exit"
+	
+else
+	echo "Environment only for Mac"
+	
+fi
+
