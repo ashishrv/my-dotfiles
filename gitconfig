@@ -9,3 +9,21 @@
 [mergetool "sourcetree"]
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
+[submodule "site-lisp/emacs-for-python"]
+	url = https://github.com/gabrielelanaro/emacs-for-python
+[submodule "site-lisp/web-mode"]
+	url = https://github.com/fxbois/web-mode.git
+[submodule "themes/ample-theme"]
+	url = https://github.com/jordonbiondo/ample-theme
+[submodule "themes/emacs-leuven-theme"]
+	url = https://github.com/fniessen/emacs-leuven-theme
+[submodule "themes/noctilux-theme"]
+	url = https://github.com/stafu/noctilux-theme
+[submodule "themes/soft-charcoal-theme"]
+	url = https://github.com/mswift42/soft-charcoal-theme
+[submodule "themes/soft-stone-theme"]
+	url = https://github.com/mswift42/soft-stone-theme
+[submodule "themes/solarized-emacs"]
+	url = https://github.com/bbatsov/solarized-emacs
+[submodule "themes/zenburn"]
+	url = https://github.com/bbatsov/zenburn-emacs.git
