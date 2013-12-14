@@ -1,13 +1,13 @@
-#
+#------------------------------------------------
 # Archival commands
-#
+#------------------------------------------------
 
 # zipf: create a ZIP archive of a file or folder (zipf file|folder)
 function zipf () { zip -r "$1".zip "$1" ; }
 
 # archive shortcuts
-alias tarc="tar -zcf"
-alias tarx="tar -xf"
+alias tar-compress="tar -zcf"
+alias tar-xtract="tar -xzf"
 
 # Extract about anything
 extract ()
@@ -32,13 +32,9 @@ extract ()
     fi
 }
 
-#
-# Man pages
-#
 
-# Required only for Mac OSX
+# Man pages : Required only for Mac OSX
 if [ "$(uname)" == "Darwin" ]; then
-
    # Open a manpage in Preview, which can be saved to PDF
    function pman() { man -t "${1}" | open -f -a /Applications/Preview.app ; }
 fi

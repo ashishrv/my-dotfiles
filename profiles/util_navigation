@@ -1,38 +1,40 @@
-#
-# notable file locations
-#
-export DIRSCR=/Users/ashish/Documents/screenshots
-export DIRFOX=/Users/ashish/Downloads/firefox
-export DIRSAF=/Users/ashish/Downloads/safari
-export DIRKINDLE=/Users/ashish/Downloads/kindle/mobi
+#------------------------------------------------
+# Navigational helpers
+#------------------------------------------------
 
-#
+# notable file locations
+export DIRSCR=$HOME/Documents/screenshots
+export DIRFOX=$HOME/Downloads/firefox
+export DIRSAF=$HOME/Downloads/safari
+export DIRKINDLE=$HOME/Downloads/kindle/mobi
+
 # navigational aliases
-#
 alias ..='builtin cd ..'
 alias ...='builtin cd ../..'
 
 # cd: use cd to move into a directory and list files
 function cd() { builtin cd "$1"; ls; }
 
-
 #
 # terminal utilities
 #
 
 if [ "$(uname)" == "Darwin" ]; then
+	
+   	#------------------------------------------------
+	# Tree emulation and current path in clipboard
+	#------------------------------------------------
 
-   # showdir: show graphical tree directory on mac
-   function showdir ()  { ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'; }
+	# showdir: show graphical tree directory on mac
+	function showdir ()  { ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'; }
 
-   # cppwd :  Copy current path to do Cmd+V after you do Cmd+T
-   alias cppwd='eval "echo `pwd` | tr -d \\\\n | pbcopy"'
+	# cppwd :  Copy current path to do Cmd+V after you do Cmd+T
+	alias cppwd='eval "echo `pwd` | tr -d \\\\n | pbcopy"'
 fi
 
-
-#
-# utilities for listing files
-#
+#------------------------------------------------
+# Utilities for listing files
+#------------------------------------------------
 
 alias la='ls -a'
 
@@ -48,6 +50,6 @@ function lsnew() { ls -lt ${1+"$@"} | head -20;}
 # list top files 
 function lnew() { ls -lt -r | tail -n $@ ;}
 
-# showTimes: show the modification, metadata-change, and access times of a file
-function showTimes () { stat -f "%N:   %m %c %a" "$@" ; }
+# showtimes: show the modification, metadata-change, and access times of a file
+function showtimes () { stat -f "%N:   %m %c %a" "$@" ; }
 

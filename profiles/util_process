@@ -1,18 +1,18 @@
-#
-# Process related utilities
-#
+#------------------------------------------------
+# Process & Memory related utilities
+#------------------------------------------------
 
 # findPid: find out the pid of a specified process
 function findpid () { sudo /usr/sbin/lsof -t -c "$@" ; }
 
 # mem_hogs_top : to find memory hogs:
-alias mem_hogs_top='top -l 1 -o rsize -n 10'
+alias memoryhogs_top='top -l 1 -o rsize -n 10'
 
 # mem_hogs_ps : to find memory hogs:
-alias mem_hogs_ps='ps wwaxm -o pid,stat,vsize,rss,time,command | head -10'
+alias memoryhogs_ps='ps wwaxm -o pid,stat,vsize,rss,time,command | head -10'
 
 # cpu_hogs : to find CPU hogs
-alias cpu_hogs='ps wwaxr -o pid,stat,%cpu,time,command | head -10'
+alias cpuhogs='ps wwaxr -o pid,stat,%cpu,time,command | head -10'
 
 # topforever: continual 'top' listing (every 10 seconds) showing top 15 CPU consumers
 alias topforever='top -l 0 -s 10 -o cpu -n 15'

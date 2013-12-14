@@ -1,6 +1,6 @@
-#
+#------------------------------------------------
 # Find shortcuts
-#
+#------------------------------------------------
 
 # ff:  to find a file under the current directory
 function ff () { /usr/bin/find . -name "$@" ; }
@@ -11,79 +11,84 @@ function ffs () { /usr/bin/find . -name "$@"'*' ; }
 # ffe: to find a file whose name ends with a given string
 function ffe () { /usr/bin/find . -name '*'"$@" ; }
 
-#
-# Mac OSX spotlight utilities
-#
 
 if [ "$(uname)" == "Darwin" ]; then
+	
+	#------------------------------------------------
+	# Mac OSX spotlight utilities using mdfind
+	#------------------------------------------------
 
-   #
-   # Requires environment variable
-   #
+	#
+	# Requires environment variable
+	#
 
-   #[ -z "$EBOOKS" ] && echo "environment variable 'EBOOKS' should be set to correct location of ebooks"
-   #[ -z "$EJOURNALS" ] && echo "environment variable 'EJOURNALS' should be set to correct location of journal archives"
-   #[ -z "$NOTES" ] && echo "environment variable 'NOTES' should be set to correct location of notes"
-   #[ -z "$MUSIC" ] && echo "environment variable 'MUSIC' should be set to correct location of music files"
-   
-   
-   # spotmd: to search for a file using Spotlight's metadata
-   function spotmd { mdfind "kMDItemDisplayName == '$@*'wc"; }
-   
-   if [ -d "$EBOOKS" ]; then
-      	# spotbooks: search books
-      	function spotbooks { mdfind -onlyin $EBOOKS/ "kMDItemDisplayName == '$@*'cdw"; }
-   
+	#[ -z "$EBOOKS" ] && echo "environment variable 'EBOOKS' should be set to correct location of ebooks"
+	#[ -z "$EJOURNALS" ] && echo "environment variable 'EJOURNALS' should be set to correct location of journal archives"
+	#[ -z "$NOTES" ] && echo "environment variable 'NOTES' should be set to correct location of notes"
+	#[ -z "$MUSIC" ] && echo "environment variable 'MUSIC' should be set to correct location of music files"
+
+
+	# spotmd: to search for a file using Spotlight's metadata
+	function spotmd { mdfind "kMDItemDisplayName == '$@*'wc"; }
+
+	if [ -d "$EBOOKS" ]; then
+	   	# spotbooks: search books
+	   	function spotbooks { mdfind -onlyin $EBOOKS/ "kMDItemDisplayName == '$@*'cdw"; }
+
 	# spotauthor: search authors
 	function spotauthor { mdfind -onlyin $EBOOKS/ "kMDItemAuthors == '*$@'cdw"; }
-   fi
-   
-   if [ -d "$EJOURNALS" ]; then   
-      	# spotarticles: search articles
+	fi
+
+	if [ -d "$EJOURNALS" ]; then   
+	   	# spotarticles: search articles
 	function spotarticles { mdfind -onlyin $EJOURNALS/ "kMDItemDisplayName == '$@*'cdw"; }
-   fi
+	fi
 
-   if [ -d "$NOTES" ]; then
-        # spotnotes: search notes
-   	function spotnotes { mdfind -onlyin $NOTES/ "kMDItemDisplayName == '$@*'cdw"; }
-   fi
+	if [ -d "$NOTES" ]; then
+	     # spotnotes: search notes
+		function spotnotes { mdfind -onlyin $NOTES/ "kMDItemDisplayName == '$@*'cdw"; }
+	fi
 
-   if [ -d "$HOME/KM" ]; then
-      # spotkm: search KM
-      function spotkm { mdfind -onlyin ~/KM "kMDItemDisplayName == '$@*'cdw"; }
-   fi
+	if [ -d "$HOME/KM" ]; then
+	   # spotkm: search KM
+	   function spotkm { mdfind -onlyin ~/KM "kMDItemDisplayName == '$@*'cdw"; }
+	fi
 
-   if [ -d "$MUSIC" ]; then
-      # spotmusic: search music
-      function spotmusic { mdfind -onlyin $MUSIC/ "kMDItemDisplayName == '$@*'cdw"; }
-   fi
+	if [ -d "$MUSIC" ]; then
+	   # spotmusic: search music
+	   function spotmusic { mdfind -onlyin $MUSIC/ "kMDItemDisplayName == '$@*'cdw"; }
+	fi
 
-   # showauthor: show author of a document
-   function showauthor { mdls -raw -name kMDItemAuthors "$@" ;}
+	# search only in current directory
+	function spot { mdfind -onlyin `pwd` "kMDItemDisplayName == '$@*'cdw"; }
 
-   # search only in current directory
-   function spot { mdfind -onlyin `pwd` "kMDItemDisplayName == '$@*'cdw"; }
+	# Large files
+	function spotlarge { mdfind -onlyin `pwd` "kMDItemFSSize > '$@'"; }
 
-   # Large files
-   function spotlarge { mdfind -onlyin `pwd` "kMDItemFSSize > '$@'"; }
+	# Word documents
+	function spotword { mdfind -onlyin `pwd` "kMDItemContentType == 'com.microsoft.word.doc' && kMDItemDisplayName == '$@*'cdw"; }
 
-   # Word documents
-   function spotword { mdfind -onlyin `pwd` "kMDItemContentType == 'com.microsoft.word.doc' && kMDItemDisplayName == '$@*'cdw"; }
+	# PDF documents
+	function spotpdf { mdfind -onlyin `pwd` "kMDItemContentType == 'com.adobe.pdf' && kMDItemDisplayName == '$@*'cdw"; }
 
-   # PDF documents
-   function spotpdf { mdfind -onlyin `pwd` "kMDItemContentType == 'com.adobe.pdf' && kMDItemDisplayName == '$@*'cdw"; }
+	# By Author
+	function spotauthorany { mdfind "kMDItemAuthors == '$@*'cdw"; }
 
-   # By Author
-   function spotauthorany { mdfind "kMDItemAuthors == '$@*'cdw"; }
+	# Presentations
+	function spotppt { mdfind "kind:presentation name:$@*"; }
 
-   # Presentations
-   function spotppt { mdfind "kind:presentation name:$@*"; }
+	# Recent search
+	function spotrecent { mdfind 'kMDItemFSCreationDate >= $time.yesterday'; }
 
-   # Recent search
-   function spotrecent { mdfind 'kMDItemFSCreationDate >= $time.yesterday'; }
+	#------------------------------------------------
+	# Update Mac OSX extended attributes
+	#------------------------------------------------
 
-   # Tag author name
-   function tagauthor { xattr -w "com.apple.metadata:kMDItemAuthors" "$2" "$1" ; }
+	# showauthor: show author of a document
+	function showauthor { mdls -raw -name kMDItemAuthors "$@" ;}
+	
+	# Tag author name
+	function tagauthor { xattr -w "com.apple.metadata:kMDItemAuthors" "$2" "$1" ; }
 
 fi
 
