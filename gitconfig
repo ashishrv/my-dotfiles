@@ -27,3 +27,9 @@
 	url = https://github.com/bbatsov/solarized-emacs
 [submodule "themes/zenburn"]
 	url = https://github.com/bbatsov/zenburn-emacs.git
+[submodule "site-lisp/mumamo-mode"]
+	url = https://github.com/traceypooh/mumamo-mode
+[submodule "site-lisp/org-mode"]
+	url = git://orgmode.org/org-mode.git
+[submodule "site-lisp/deft"]
+	url = git://jblevins.org/git/deft.git

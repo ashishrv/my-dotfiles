@@ -97,7 +97,7 @@ changes.args = --wait $local $other
 changes.gui = True
 
 [web]
-cacerts = /Users/ashish/Library/Application Support/MacHg/TrustedCertificates.pem
+cacerts = 
 
 [ui]
 username = ashishrv 
