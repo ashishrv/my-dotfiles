@@ -33,3 +33,19 @@
 	url = git://orgmode.org/org-mode.git
 [submodule "site-lisp/deft"]
 	url = git://jblevins.org/git/deft.git
+[submodule "site-lisp/yasnippet"]
+	url = https://github.com/capitaomorte/yasnippet.git
+[submodule "snippets"]
+	url = https://github.com/ashishrv/snippets
+[submodule "site-lisp/smart-mode-line"]
+	url = https://github.com/Bruce-Connor/smart-mode-line.git
+[submodule "site-lisp/dash"]
+	url = https://github.com/magnars/dash.el
+[submodule "site-lisp/multiple-cursors"]
+	url = https://github.com/magnars/multiple-cursors.el
+[submodule "themes/moe-theme"]
+	url = https://github.com/kuanyui/moe-theme.el
+[submodule "themes/soft-morning-theme"]
+	url = https://github.com/mswift42/soft-morning-theme
+[submodule "site-lisp/ess"]
+	url = https://github.com/emacs-ess/ESS

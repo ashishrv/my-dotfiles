@@ -45,6 +45,9 @@ if [ "$(uname)" == "Darwin" ]; then
 	[[ -f "/opt/local/bin/tmux" ]] && alias tmux='/opt/local/bin/tmux'
 	[[ -f "/opt/local/bin/emacsclient" ]] && alias emacsclient='/opt/local/bin/emacsclient -c'
 	[[ -f "/opt/local/bin/hg" ]] && alias hg='/opt/local/bin/hg'
+	#[[ -f "/opt/local/bin/R" ]] && alias R='/opt/local/bin/R'
+	#[[ -f "/opt/local/bin/R" ]] && export RSTUDIO_WHICH_R=/usr/local/bin/R
+	#[[ -f "/opt/local/bin/Rscript" ]] && alias R='/opt/local/bin/Rscript'
 	
 	
 	#------------------------------------------------
