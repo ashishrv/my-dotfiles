@@ -1,0 +1,3 @@
+[submodule "myscripts/module-tmuxstart"]
+	path = myscripts/module-tmuxstart
+	url = https://github.com/treyhunner/tmuxstart.git
