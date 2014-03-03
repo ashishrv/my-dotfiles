@@ -36,8 +36,8 @@ if [ "$(uname)" == "Darwin" ]; then
 		unset env_boxen
 	}
 
-	# setup	boxen environment
-	env_boxen(){
+# setup	boxen environment
+env_boxen(){
 		MY_ENV_OLDPS1=$PS1
 		export GIT_CONFIG=$HOME/Dotfiles/gitconfig_boxen
 		# Start setting boxes environment

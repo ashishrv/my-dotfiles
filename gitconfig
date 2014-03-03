@@ -49,3 +49,5 @@
 	url = https://github.com/mswift42/soft-morning-theme
 [submodule "site-lisp/ess"]
 	url = https://github.com/emacs-ess/ESS
+[submodule "myscripts/module-tmuxstart"]
+	url = https://github.com/treyhunner/tmuxstart.git

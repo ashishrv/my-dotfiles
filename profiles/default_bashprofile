@@ -30,7 +30,8 @@ echo "Loading profiles which was last updated on .. $(ls -t -r | tail -n 1 | sta
 # Latex utilities
 [[ -f "$PROFILE/util_latex" ]] && source $PROFILE/util_latex
 
-
+# Subversion Prompt
+[[ -f "$PROFILE/subversion-prompt" ]] && source $PROFILE/subversion-prompt
 
 
 
