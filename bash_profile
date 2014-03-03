@@ -4,7 +4,7 @@ if [ -f /etc/profile ]; then
 fi
 
 # Some Colors first
-# bash colors
+# Bash colors
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;32'
 export CLICOLOR=1
