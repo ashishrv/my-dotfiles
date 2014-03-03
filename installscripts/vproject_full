@@ -1,0 +1,121 @@
+#!/bin/bash
+
+export PROJECT_ENV_PATH="/path/to/project/virtualenv"
+export MHOME=$PROJECT_ENV_PATH/..
+export WRKHOME=$MHOME/workspace
+
+# Some Colors first
+# Bash colors
+export GREP_OPTIONS='--color=auto'
+export GREP_COLOR='1;32'
+export CLICOLOR=1
+export LSCOLORS=dxFxCxDxBxegedabagacad
+
+alias ls='ls --color=auto'
+#
+# My History
+#
+export HISTSIZE=50000
+export HISTCONTROL=ignoredups
+export HISTIGNORE='rm *:svn revert*:ls *:rm *:cd *:vi *'
+export HISTFILE=$PROJECT_ENV_PATH/history_bash_my
+history -c && history -r $HISTFILE
+shopt -s histappend
+PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
+export HISTSIZE=50000
+export HISTCONTROL=ignoredups
+export HISTIGNORE='rm *:svn revert*:ls *:rm *:cd *:vi *:ls:hrm *:hls'
+
+#
+# Hadoop Utils
+#
+
+alias hls='hadoop dfs -ls'
+alias hcat='hadoop dfs -cat'
+alias hmkdir='hadoop dfs -mkdir'
+alias hrm='hadoop dfs -rm'
+alias hput='hadoop dfs -put'
+alias hmv='hadoop dfs -mv'
+alias hcp='hadoop dfs -cp'
+alias hrmr='hadoop dfs -rmr'
+alias hdu='hadoop dfs -du'
+alias hdus='hadoop dfs -dus'
+alias hlsr='hadoop dfs -lsr'
+alias hCopyToLocal='hadoop dfs -copyToLocal'
+alias hCopyFromLocal='hadoop dfs -copyFromLocal'
+alias hText='hadoop dfs -text'
+alias hstat='hadoop dfs -stat'
+alias hname='hadoop dfs -stat %n'
+
+#
+# Some colors for the files
+#
+export LS_COLORS="no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:bd=40;33;01:cd=40;33;01:or=01;37;41:mi=01;37;41:ex=01;32:*.cmd=01;32:*.exe=01;32:*.com=01;32:*.btm=01;32:*.bat=01;32:*.sh=01;32:*.csh=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.bz=01;31:*.tz=01;31:*.rpm=01;31:*.cpio=01;31:*.jpg=01;35:*.gif=01;35:*.bmp=01;35:*.xbm=01;35:*.xpm=01;35:*.png=01;35:*.tif=01;35:*.py=00;35:*.java=00;35"
+
+#
+# Command Prompt Simplification
+#
+
+#export PS1='\[\033[31m\]\u\[\033[00m\]@\[\033[31m\]\h\[\033[00m\]:\[\033[32m\]\W\[\033[00m\]$'
+
+
+#export PYTHONSTARTUP=/ngs1/app/rspaefwp/usr/arv/.pythonstartup
+
+function ctodate() {
+       seconds_t=$1
+       date_t=`date --date "Jan 1, 1970 00:00:00 +0000 + $seconds_t seconds"`
+       echo $date_t
+}
+
+function ctonow() {
+   echo $(($(date +%s%N)/1000000)) "in milli seconds"
+   echo $(($(date +%s%N)/1000000000)) "in seconds"
+}
+
+function ctohoursback() {
+   hours_t=$1
+   hours_ms_t=$(($(date -d "-${hours_t} hour" +%s%N)/1000000))
+   echo $hours_ms_t
+}
+
+# As above, do what's needed to activate
+export VIRTUAL_ENV=$PROJECT_ENV_PATH
+export PATH=$VIRTUAL_ENV/bin:$PATH
+export LD_LIBRARY_PATH=$VIRTUAL_ENV/lib:$LD_LIBRARY_PATH
+export PYTHONPATH=$VIRTUAL_ENV/lib/python2.7/site-packages
+unset PYTHON_HOME
+
+# Set Prompt
+function ps1_context {
+    # For any of these bits of context that exist, display them and append
+    # a space.
+    virtualenv=`basename "$VIRTUAL_ENV"`
+    for v in "$debian_chroot" "$virtualenv" "$PS1_CONTEXT"; do
+        if [ -n "$v" ]; then
+            echo -n "(${v:+$v})"
+        fi
+    done
+}
+
+
+export -f ps1_context
+export PS1="\$(ps1_context)"'\[\e[1;32m\]\W \[\e[1;37m\]\[\e[0m\]$'
+
+
+
+if [ "$1" = "-s" ]; then cat <<- DONE
+    export VIRTUAL_ENV="$VIRTUAL_ENV";
+    export PATH="$PATH";
+    unset PYTHON_HOME;
+DONE
+elif [ "$1" = "-c" ]; then cat <<- DONE
+    setenv VIRTUAL_ENV "$VIRTUAL_ENV";
+    setenv PATH "$PATH";
+    unset PYTHON_HOME;
+DONE
+else
+    echo "Starting new environment"
+    exec "${@:-$SHELL}"
+fi
+
+
