@@ -3,51 +3,34 @@
 	email = ashish.vid@gmail.com
 [core]
 	excludesfile = /Users/ashish/.gitignore_global
+	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+
+[color "branch"]
+	current = yellow bold
+	local = green bold
+	remote = cyan bold
+
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+
+[color "status"]
+	added = green bold
+	changed = yellow bold
+	untracked = red bold
+
 [difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+        cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+        path =
+
 [mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
-[submodule "site-lisp/emacs-for-python"]
-	url = https://github.com/gabrielelanaro/emacs-for-python
-[submodule "site-lisp/web-mode"]
-	url = https://github.com/fxbois/web-mode.git
-[submodule "themes/ample-theme"]
-	url = https://github.com/jordonbiondo/ample-theme
-[submodule "themes/emacs-leuven-theme"]
-	url = https://github.com/fniessen/emacs-leuven-theme
-[submodule "themes/noctilux-theme"]
-	url = https://github.com/stafu/noctilux-theme
-[submodule "themes/soft-charcoal-theme"]
-	url = https://github.com/mswift42/soft-charcoal-theme
-[submodule "themes/soft-stone-theme"]
-	url = https://github.com/mswift42/soft-stone-theme
-[submodule "themes/solarized-emacs"]
-	url = https://github.com/bbatsov/solarized-emacs
-[submodule "themes/zenburn"]
-	url = https://github.com/bbatsov/zenburn-emacs.git
-[submodule "site-lisp/mumamo-mode"]
-	url = https://github.com/traceypooh/mumamo-mode
-[submodule "site-lisp/org-mode"]
-	url = git://orgmode.org/org-mode.git
-[submodule "site-lisp/deft"]
-	url = git://jblevins.org/git/deft.git
-[submodule "site-lisp/yasnippet"]
-	url = https://github.com/capitaomorte/yasnippet.git
-[submodule "snippets"]
-	url = https://github.com/ashishrv/snippets
-[submodule "site-lisp/smart-mode-line"]
-	url = https://github.com/Bruce-Connor/smart-mode-line.git
-[submodule "site-lisp/dash"]
-	url = https://github.com/magnars/dash.el
-[submodule "site-lisp/multiple-cursors"]
-	url = https://github.com/magnars/multiple-cursors.el
-[submodule "themes/moe-theme"]
-	url = https://github.com/kuanyui/moe-theme.el
-[submodule "themes/soft-morning-theme"]
-	url = https://github.com/mswift42/soft-morning-theme
-[submodule "site-lisp/ess"]
-	url = https://github.com/emacs-ess/ESS
-[submodule "myscripts/module-tmuxstart"]
-	url = https://github.com/treyhunner/tmuxstart.git
+        cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+        trustExitCode = true
+
+[color]
+	ui = true
+
+
