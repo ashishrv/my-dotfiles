@@ -10,8 +10,3 @@ ignore = [
     'README.rst',
     'installscripts'
     ]
-
-
-
-
-    

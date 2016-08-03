@@ -2,24 +2,25 @@
 # Bash history storage and customization
 #------------------------------------------------
 
+# Format
+export HISTTIMEFORMAT='%F %T '
 
 # append to bash_history if Terminal.app quits
 shopt -s histappend
 
 # Ignore duplicate commands
-export HISTCONTROL="ignoredups"
-export HISTCONTROL=erasedups
+export HISTCONTROL=erasedups:ignorespace
 
 # Set a larger bash history
-HISTFILESIZE=100000
-HISTSIZE=10000
+export HISTSIZE=5000
+export HISTFILESIZE=5000
+
 
 export AUTOFEATURE=true autotest
 
 # Ignore commands that begin with a space, 
 # Ignore 'exit' command
-export HISTIGNORE="&:ls:[ \t]*:[bf]g:exit:clear:c:home:disk:up:history:cd:emacs:vi"
-
+export HISTIGNORE="&:?:??:pwd:ls:ls -ltr:[ \t]*:[bf]g:exit:clear:home:disk:up:history:emacs:rm *:"
 
 if [ "$(uname)" == "Darwin" ]; then
 	

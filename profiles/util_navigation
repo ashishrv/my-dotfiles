@@ -20,16 +20,17 @@ function cd() { builtin cd "$1"; ls; }
 #
 
 if [ "$(uname)" == "Darwin" ]; then
-	
-   	#------------------------------------------------
-	# Tree emulation and current path in clipboard
-	#------------------------------------------------
 
-	# showdir: show graphical tree directory on mac
-	function showdir ()  { ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'; }
+     #------------------------------------------------
+  # Tree emulation and current path in clipboard
+  #------------------------------------------------
 
-	# cppwd :  Copy current path to do Cmd+V after you do Cmd+T
-	alias cppwd='eval "echo `pwd` | tr -d \\\\n | pbcopy"'
+  # showdir: show graphical tree directory on mac
+  function show-alldir ()  { ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'; }
+  function show-dir () { find . -maxdepth $1 -type d | sed -e "s/[^-][^\/]*\//  |/g" -e "s/|\([^ ]\)/|-\1/" ; }
+
+  # cppwd :  Copy current path to do Cmd+V after you do Cmd+T
+  alias cppwd='eval "echo `pwd` | tr -d \\\\n | pbcopy"'
 fi
 
 #------------------------------------------------
@@ -47,9 +48,8 @@ function lt ()  { /bin/ls -Glt "$@"; }
 # List the most recent files in a directory
 function lsnew() { ls -lt ${1+"$@"} | head -20;}
 
-# list top files 
+# list top files
 function lnew() { ls -lt -r | tail -n $@ ;}
 
 # showtimes: show the modification, metadata-change, and access times of a file
 function showtimes () { stat -f "%N:   %m %c %a" "$@" ; }
-

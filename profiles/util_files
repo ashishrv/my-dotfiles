@@ -3,11 +3,12 @@
 #------------------------------------------------
 
 # zipf: create a ZIP archive of a file or folder (zipf file|folder)
-function zipf () { zip -r "$1".zip "$1" ; }
+zip-f () { zip -r "$1".zip "$1" ; }
+zip-s () { zip -er "$1".zip "$1" ; }
 
 # archive shortcuts
-alias tar-compress="tar -zcf"
-alias tar-xtract="tar -xzf"
+tar-compress () { tar -zcf "$1".tar.gz "$1"; }
+tar-extract () { tar xzf "$1"; }
 
 # Extract about anything
 extract ()
@@ -36,10 +37,5 @@ extract ()
 # Man pages : Required only for Mac OSX
 if [ "$(uname)" == "Darwin" ]; then
    # Open a manpage in Preview, which can be saved to PDF
-   function pman() { man -t "${1}" | open -f -a /Applications/Preview.app ; }
+   pman() { man -t "${1}" | open -f -a /Applications/Preview.app ; }
 fi
-
-
-
-
-

@@ -1,48 +1,35 @@
-" pathogen
-let g:pathogen_disabled = [ 'pathogen' ] "don't load self
-call pathogen#infect()   " load everyhting else
-call pathogen#helptags() " load plugin help files
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
-" code folding
-set foldmethod=indent
-set foldlevel=2
-set foldnestmax=4
-
-" indentation
-set autoindent
-set softtabstop=4 shiftwidth=4 expandtab
-set ruler  " Text after a double-quote is a comment
-set tabstop=4
-
-" visual
-highlight Normal ctermbg=black
+" highlighting
+set relativenumber
+syntax on
 set background=dark
 set cursorline
-set t_Co=256
 
-" syntax highlighting
-syntax on
-filetype on                 " enables filetype detection
-filetype plugin indent on   " enables filetype specific plugins
+" tabbing
+set expandtab
+set shiftwidth=2
+set softtabstop=4
 
-" colorpack
-" colorscheme vibrantink
+" folding settings
+set foldmethod=indent
+set foldnestmax=10
+set nofoldenable
+set foldlevel=1
 
-" gundo
-nnoremap <F5> :GundoToggle<CR>
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-" lusty
-set hidden
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'kien/ctrlp.vim'
 
-" pep8
-let g:pep8_map='<leader>8'
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
 
-" supertab
-au FileType python set omnifunc=pythoncomplete#Complete
-let g:SuperTabDefaultCompletionType = "context"
-set completeopt=menuone,longest,preview
-
-
-
-
-
+" let g:solarized_termcolors=256

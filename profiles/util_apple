@@ -16,7 +16,6 @@ if [ "$(uname)" == "Darwin" ]; then
 
    # Support for sublime text
    alias slime='open -a "Sublime Text"'
-   #alias slime='open -a "Sublime Text 2"'
 
    # Remove transaction history
    alias download_rm='sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* "delete from LSQuarantineEvent"'
@@ -24,7 +23,9 @@ if [ "$(uname)" == "Darwin" ]; then
    # Read transction history
    alias download_read='sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* "select LSQuarantineDataURLString from LSQuarantineEvent"'
 
-   alias rmpyc='find . \( -iname \*\.pyc -o -iname \*\.pyo \) -print0 | xargs -0 rm -f'
+   rm-pyc (){
+      find . \( -iname \*\.pyc -o -iname \*\.pyo \) -print0 | xargs -0 rm -f
+   }
 
    # Setup emacs
    export EMACS=/Applications/Emacs.app/Contents/MacOS/Emacs

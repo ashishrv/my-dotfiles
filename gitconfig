@@ -1,26 +1,26 @@
 [user]
-	name = Ashish Vidyarthi
-	email = ashish.vid@gmail.com
+  name = Ashish Vidyarthi
+  email = ashish.vid@gmail.com
 [core]
-	excludesfile = /Users/ashish/.gitignore_global
-	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+  excludesfile = /Users/ashish/.gitignore_global
+  whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 
 [color "branch"]
-	current = yellow bold
-	local = green bold
-	remote = cyan bold
+  current = yellow bold
+  local = green bold
+  remote = cyan bold
 
 [color "diff"]
-	meta = yellow bold
-	frag = magenta bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+  whitespace = red reverse
 
 [color "status"]
-	added = green bold
-	changed = yellow bold
-	untracked = red bold
+  added = green bold
+  changed = yellow bold
+  untracked = red bold
 
 [difftool "sourcetree"]
         cmd = opendiff \"$LOCAL\" \"$REMOTE\"
@@ -31,6 +31,4 @@
         trustExitCode = true
 
 [color]
-	ui = true
-
-
+  ui = true
