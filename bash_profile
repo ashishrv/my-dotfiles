@@ -18,7 +18,6 @@ export OLDCLASSPATH=$CLASSPATH
 
 test -d "${HOME}/.privatescripts" && export PATH=${HOME}/.privatescripts:${PATH}
 test -d "${HOME}/.myscripts" &&  export PATH=${HOME}/.myscripts:${PATH}
-
 # Source private profile, which contains private paths
 test -e "${HOME}/.private_bashprofile" && source "${HOME}/.private_bashprofile"
 test -e "${PROFILE}/default_bashprofile" && source "${PROFILE}/default_bashprofile"

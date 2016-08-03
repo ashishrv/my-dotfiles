@@ -1,34 +1,25 @@
+[filter "lfs"]
+	clean = git lfs clean %f
+	smudge = git lfs smudge %f
+	required = true
 [user]
-  name = Ashish Vidyarthi
-  email = ashish.vid@gmail.com
+	name = Ashish Ranjan Vidyarthi
+	email = ashish.vid@gmail.com
 [core]
-  excludesfile = /Users/ashish/.gitignore_global
-  whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
-
-[color "branch"]
-  current = yellow bold
-  local = green bold
-  remote = cyan bold
-
-[color "diff"]
-  meta = yellow bold
-  frag = magenta bold
-  old = red bold
-  new = green bold
-  whitespace = red reverse
-
-[color "status"]
-  added = green bold
-  changed = yellow bold
-  untracked = red bold
-
+	excludesfile = /Users/ashish_vidyarthi/.gitignore_global
 [difftool "sourcetree"]
-        cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-        path =
-
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
 [mergetool "sourcetree"]
-        cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-        trustExitCode = true
-
-[color]
-  ui = true
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[push]
+	default = simple
+[alias]
+	last = log -1 HEAD
+	al = config --global -l
+	rem = config --global -l
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
