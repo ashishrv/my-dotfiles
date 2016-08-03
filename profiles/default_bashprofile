@@ -1,23 +1,18 @@
 echo "Loading profiles which was last updated on .. $(ls -lrt $PROFILE/ | tail -n 1 | awk '{print $(NF)}'  | xargs -I @ stat -f "%Sm" $PROFILE/@)"
 
 # Bash utilities
-[[ -f "$PROFILE/util_bash" ]] && source $PROFILE/util_bash
-[[ -f "$PROFILE/util_terminal" ]] && source $PROFILE/util_terminal
-
-[[ -f "$PROFILE/util_java" ]] && source $PROFILE/util_java
-[[ -f "$PROFILE/util_python" ]] && source $PROFILE/util_python
-
-[[ -f "$PROFILE/util_navigation" ]] && source $PROFILE/util_navigation
-[[ -f "$PROFILE/util_files" ]] && source $PROFILE/util_files
-[[ -f "$PROFILE/util_search" ]] && source $PROFILE/util_search
-[[ -f "$PROFILE/util_apple" ]] && source $PROFILE/util_apple
-[[ -f "$PROFILE/util_process" ]] && source $PROFILE/util_process
-[[ -f "$PROFILE/util_others" ]] && source $PROFILE/util_others
-
-[[ -f "$PROFILE/util_latex" ]] && source $PROFILE/util_latex
-
-[[ -f "$PROFILE/subversion-prompt" ]] && source $PROFILE/subversion-prompt
-[[ -f "$PROFILE/util_mercurial" ]] && source $PROFILE/util_mercurial
-[[ -f "$PROFILE/util_git" ]] && source $PROFILE/util_git
-
-[[ -f "$PROFILE/util_go" ]] && source $PROFILE/util_go
+test -e "${PROFILE}/util_bash" && source "${PROFILE}/util_bash"
+test -e "${PROFILE}/util_terminal" && source "${PROFILE}/util_terminal"
+test -e "${PROFILE}/util_java" && source "${PROFILE}/util_java"
+test -e "${PROFILE}/util_python" && source "${PROFILE}/util_python"
+test -e "${PROFILE}/util_navigation" && source "${PROFILE}/util_navigation"
+test -e "${PROFILE}/util_files" && source "${PROFILE}/util_files"
+test -e "${PROFILE}/util_search" && source "${PROFILE}/util_search"
+test -e "${PROFILE}/util_apple" && source "${PROFILE}/util_apple"
+test -e "${PROFILE}/util_process" && source "${PROFILE}/util_process"
+test -e "${PROFILE}/util_others" && source "${PROFILE}/util_others"
+test -e "${PROFILE}//util_latex" && source "${PROFILE}//util_latex"
+test -e "${PROFILE}/subversion-prompt" && source "${PROFILE}/subversion-prompt"
+test -e "${PROFILE}/util_mercurial" && source "${PROFILE}/util_mercurial"
+test -e "${PROFILE}/util_git" && source "${PROFILE}/util_git"
+test -e "${PROFILE}/util_go" && source "${PROFILE}/util_go"

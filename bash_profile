@@ -21,7 +21,7 @@ test -d "${HOME}/.myscripts" &&  export PATH=${HOME}/.myscripts:${PATH}
 
 # Source private profile, which contains private paths
 test -e "${HOME}/.private_bashprofile" && source "${HOME}/.private_bashprofile"
-test -e "${HOME}/.default_bashprofile" && source "${HOME}/.default_bashprofile"
+test -e "${PROFILE}/default_bashprofile" && source "${PROFILE}/default_bashprofile"
 
 export PS1='\[\e[1;32m\]\W \[\e[1;37m\]\[\e[0m\]$'
 export PATH="/Users/ashish_vidyarthi/ashish_work/bin:/usr/local/git/bin:$PATH"
