@@ -16,3 +16,5 @@ test -e "${PROFILE}/subversion-prompt" && source "${PROFILE}/subversion-prompt"
 test -e "${PROFILE}/util_mercurial" && source "${PROFILE}/util_mercurial"
 test -e "${PROFILE}/util_git" && source "${PROFILE}/util_git"
 test -e "${PROFILE}/util_go" && source "${PROFILE}/util_go"
+
+[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh

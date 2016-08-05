@@ -5,6 +5,8 @@
 # Apple script editor
 if [ "$(uname)" == "Darwin" ]; then
 
+   alias foxp='open -n /Applications/Firefox.app/'
+
    export OSA='osascript -e '
    export SE='"Script Editor"'
 
@@ -29,5 +31,30 @@ if [ "$(uname)" == "Darwin" ]; then
 
    # Setup emacs
    export EMACS=/Applications/Emacs.app/Contents/MacOS/Emacs
+
+
+   #Other useful functions
+
+   #changes director to last activated Finder window.
+   cdf() {
+    target=`osascript -e 'tell application "Finder" to if (count of Finder windows) > 0 then get POSIX path of (target of front Finder window as text)'`
+    if [ "$target" != "" ]; then
+        cd "$target"; pwd
+    else
+        echo 'No Finder window found' >&2
+    fi
+   }
+
+   pman(){
+    man -t "${1}" | open -f -a /Applications/Preview.app/
+    }
+
+   alias scanWifi="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -s"
+
+   alias lockMac="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+
+   alias ccat='pygmentize -O style=monokai -f console256 -g'
+
+   alias f='open -a Finder ./'
 
 fi
