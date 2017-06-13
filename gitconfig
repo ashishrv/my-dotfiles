@@ -16,8 +16,8 @@
 [push]
 	default = current
 [core]
-  editor = "/usr/bin/vim -f -u NONE"
-	editor = atom --wait
+        editor = "/usr/bin/vim -f -u NONE"
+	#editor = atom --wait
 	excludesfile = ~/.gitignore_global
 	pager = diff-so-fancy | less --tabs=4 -RFX
 
