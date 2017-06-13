@@ -1,0 +1,19 @@
+session_name: git
+windows:
+- focus: 'true'
+  layout: c2fd,143x55,0,0,0
+  options:
+    automatic-rename: 'off'
+  panes:
+  - focus: 'true'
+    shell_command: ls
+  start_directory: /Users/ashish_vidyarthi/works/workspace/git-repo/ops_deployment_minerva
+  window_name: minerva
+- layout: c2fe,143x55,0,0,1
+  options:
+    automatic-rename: 'off'
+  panes:
+  - focus: 'true'
+    shell_command: ls
+  start_directory: /Users/ashish_vidyarthi/works/workspace/git-repo
+  window_name: gitrepo

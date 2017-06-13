@@ -1,0 +1,11 @@
+session_name: tunnel
+windows:
+- focus: 'true'
+  layout: c2fd,143x55,0,0,0
+  options:
+    automatic-rename: 'off'
+  panes:
+  - focus: 'true'
+    shell_command: clear
+  start_directory: /Users/ashish_vidyarthi/works/workspace/access/tunnel
+  window_name: tunnel

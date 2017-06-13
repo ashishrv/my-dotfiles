@@ -1,0 +1,11 @@
+session_name: docs
+windows:
+- focus: 'true'
+  layout: c2fd,143x55,0,0,0
+  options:
+    automatic-rename: 'off'
+  panes:
+  - focus: 'true'
+    shell_command: ls
+  start_directory: /Users/ashish_vidyarthi/personal/works/hgrepo/mynotes
+  window_name: mynotes
