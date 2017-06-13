@@ -5,25 +5,96 @@
 	required = true
 [user]
 	name = Ashish Ranjan Vidyarthi
-	email = vidyarthi@apple.com
+	# Forces user.email and user.name configuration variables to always be set
+  # when committing, useful when using multiple email addresses.
+	useconfigonly = true
+[branch]
+  # When a new branch is created with git branch or git checkout that tracks
+  # another branch, this variable tells Git to set up pull to rebase instead of
+  # merge. When always, rebase will be set to true for all tracking branches.
+  autosetuprebase = always
+[push]
+	default = current
 [core]
-	excludesfile = /Users/ashish_vidyarthi/.gitignore_global
-  editor = /usr/bin/vim -f -u NONE
   editor = "/usr/bin/vim -f -u NONE"
+	editor = atom --wait
+	excludesfile = ~/.gitignore_global
+	pager = diff-so-fancy | less --tabs=4 -RFX
+
+[diff]
+	# Enables a heuristic to make the patch output more readable by using a blank
+	# line as a strong hint that the contents before and after it belong to
+	# logically separate units. It is still experimental.
+	compactionHeuristic = true
+[diff-so-fancy]
+	# Do not color the first block of an empty line.
+	markEmptyLines = false
+	# Do not remove the pesky + or - at line-start.
+	stripLeadingSymbols = false
+[color "diff"]
+	meta = yellow # Default is white
+	frag = magenta # Default is cyan
+[interactive]
+	# Use this color filter in `rebase --interactive` and `add --patch`
+	diffFilter = diff-so-fancy
+[color "diff-highlight"]
+	oldNormal = red
+	newNormal = green
+	oldHighlight = "#dd0000 #550000" # Default is red reverse
+	newHighlight = "green #004400" # Default is green reverse
+[color "status"]
+	untracked = yellow # Default is red
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 [mergetool "sourcetree"]
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [push]
 	default = simple
 [alias]
+	apple = "!git config user.email \"vidyarthi@apple.com\""
+	personal = "!git config user.email \"ashish.vid@gmail.com\""
+
+	pl = pull
+	ph = push
+	phu = push -u
+	phf = push --force
+
+	# Staging
+	ap = add -p
+
+	# Commit
+	ca = commit --amend --no-edit
+	ci = commit -m
+
+	# Checkout
+	cb = "!f() { git checkout -b astorije/$@; }; f"
+	cm = checkout master
+	co = checkout
+
+	# Branch
+	delete-merged = "!git branch --merged | grep -v \"^\\s*master$\" | grep -v \"\\*\" | xargs -n 1 git branch -d"
+	dm = !git delete-merged
+	pru = remote prune origin
+
+	# Rebase
+	rb = rebase
+	rbm = rebase master
+	ra = rebase --abort
+	rc = rebase --continue
+	ri = rebase --interactive
+	rim = rebase --interactive master
+
+	# log
+	graph = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
 	last = log -1 HEAD
+
+	# configuration
 	al = config --global -l
 	rem = config --global -l
-	co = checkout
+
+	# Others
 	br = branch
-	ci = commit
 	st = status
 	staged = diff --staged
