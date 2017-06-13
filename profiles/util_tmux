@@ -9,6 +9,7 @@ function tmh(){
     echo "tm lsp : List all tmux saved sessions"
     echo "tm st : Start a tmux saved session with tmuxp"
     echo "tm sv : Save a running session with tmuxp"
+    echo "tm all : Save all session with tmuxp"
     
 }
 
@@ -63,6 +64,13 @@ function tm(){
         else
           tmuxp freeze $1
         fi
+        ;;
+    all)
+        title TMUX
+        tmuxp load notes --yes -d
+        tmuxp load my --yes -d
+        tmuxp load tunnel --yes -d
+        tmuxp load work --yes
         ;;
     *)
         echo "Provide correct available tm command"

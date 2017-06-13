@@ -24,6 +24,10 @@ test -e "${PROFILE}/default_bashprofile" && source "${PROFILE}/default_bashprofi
 
 export PATH="/Users/ashish_vidyarthi/ashish_work/bin:/usr/local/git/bin:$PATH"
 
+function title {
+    echo -ne "\033]0;"$*"\007"
+}
+
 
 # SET PROPMT
 symbol="⚡ "
