@@ -1,8 +1,3 @@
-alias gs='git status'
-alias ga='git add .'
-alias gc='git commit -m' # requires you to type a commit message
-alias gp='git push'
-alias grm='git rm $(git ls-files --deleted)'
 
 # Git branch details
 function parse_git_dirty() {
@@ -11,6 +6,130 @@ function parse_git_dirty() {
 function parse_git_branch() {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
 }
+
+
+function gh(){
+
+    echo "Help on custom git commands"
+    echo
+    echo "g rm : Remove files deleted from git"
+    echo "g a : Add all files under current directory"
+    echo "g b : git blame a file"
+    echo "g st : Show current status of git repository"
+    echo "g cm: git commit with a customized message"
+    echo "g t: git tag simple"
+    echo "g at: annotated tag the current git commit"
+    echo "g pu: git push including tags"
+    echo "g fe: git fetch including tags"
+    echo "g ts: Show tags and refs"
+    echo "g log: Show new commits since the latest tags"
+}
+
+function g(){
+  if [ $# -lt 1 ]
+  then
+    gh
+    return 1
+  fi
+  GIT_COMMAND=$1
+  OTHER_ARGS="${@:2}"
+  shift 1
+  case $GIT_COMMAND in
+    rm)
+        echo "Remove files deleted from git"
+        git rm $(git ls-files --deleted)
+        ;;
+    a)
+        echo "Add all files under current directory"
+        git add .
+        ;;
+    b)
+        if [ "$#" -ne 1 ]
+        then
+          echo "git blame a file"
+          echo "Usage: g b <filename>"
+          echo "    g b .gitignore"
+          echo
+        else
+          git blame $1
+        fi
+        ;;
+    st)
+        echo "Current status of git repository"
+        git status
+        ;;
+    cm)
+        if [ "$#" -ne 3 ]
+        then
+          echo "Usage: g cm ACTION AUDIENCE COMMIT_MSG"
+          echo "  ACTION - chg, fix, new, typo"
+          echo "  AUDIENCE - dev, usr, pkg, test, doc"
+          echo
+        else
+          echo "Custom commit with message: $1: $2: $3"
+          git commit -a -m "$1: $2: $3"
+          git push origin --tags
+        fi
+        ;;
+    em)
+        if [ "$#" -ne 3 ]
+        then
+          echo "Usage: g em ACTION AUDIENCE COMMIT_MSG"
+          echo "  ACTION - chg, fix, new, typo"
+          echo "  AUDIENCE - dev, usr, pkg, test, doc"
+          echo
+        else
+          echo "Custom commit with message: $1: $2: $3"
+          git commit --allow-empty -m "$1: $2: $3"
+          git push origin --tags
+        fi
+        ;;
+    t)
+        if [ "$#" -ne 1 ]
+        then
+          echo "Tag the current git commit"
+          echo "Usage: g t <tag number>"
+          echo "    g t 1.0.1"
+          echo
+        else
+          git tag $1
+        fi
+        ;;
+    at)
+        if [ "$#" -ne 2 ]
+        then
+          echo "Annotated tag the current git commit"
+          echo "Usage: g at <tag number> <commit mesage>"
+          echo "    g at 1.0.1 \"some commit message\""
+          echo
+        else
+          git tag -a $1 -m "$2"
+        fi
+        ;;
+    pu)
+        echo "push to remote server along with tags"
+        git push origin --tags
+        ;;
+    fe)
+        echo "pull from remote server along with tags"
+        git pull --tags
+        ;;
+    ts)
+        git show-ref --abbrev=7 --tags
+        ;;
+    log)
+        latest_tag=$(git describe --abbrev=0 --tags);
+        echo "New commits since the latest tag: ${latest_tag}"
+        git log ${latest_tag}..HEAD --no-merges --pretty=format:'%h %s';
+        ;;
+    *)
+        echo "Provide correct available git command"
+        gh
+        ;;
+  esac
+  echo $@
+}
+
 
 test -e "/Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-prompt.sh" && source "/Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-prompt.sh"
 test -e "/Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-completion.bash" && source "/Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-completion.bash"

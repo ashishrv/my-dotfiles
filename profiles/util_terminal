@@ -5,22 +5,45 @@
 # Format
 export HISTTIMEFORMAT='%F %T '
 
+shopt -s cmdhist
+
 # append to bash_history if Terminal.app quits
 shopt -s histappend
 
 # Ignore duplicate commands
-export HISTCONTROL=erasedups:ignorespace
+export HISTCONTROL=erasedups:ignorespace:ignoreboth
 
 # Set a larger bash history
-export HISTSIZE=5000
-export HISTFILESIZE=5000
+export HISTSIZE=10000
+unset HISTFILESIZE
+export HISTFILESIZE=1000000
 
 
 export AUTOFEATURE=true autotest
 
+
+# Create a seperate history
+promptFunc() {
+    # right before prompting for the next command, save the previous
+    # command in a file.
+    echo "$(date +%Y-%m-%d--%H-%M-%S) $(hostname) $PWD $(history 1)" \
+      >> ~/.full_history
+  }
+PROMPT_COMMAND=promptFunc
+
+# Search bash history
+function histgrep {
+  local n_lines=10
+  if [[ "$1" =~ ^[0-9]*$ ]]; then
+    n_lines="$1"
+    shift
+  fi
+  grep "$@" ~/.full_history | tail -n "$n_lines"
+}
+
 # Ignore commands that begin with a space, 
 # Ignore 'exit' command
-export HISTIGNORE="&:?:??:pwd:ls:ls -ltr:[ \t]*:[bf]g:exit:clear:home:disk:up:history:emacs:rm *:"
+export HISTIGNORE="&:?:??:pwd:ls:ls -ltr:[ \t]*:[bf]g:exit:clear:home:disk:up:histor:emacs:rm *"
 
 if [ "$(uname)" == "Darwin" ]; then
 	

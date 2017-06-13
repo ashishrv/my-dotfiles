@@ -32,3 +32,4 @@ export PS1='$symbol\[\e[36;1m\]\W\[\e[0m\] $(__git_ps1 "[\[\e[0;32m\]%s\[\e[0m\]
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
+

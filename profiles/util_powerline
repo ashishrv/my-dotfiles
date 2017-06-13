@@ -1,0 +1,7 @@
+
+PATH=$PATH:/Users/ashish_vidyarthi/.local/bin
+export PATH
+powerline-daemon -q
+POWERLINE_BASH_CONTINUATION=1
+POWERLINE_BASH_SELECT=1
+. /Users/ashish_vidyarthi/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh

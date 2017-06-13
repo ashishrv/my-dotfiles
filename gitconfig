@@ -1,12 +1,15 @@
 [filter "lfs"]
-	clean = git lfs clean %f
-	smudge = git lfs smudge %f
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
 	required = true
 [user]
 	name = Ashish Ranjan Vidyarthi
-	email = ashish.vid@gmail.com
+	email = vidyarthi@apple.com
 [core]
 	excludesfile = /Users/ashish_vidyarthi/.gitignore_global
+  editor = /usr/bin/vim -f -u NONE
+  editor = "/usr/bin/vim -f -u NONE"
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
@@ -23,3 +26,4 @@
 	br = branch
 	ci = commit
 	st = status
+	staged = diff --staged

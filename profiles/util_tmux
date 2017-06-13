@@ -1,0 +1,73 @@
+
+
+
+function tmh(){
+
+    echo "Help on custom tmux commands"
+    echo
+    echo "tm ls : List all tmux session"
+    echo "tm lsp : List all tmux saved sessions"
+    echo "tm st : Start a tmux saved session with tmuxp"
+    echo "tm sv : Save a running session with tmuxp"
+    
+}
+
+
+function tm(){
+  if [ $# -lt 1 ]
+  then
+    tmh
+    return 1
+  fi
+  GIT_COMMAND=$1
+  OTHER_ARGS="${@:2}"
+  shift 1
+
+  case $GIT_COMMAND in
+    ls)
+        tmux ls
+        ;;
+    lsp)
+        for x in `ls -1 $HOME/.tmuxp/`;
+        do
+            filename="${x%.*}"
+            echo $filename
+        done
+        ;;
+    st)
+        if [ "$#" -ne 1 ]
+        then
+          echo "Start a tmuxp saved session"
+          echo "Usage: tm st <session name> "
+          echo "    tm st docs"
+          echo
+        else
+          tmux ls | cut -d":" -f 1 | grep "$1" 2> /dev/null
+          if [ $? -eq 0 ]
+          then
+            echo "Following session has already been loaded: $1"
+          else
+            tmuxp load $1
+          fi
+
+          tmuxp load $1
+        fi
+        ;;
+    sv)
+        if [ "$#" -ne 1 ]
+        then
+          echo "Start a tmuxp saved session"
+          echo "Usage: tm sv <session name> "
+          echo "    tm sv docs"
+          echo
+        else
+          tmuxp freeze $1
+        fi
+        ;;
+    *)
+        echo "Provide correct available tm command"
+        tmh
+        ;;
+  esac
+
+}
