@@ -69,7 +69,7 @@
 	ci = commit -m
 
 	# Checkout
-	cb = "!f() { git checkout -b astorije/$@; }; f"
+	cb = "!f() { git checkout -b arv/$@; }; f"
 	cm = checkout master
 	co = checkout
 
