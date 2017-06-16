@@ -12,17 +12,14 @@ test -e "${PROFILE}/util_apple" && source "${PROFILE}/util_apple"
 test -e "${PROFILE}/util_process" && source "${PROFILE}/util_process"
 test -e "${PROFILE}/util_others" && source "${PROFILE}/util_others"
 test -e "${PROFILE}//util_latex" && source "${PROFILE}/util_latex"
-test -e "${PROFILE}/subversion-prompt" && source "${PROFILE}/subversion-prompt"
 test -e "${PROFILE}/util_mercurial" && source "${PROFILE}/util_mercurial"
 test -e "${PROFILE}/util_git" && source "${PROFILE}/util_git"
 test -e "${PROFILE}/util_go" && source "${PROFILE}/util_go"
+test -e "${PROFILE}/util_docker" && source "${PROFILE}/util_docker"
 test -e "${PROFILE}/util_powerline" && source "${PROFILE}/util_powerline"
 test -e "${PROFILE}/util_tmux" && source "${PROFILE}/util_tmux"
 
 # [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+# eval "$(fasd --init auto)"
 
-eval "$(fasd --init auto)"
-
-
-test -e "${PROFILE}/commacd.bash" && source "${PROFILE}/commacd.bash"
 

@@ -21,7 +21,6 @@ export HISTIGNORE='rm *:svn revert*:ls *:rm *:cd *:vi *'
 export HISTFILE=$PROJECT_ENV_PATH/history_bash_my
 history -c && history -r $HISTFILE
 shopt -s histappend
-PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
 export HISTSIZE=50000
 export HISTCONTROL=ignoredups
 export HISTIGNORE='rm *:svn revert*:ls *:rm *:cd *:vi *:ls:hrm *:hls'

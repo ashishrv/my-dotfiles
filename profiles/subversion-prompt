@@ -41,6 +41,8 @@
 # Exclude all directories under inl-svn, the nufw-svn directory, and
 # all directories ending by /tags par /branches
 # You can set it as environnement variable
+
+
 if [ ! $SVNP_HUGE_REPO_EXCLUDE_PATH ]; then
 	SVNP_HUGE_REPO_EXCLUDE_PATH="/tags$|/branches$"
 fi

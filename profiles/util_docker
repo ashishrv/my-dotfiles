@@ -1,0 +1,26 @@
+function docker-help() {
+	echo "docker-clean :  Clean dangling images"
+	echo "drm :  Delete all containers"
+	echo "dri :  Remove an image"
+
+}
+
+
+function docker-clean() {
+  	docker rmi -f $(docker images -q -a -f dangling=true)
+}
+
+function drm() { 
+    echo "Deleting all containers"
+	docker rm $(docker ps -q -a); 
+}
+
+function dri() { 
+if [ $# -lt 1 ]
+  then
+    echo "Provide image id"
+    return 1
+  fi
+docker rmi $1; 
+
+}

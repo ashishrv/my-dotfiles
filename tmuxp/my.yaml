@@ -1,0 +1,19 @@
+session_name: my
+windows:
+- layout: c246,151x55,0,0,9
+  options:
+    automatic-rename: 'off'
+  panes:
+  - focus: 'true'
+    shell_command: clear
+  start_directory: /Users/ashish_vidyarthi/personal/works
+  window_name: works
+- focus: 'true'
+  layout: 614f,151x55,0,0,10
+  options:
+    automatic-rename: 'off'
+  panes:
+  - focus: 'true'
+    shell_command: clear
+  start_directory: /Users/ashish_vidyarthi/Dotfiles
+  window_name: dotfiles

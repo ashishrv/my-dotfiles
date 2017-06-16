@@ -1,4 +1,5 @@
 
+export PATH=$HOME/.local/bin:$PATH
 
 
 function tmh(){
@@ -48,10 +49,10 @@ function tm(){
           then
             echo "Following session has already been loaded: $1"
           else
-            tmuxp load $1
+            tmuxp load $1 --yes -d
           fi
 
-          tmuxp load $1
+          tmuxp load $1 --yes -d
         fi
         ;;
     sv)
@@ -70,7 +71,19 @@ function tm(){
         tmuxp load notes --yes -d
         tmuxp load my --yes -d
         tmuxp load tunnel --yes -d
+        tmuxp load docker --yes -d
         tmuxp load work --yes
+        ;;
+    kl)
+        if [ "$#" -ne 1 ]
+        then
+          echo "Kill a tmuxp session"
+          echo "Usage: tm kl <session name> "
+          echo "    tm kl docs"
+          echo
+        else
+          tmux kill-session -t  $1
+        fi
         ;;
     *)
         echo "Provide correct available tm command"

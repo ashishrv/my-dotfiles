@@ -1,0 +1,13 @@
+session_name: notes
+windows:
+- focus: 'true'
+  layout: 44a5,151x55,0,0{75x55,0,0,1,75x55,76,0[75x27,76,0,3,75x27,76,28,5]}
+  options:
+    automatic-rename: 'off'
+  panes:
+  - focus: 'true'
+    shell_command: clear
+  - clear
+  - clear
+  start_directory: /Users/ashish_vidyarthi/personal/works/hgrepo/mynotes
+  window_name: mynotes
