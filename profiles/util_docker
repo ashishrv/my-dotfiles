@@ -8,23 +8,21 @@ test -e "/Applications/Docker.app/Contents/Resources/etc/docker.bash-completion"
 test -e "/Applications/Docker.app/Contents/Resources/etc/docker-machine.bash-completion" && source "/Applications/Docker.app/Contents/Resources/etc/docker-machine.bash-completion"
 test -e "/Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion" && source "/Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion"
 
-function docker-help() {
-	echo "docker-clean :  Clean dangling images"
-	echo "docker-rm :  Delete all containers"
-	echo "docker-ri :  Remove an image"
+function dock-help() {
+	echo "dock-image-clean :  Clean dangling images"
+  echo "dock-image-rm :  Remove an image"
+	echo "dock-container-rm :  Delete all containers"
+  echo "dock-container-killall : Kill all containers"
+  echo "dock-container-find : Find container id based on name"
+  echo "dock-container-inspect : Inspect container based on name"
 
 }
 
-function docker-clean() {
-  	docker rmi -f $(docker images -q -a -f dangling=true)
+function dock-image-clean() {
+  	docker rmi $* $(docker images -q -a -f dangling=true)
 }
 
-function docker-rm() { 
-    echo "Deleting all containers"
-	docker rm $(docker ps -q -a); 
-}
-
-function docker-ri() { 
+function dock-image-rm() { 
   if [ $# -lt 1 ]
     then
       echo "Provide image id"
@@ -32,3 +30,23 @@ function docker-ri() {
     fi
   docker rmi $1; 
 }
+
+function dock-container-rm() { 
+    echo "Deleting all containers"
+	docker rm $* $(docker ps -q -a); 
+}
+
+alias dock-container-killall='docker kill $(docker ps -q)'
+
+
+function dock-container-find() {
+  docker ps | grep "$1 " | cut -d ' ' -f1
+}
+
+function dock-container-inspect() {
+  docker exec -it `dock-container-find $1` bash
+}
+
+# Store all container commands in host bash history
+alias dock-bash='docker run -e HIST_FILE=/root/.bash_history -v=$HOME/.bash_history:/root/.bash_history'
+
