@@ -27,8 +27,9 @@ export HISTIGNORE="&:?:??:pwd:ls:ls -ltr:[ \t]*:[bf]g:exit:clear:home:disk:up:hi
 # Bash colors
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;32'
+export GREP_COLOR="33;40" 
 export CLICOLOR=1
-export LSCOLORS=dxFxCxDxBxegedabagacad
+export LSCOLORS=ExFxBxDxCxegedabagacad
 
 #
 # Some colors for the files
@@ -76,16 +77,5 @@ export GREEN
 export PURPLE
 export BOLD
 export RESET
-
-#symbol="⚡ "
-
-#export PS1="\[${MAGENTA}\]\u \[$RESET\]in \[$GREEN\]\w\[$RESET\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)\[$RESET\]\n$symbol\[$RESET\]"
-#export PS2="\[$ORANGE\]→ \[$RESET\]"
-
-
-# Tmux remote terminal type support
-# alias ssh='TERM=xterm ssh'
-
-export GREP_COLOR="33;40" 
-export GREP_OPTIONS="--color=auto" 
+ 
 

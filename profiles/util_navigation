@@ -37,6 +37,8 @@ fi
 # Utilities for listing files
 #------------------------------------------------
 
+alias ls='ls -GFh'
+
 alias la='ls -a'
 
 # ll: Show colored ls
