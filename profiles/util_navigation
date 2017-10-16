@@ -38,6 +38,12 @@ if [ "$(uname)" == "Darwin" ]; then
   # cppwd :  Copy current path to do Cmd+V after you do Cmd+T
   alias cppwd='eval "echo `pwd` | tr -d \\\\n | pbcopy"'
 
+  alias f='open -a Finder ./'  # f: Opens current directory in MacOS Finder
+  alias fix_stty='stty sane' # fix_stty:     Restore terminal settings when screwed up
+  alias cic='set completion-ignore-case On' # cic: Make tab-completion case-insensitive
+  trash () { command mv "$@" ~/.Trash ; } # trash: Moves a file to the MacOS trash
+  ql () { qlmanage -p "$*" >& /dev/null; } # ql: Opens any file in MacOS Quicklook Preview
+  alias DT='tee ~/Desktop/terminalOut.txt' # DT: Pipe content to file on MacOS Desktop
 fi
 
 #------------------------------------------------
@@ -49,16 +55,32 @@ alias ls='/bin/ls -GFh'
 function ls-a ()  { /bin/ls -a "$@" ; }
 
 # ll: Show colored ls
-function ls-l ()  { /bin/ls -G "$@" ; }
+function ls-l ()  { /bin/ls -FGlAhp "$@" ; }
 
 # lt: Show long version of ls
 function ls-t ()  { /bin/ls -Glt "$@"; }
 
 # List the most recent files in a directory
-function ls-new() { ls -lt ${1+"$@"} | head -20;}
+function ls-new() { /bin/ls -lt ${1+"$@"} | head -20;}
 
 # list top files
-function ls-newall() { ls -lt -r | tail -n $@ ;}
+function ls-newall() { /bin/ls -lt -r | tail -n $@ ;}
 
 # showtimes: show the modification, metadata-change, and access times of a file
-function showtimes () { stat -f "%N:   %m %c %a" "$@" ; }
+function showtimes () { /usr/bin/stat -f "%N:   %m %c %a" "$@" ; }
+
+#   -----------------------------
+#   MAKE TERMINAL BETTER
+#   -----------------------------
+
+alias cp='/bin/cp -iv' 
+alias mv='/bin/mv -iv'
+alias mkdir='/bin/mkdir -pv'
+alias less='/usr/bin/less -FSRXc'
+alias edit='subl'
+alias ~="cd ~" # GO HOME
+alias c='clear'
+alias which='type -all' 
+alias path='echo -e ${PATH//:/\\n}'
+alias show_options='shopt'
+

@@ -2,22 +2,84 @@
 # Process & Memory related utilities
 #------------------------------------------------
 
-# findPid: find out the pid of a specified process
-function findpid () { sudo /usr/sbin/lsof -t -c "$@" ; }
+# find-pid: find out the pid of a specified process
+function find-pid () { sudo /usr/sbin/lsof -t -c "$@" ; }
 
-# mem_hogs_top : to find memory hogs:
-alias memoryhogs_top='top -l 1 -o rsize -n 10'
+# memory-hogs-top : to find memory hogs:
+alias memory-hogs-top='top -l 1 -o rsize -n 10'
 
-# mem_hogs_ps : to find memory hogs:
-alias memoryhogs_ps='ps wwaxm -o pid,stat,vsize,rss,time,command | head -10'
+# memory-hogs-ps : to find memory hogs:
+alias memory-hogs-ps='ps wwaxm -o pid,stat,vsize,rss,time,command | head -10'
 
-# cpu_hogs : to find CPU hogs
-alias cpuhogs='ps wwaxr -o pid,stat,%cpu,time,command | head -10'
+# cpu-hogs : to find CPU hogs
+alias cpu-hogs='ps wwaxr -o pid,stat,%cpu,time,command | head -10'
 
-# topforever: continual 'top' listing (every 10 seconds) showing top 15 CPU consumers
-alias topforever='top -l 0 -s 10 -o cpu -n 15'
+# top-forever: continual 'top' listing (every 10 seconds) showing top 15 CPU consumers
+alias top-forever='top -l 0 -s 10 -o cpu -n 15'
 
-# diskwho: to show processes reading/writing to disk
-alias diskwho='sudo iotop'
+# disk-who: to show processes reading/writing to disk
+alias disk-who='sudo iotop'
 
+# Recommended 'top' invocation to minimize resources
+# http://www.macosxhints.com/article.php?story=20060816123853639
+alias top-top="top -R -F -s 10 -o rsize"
+
+
+#   ---------------------------
+#   NETWORKING
+#   ---------------------------
+
+# Public facing IP Address
+alias myip='curl ip.appspot.com' 
+# Show all open TCP/IP sockets
+alias netCons='lsof -i' 
+
+# Flush out the DNS Cache
+alias flushDNS='dscacheutil -flushcache'
+
+# Display open sockets
+alias lsock='sudo /usr/sbin/lsof -i -P'
+
+# Display only open UDP sockets
+alias lsockU='sudo /usr/sbin/lsof -nP | grep UDP'
+
+# Display only open TCP sockets
+alias lsockU='sudo /usr/sbin/lsof -nP | grep TCP'
+
+#   ---------------------------------------
+#   WEB DEVELOPMENT
+#   ---------------------------------------
+
+# http-headers:      Grabs headers from web page
+http-headers () { /usr/bin/curl -I -L $@ ; } 
+
+#   ---------------------------------------
+#   REMINDERS & NOTES
+#   ---------------------------------------
+
+#   remove_disk: spin down unneeded disk
+#   ---------------------------------------
+#   diskutil eject /dev/disk1s3
+
+#   to change the password on an encrypted disk image:
+#   ---------------------------------------
+#   hdiutil chpass /path/to/the/diskimage
+
+#   to mount a read-only disk image as read-write:
+#   ---------------------------------------
+#   hdiutil attach example.dmg -shadow /tmp/example.shadow -noverify
+
+#   mounting a removable drive (of type msdos or hfs)
+#   ---------------------------------------
+#   mkdir /Volumes/Foo
+#   ls /dev/disk*   to find out the device to use in the mount command)
+#   mount -t msdos /dev/disk1s1 /Volumes/Foo
+#   mount -t hfs /dev/disk1s1 /Volumes/Foo
+
+#   to create a file of a given size: /usr/sbin/mkfile or /usr/bin/hdiutil
+#   ---------------------------------------
+#   e.g.: mkfile 10m 10MB.dat
+#   e.g.: hdiutil create -size 10m 10MB.dmg
+#   the above create files that are almost all zeros - if random bytes are desired
+#   then use: ~/Dev/Perl/randBytes 1048576 > 10MB.dat
 

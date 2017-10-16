@@ -16,7 +16,7 @@ export AUTOFEATURE=true autotest
 
 shopt -s cmdhist
 # append to bash_history if Terminal.app quits
-shopt -s histappend
+# shopt -s histappend
 
 
 # Ignore commands that begin with a space, 
