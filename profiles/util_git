@@ -2,8 +2,14 @@
 # Support git
 #------------------------------------------------
 
+# Enable bash completion for git
+if [ -f "/usr/local/bin/git" ]; then
+  if [ -f "/usr/local/etc/bash_completion.d/git-completion.bash" ]; then
+    source /usr/local/etc/bash_completion.d/git-completion.bash
+  fi
+fi
 
-export PATH="/usr/local/git/bin:$PATH"
+
 
 # Git branch details
 function parse_git_dirty() {
@@ -137,5 +143,5 @@ function g(){
 }
 
 
-test -e "/Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-prompt.sh" && source "/Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-prompt.sh"
-test -e "/Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-completion.bash" && source "/Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-completion.bash"
+#test -e "/Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-prompt.sh" && source "/Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-prompt.sh"
+#test -e "/Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-completion.bash" && source "/Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-completion.bash"
