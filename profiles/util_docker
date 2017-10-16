@@ -1,10 +1,19 @@
+#------------------------------------------------
+# Docker helpers
+#------------------------------------------------
+
+
+# Handle command completions
+test -e "/Applications/Docker.app/Contents/Resources/etc/docker.bash-completion" && source "/Applications/Docker.app/Contents/Resources/etc/docker.bash-completion"
+test -e "/Applications/Docker.app/Contents/Resources/etc/docker-machine.bash-completion" && source "/Applications/Docker.app/Contents/Resources/etc/docker-machine.bash-completion"
+test -e "/Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion" && source "/Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion"
+
 function docker-help() {
 	echo "docker-clean :  Clean dangling images"
 	echo "drm :  Delete all containers"
 	echo "dri :  Remove an image"
 
 }
-
 
 function docker-clean() {
   	docker rmi -f $(docker images -q -a -f dangling=true)

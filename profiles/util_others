@@ -12,6 +12,4 @@ if [ "$(uname)" == "Darwin" ]; then
    # Open firefox in profile mode
    alias fox='/Applications/Firefox.app/Contents/MacOS/firefox-bin -profilemanager'
 
-   #fox-profile () { /Applications/Firefox.app/Contents/MacOS/firefox-bin -P"$@" &  }
-   #fox-search () { /Applications/Firefox.app/Contents/MacOS/firefox-bin -search "$@" }
 fi

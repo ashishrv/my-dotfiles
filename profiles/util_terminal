@@ -2,6 +2,10 @@
 # Bash history storage and customization
 #------------------------------------------------
 
+function title {
+    echo -ne "\033]0;"$*"\007"
+}
+
 # Format
 export HISTTIMEFORMAT='%F %T '
 

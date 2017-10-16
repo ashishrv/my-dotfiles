@@ -1,6 +1,8 @@
-echo "Loading profiles which was last updated on .. $(ls -lrt $PROFILE/ | tail -n 1 | awk '{print $(NF)}'  | xargs -I @ stat -f "%Sm" $PROFILE/@)"
+#------------------------------------------------
+# BASH PROFILE - Load all profile fragments
+#------------------------------------------------
 
-# Bash utilities
+
 test -e "${PROFILE}/util_bash" && source "${PROFILE}/util_bash"
 test -e "${PROFILE}/util_terminal" && source "${PROFILE}/util_terminal"
 test -e "${PROFILE}/util_java" && source "${PROFILE}/util_java"
@@ -17,8 +19,7 @@ test -e "${PROFILE}/util_git" && source "${PROFILE}/util_git"
 test -e "${PROFILE}/util_go" && source "${PROFILE}/util_go"
 test -e "${PROFILE}/util_docker" && source "${PROFILE}/util_docker"
 test -e "${PROFILE}/util_tmux" && source "${PROFILE}/util_tmux"
+test -e "${PROFILE}/util_prompt" && source "${PROFILE}/util_prompt"
 
-# [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
-# eval "$(fasd --init auto)"
 
 

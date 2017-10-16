@@ -1,0 +1,16 @@
+#------------------------------------------------
+# Home brew support
+#------------------------------------------------
+
+# Bash completion
+# brew install bash-completion
+# brew tap homebrew/completions
+
+# Activate bash completion
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    source $(brew --prefix)/etc/bash_completion
+fi
+
+#TODO: collect and list all brew binary links like /usr/local/bin/subl
+
+

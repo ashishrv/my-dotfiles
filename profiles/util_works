@@ -1,0 +1,6 @@
+#------------------------------------------------
+# WORK ENVRIONMENT
+#------------------------------------------------
+
+
+test -d "${HOME}/works/software/bin" && export PATH="${HOME}/works/software/bin:$PATH"
