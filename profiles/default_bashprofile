@@ -2,11 +2,12 @@
 # BASH PROFILE - Load all profile fragments
 #------------------------------------------------
 
-
+test -e "${PROFILE}/util_brew" && source "${PROFILE}/util_brew"
 test -e "${PROFILE}/util_bash" && source "${PROFILE}/util_bash"
 test -e "${PROFILE}/util_terminal" && source "${PROFILE}/util_terminal"
 test -e "${PROFILE}/util_java" && source "${PROFILE}/util_java"
 test -e "${PROFILE}/util_python" && source "${PROFILE}/util_python"
+test -e "${PROFILE}/util_docker" && source "${PROFILE}/util_docker"
 test -e "${PROFILE}/util_navigation" && source "${PROFILE}/util_navigation"
 test -e "${PROFILE}/util_files" && source "${PROFILE}/util_files"
 test -e "${PROFILE}/util_search" && source "${PROFILE}/util_search"

@@ -10,8 +10,8 @@ test -e "/Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-com
 
 function docker-help() {
 	echo "docker-clean :  Clean dangling images"
-	echo "drm :  Delete all containers"
-	echo "dri :  Remove an image"
+	echo "docker-rm :  Delete all containers"
+	echo "docker-ri :  Remove an image"
 
 }
 
@@ -19,17 +19,16 @@ function docker-clean() {
   	docker rmi -f $(docker images -q -a -f dangling=true)
 }
 
-function drm() { 
+function docker-rm() { 
     echo "Deleting all containers"
 	docker rm $(docker ps -q -a); 
 }
 
-function dri() { 
-if [ $# -lt 1 ]
-  then
-    echo "Provide image id"
-    return 1
-  fi
-docker rmi $1; 
-
+function docker-ri() { 
+  if [ $# -lt 1 ]
+    then
+      echo "Provide image id"
+      return 1
+    fi
+  docker rmi $1; 
 }

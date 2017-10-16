@@ -1,11 +1,70 @@
+#------------------------------------------------
+# PYTHON ENVIRONMENT
+#------------------------------------------------
+
 # startup script for python
 export PYTHONSTARTUP=$PROFILE/pythonstartup
 
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-#eval "$(pyenv virtualenv-init -)"
-pyenv rehash
+# SETUP PYENV
+fact=`command -v pyenv`
+if [ "x${fact}" != "x" ]; then
+    export PYENV_ROOT="$HOME/.pyenv"
+    export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init -)"
+    #eval "$(pyenv virtualenv-init -)"
+    pyenv rehash
+fi
+
+# SETUP VIRTUALENV HOME DIRECTORY
+fact=`command -v virtualenv`
+if [ "x${fact}" != "x" ]; then
+
+    # Restrict usage of pip command to virtualenv
+    export PIP_REQUIRE_VIRTUALENV=true
+    export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
+    alias pip='pip --require-virtualenv'
+    # Where all virtualenvs reside
+    VIRTUALENVHOME=${HOME}/.vpython
+
+    # Helper function to activate/deactivate python virtual environment
+    venv (){
+        if [ "$#" -ne 1 ] || ! [ -d "${HOME}/.vpython/$1" ]; then
+            echo -e "\033[1;31mSpecify the correct python virtual environment to activate ... \033[0m"
+            echo -e "\033[1;33mAll python virtual environments ... \033[0m"
+            ls -1 ${HOME}/.vpython
+            echo
+        else
+            if [ "x${VIRTUAL_ENV}" == "x" ]; then
+                source ${HOME}/.vpython/$1/bin/activate
+            else
+                echo -e "\033[1;31mDeactivate current python virtual environment first ... \033[0m"
+                echo
+            fi
+        fi
+    }
+
+    mkvenv(){
+        if [ "$#" -ne 1 ] ; then
+            echo -e "\033[1;31mSpecify the correct python virtual environment name to create  ... \033[0m"
+            echo
+        else
+            if [ -d "${HOME}/.vpython/$1" ]; then
+                echo -e "\033[1;31mGiven python virtual environment name already exists  ... \033[0m"
+                echo
+            else
+                cur_dir=`pwd`
+                cd ${HOME}/.vpython
+                virtualenv $1
+                source ${HOME}/.vpython/$1/bin/activate
+                cd ${cur_dir}
+                unset cur_dir
+            fi
+        fi
+    }
+
+
+fi
 
 # You must install Pygments first - "pip nstall Pygments"
 alias c='pygmentize -O style=monokai -f console256 -g'
+

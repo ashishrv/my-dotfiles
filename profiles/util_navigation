@@ -13,7 +13,9 @@ alias ..='builtin cd ..'
 alias ...='builtin cd ../..'
 
 # cd: use cd to move into a directory and list files
-function cd() { builtin cd "$1"; ls; }
+function cd() { 
+  builtin cd "$1"; ls; 
+}
 
 #
 # terminal utilities
@@ -21,37 +23,42 @@ function cd() { builtin cd "$1"; ls; }
 
 if [ "$(uname)" == "Darwin" ]; then
 
-     #------------------------------------------------
+  #------------------------------------------------
   # Tree emulation and current path in clipboard
   #------------------------------------------------
 
-  # showdir: show graphical tree directory on mac
-  function show-alldir ()  { ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'; }
-  function show-dir () { find . -maxdepth $1 -type d | sed -e "s/[^-][^\/]*\//  |/g" -e "s/|\([^ ]\)/|-\1/" ; }
+  # show graphical tree directory on mac
+  function tree-all ()  { 
+    ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/';
+  }
+  function tree-dir () { 
+    find . -maxdepth $1 -type d | sed -e "s/[^-][^\/]*\//  |/g" -e "s/|\([^ ]\)/|-\1/" ; 
+  }
 
   # cppwd :  Copy current path to do Cmd+V after you do Cmd+T
   alias cppwd='eval "echo `pwd` | tr -d \\\\n | pbcopy"'
+
 fi
 
 #------------------------------------------------
 # Utilities for listing files
 #------------------------------------------------
 
-alias ls='ls -GFh'
+alias ls='/bin/ls -GFh'
 
-alias la='ls -a'
+function ls-a ()  { /bin/ls -a "$@" ; }
 
 # ll: Show colored ls
-function ll ()  { /bin/ls -G "$@" ; }
+function ls-l ()  { /bin/ls -G "$@" ; }
 
 # lt: Show long version of ls
-function lt ()  { /bin/ls -Glt "$@"; }
+function ls-t ()  { /bin/ls -Glt "$@"; }
 
 # List the most recent files in a directory
-function lsnew() { ls -lt ${1+"$@"} | head -20;}
+function ls-new() { ls -lt ${1+"$@"} | head -20;}
 
 # list top files
-function lnew() { ls -lt -r | tail -n $@ ;}
+function ls-newall() { ls -lt -r | tail -n $@ ;}
 
 # showtimes: show the modification, metadata-change, and access times of a file
 function showtimes () { stat -f "%N:   %m %c %a" "$@" ; }
