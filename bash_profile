@@ -29,11 +29,6 @@ function title {
 }
 
 
-# SET PROPMT
-symbol="⚡ "
-export PS1='$symbol\[\e[36;1m\]\W\[\e[0m\] $(__git_ps1 "[\[\e[0;32m\]%s\[\e[0m\]\[\e[0;33m\]$(parse_git_dirty)\[\e[0m\]]")\$ \[\e[0m\]'
-test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
-
 
 # Bash completion
 # brew install bash-completion
@@ -51,14 +46,18 @@ test -e "${PROFILE}/util_prompt" && source "${PROFILE}/util_prompt"
 
 # Hook up direnv
 # brew install direnv
-eval "$(direnv hook bash)"
+# eval "$(direnv hook bash)"
 
 # Hook up fzf
 # brew install fzf
 # Install shell extension: /usr/local/opt/fzf/install
-export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
+# export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
 
+unset PROMPT_COMMAND
+unset PS2
 
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 
 

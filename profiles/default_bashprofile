@@ -16,7 +16,6 @@ test -e "${PROFILE}/util_mercurial" && source "${PROFILE}/util_mercurial"
 test -e "${PROFILE}/util_git" && source "${PROFILE}/util_git"
 test -e "${PROFILE}/util_go" && source "${PROFILE}/util_go"
 test -e "${PROFILE}/util_docker" && source "${PROFILE}/util_docker"
-test -e "${PROFILE}/util_powerline" && source "${PROFILE}/util_powerline"
 test -e "${PROFILE}/util_tmux" && source "${PROFILE}/util_tmux"
 
 # [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh

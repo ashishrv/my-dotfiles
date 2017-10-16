@@ -1,0 +1,23 @@
+session_name: docker
+windows:
+- layout: 6173,161x55,0,0,14
+  options:
+    automatic-rename: 'off'
+  panes:
+  - focus: 'true'
+    shell_command: clear
+  start_directory: /Users/ashish_vidyarthi/works/workspace/github-repo/docker-builder
+  window_name: rpmdev
+- focus: 'true'
+  layout: ef2a,161x55,0,0{80x55,0,0,15,80x55,81,0[80x27,81,0,16,80x27,81,28,17]}
+  options:
+    automatic-rename: 'off'
+  panes:
+  - shell_command:
+    - cd /Users/ashish_vidyarthi/works/workspace/github-repo/docker-builder
+  - shell_command:
+    - cd /Users/ashish_vidyarthi/works/workspace/github-repo/docker-builder
+  - focus: 'true'
+    shell_command:
+    - cd /Users/ashish_vidyarthi/works/workspace/access
+  window_name: run1

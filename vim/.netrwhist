@@ -1,4 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_cnt =3
 let g:netrw_dirhist_1='/Users/ashish_vidyarthi/temp/libnet-libnet-1.2-rc3/libnet'
 let g:netrw_dirhist_2='/Users/ashish_vidyarthi/works/workspace/github-repo/ops_invoke/update'
+let g:netrw_dirhist_3='/Users/ashish_vidyarthi/.walignak/alignak'

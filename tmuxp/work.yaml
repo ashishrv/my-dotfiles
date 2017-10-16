@@ -1,0 +1,35 @@
+session_name: work
+windows:
+- focus: 'true'
+  layout: c242,151x55,0,0,5
+  options:
+    automatic-rename: 'off'
+  panes:
+  - focus: 'true'
+    shell_command: clear
+  start_directory: /Users/ashish_vidyarthi/works/workspace/github-repo/ops_deployment_minerva
+  window_name: minervasalt
+- layout: c243,151x55,0,0,6
+  options:
+    automatic-rename: 'off'
+  panes:
+  - focus: 'true'
+    shell_command: clear
+  start_directory: /Users/ashish_vidyarthi/works/workspace/github-repo/ops_ansible
+  window_name: ansible
+- layout: c244,151x55,0,0,7
+  options:
+    automatic-rename: 'off'
+  panes:
+  - focus: 'true'
+    shell_command: clear
+  start_directory: /Users/ashish_vidyarthi/works/workspace/github-repo
+  window_name: github
+- layout: c245,151x55,0,0,8
+  options:
+    automatic-rename: 'off'
+  panes:
+  - focus: 'true'
+    shell_command: clear
+  start_directory: /Users/ashish_vidyarthi/works/workspace/non_git
+  window_name: nogit

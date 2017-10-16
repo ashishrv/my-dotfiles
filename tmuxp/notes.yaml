@@ -7,7 +7,5 @@ windows:
   panes:
   - focus: 'true'
     shell_command: clear
-  - clear
-  - clear
   start_directory: /Users/ashish_vidyarthi/personal/works/hgrepo/mynotes
   window_name: mynotes

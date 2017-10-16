@@ -72,7 +72,7 @@ function tm(){
         tmuxp load my --yes -d
         tmuxp load tunnel --yes -d
         tmuxp load docker --yes -d
-        tmuxp load work --yes
+        tmuxp load work --yes -d
         ;;
     kl)
         if [ "$#" -ne 1 ]
@@ -84,6 +84,14 @@ function tm(){
         else
           tmux kill-session -t  $1
         fi
+        ;;
+    klall)
+        tmux kill-session -t notes 
+        tmux kill-session -t my
+        tmux kill-session -t tunnel
+        tmux kill-session -t docker
+        tmux kill-session -t work
+
         ;;
     *)
         echo "Provide correct available tm command"
