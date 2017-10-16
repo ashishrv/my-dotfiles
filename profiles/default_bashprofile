@@ -21,3 +21,5 @@ test -e "${PROFILE}/util_docker" && source "${PROFILE}/util_docker"
 test -e "${PROFILE}/util_tmux" && source "${PROFILE}/util_tmux"
 test -e "${PROFILE}/util_prompt" && source "${PROFILE}/util_prompt"
 
+# Save and reload the history after each command finishes
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"

@@ -1,3 +1,28 @@
+#------------------------------------------------
+# Bash shell improvements
+#------------------------------------------------
+
+# Format
+export HISTTIMEFORMAT='%F %T '
+# Ignore duplicate commands
+export HISTCONTROL=erasedups:ignorespace:ignoreboth
+
+# Set a larger bash history
+export HISTSIZE=10000
+unset HISTFILESIZE
+export HISTFILESIZE=1000000
+
+export AUTOFEATURE=true autotest
+
+shopt -s cmdhist
+# append to bash_history if Terminal.app quits
+shopt -s histappend
+
+
+# Ignore commands that begin with a space, 
+# Ignore 'exit' command
+export HISTIGNORE="&:?:??:pwd:ls:ls -ltr:[ \t]*:[bf]g:exit:clear:home:disk:up:histor:emacs:rm *"
+
 # Some Colors first
 # Bash colors
 export GREP_OPTIONS='--color=auto'
@@ -60,4 +85,7 @@ export RESET
 
 # Tmux remote terminal type support
 # alias ssh='TERM=xterm ssh'
+
+export GREP_COLOR="33;40" 
+export GREP_OPTIONS="--color=auto" 
 

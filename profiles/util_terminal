@@ -1,33 +1,11 @@
 #------------------------------------------------
-# Bash history storage and customization
+# Terminal support
 #------------------------------------------------
 
 function title {
     echo -ne "\033]0;"$*"\007"
 }
 
-# Format
-export HISTTIMEFORMAT='%F %T '
-
-shopt -s cmdhist
-
-# append to bash_history if Terminal.app quits
-shopt -s histappend
-
-# Ignore duplicate commands
-export HISTCONTROL=erasedups:ignorespace:ignoreboth
-
-# Set a larger bash history
-export HISTSIZE=10000
-unset HISTFILESIZE
-export HISTFILESIZE=1000000
-
-
-export AUTOFEATURE=true autotest
-
-# Ignore commands that begin with a space, 
-# Ignore 'exit' command
-export HISTIGNORE="&:?:??:pwd:ls:ls -ltr:[ \t]*:[bf]g:exit:clear:home:disk:up:histor:emacs:rm *"
 
 if [ "$(uname)" == "Darwin" ]; then
 	
@@ -37,12 +15,7 @@ if [ "$(uname)" == "Darwin" ]; then
 
 	# Clear terminal logs, useful for "Terminal App" in Mac
 	alias terminal_clearlogs='sudo rm -rf /private/var/log/asl/*.asl'
-
-	# function for setting terminal titles in OSX
-	function title {
-	  printf "\033]0;%s\007" "$1"
-	}
-
+	
 	#------------------------------------------------
 	# Map some macport installation for direct use
 	#------------------------------------------------

@@ -9,6 +9,11 @@ export PATH=/usr/local/bin:$PATH
 # Apple script editor
 if [ "$(uname)" == "Darwin" ]; then
 
+   # https://superuser.com/questions/31403/how-can-i-speed-up-terminal-app-or-iterm-on-mac-osx/47781#47781
+   rm-asl (){
+       sudo rm -rf /private/var/log/asl/*.asl
+   }
+   
    alias foxp='open -n /Applications/Firefox.app/'
 
    export OSA='osascript -e '
