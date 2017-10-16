@@ -6,6 +6,7 @@
 if [ -f "/usr/local/bin/git" ]; then
   if [ -f "/usr/local/etc/bash_completion.d/git-completion.bash" ]; then
     source /usr/local/etc/bash_completion.d/git-completion.bash
+    source /usr/local/etc/bash_completion.d/git-prompt.sh
   fi
 fi
 

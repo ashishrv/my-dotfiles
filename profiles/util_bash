@@ -14,13 +14,12 @@ export HISTFILESIZE=1000000
 
 export AUTOFEATURE=true autotest
 
-shopt -s cmdhist
+# shopt -s cmdhist
 # append to bash_history if Terminal.app quits
 # shopt -s histappend
 
 
 # Ignore commands that begin with a space, 
-# Ignore 'exit' command
 export HISTIGNORE="&:?:??:pwd:ls:ls -ltr:[ \t]*:[bf]g:exit:clear:home:disk:up:histor:emacs:rm *"
 
 # Some Colors first
