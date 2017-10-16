@@ -1,0 +1,13 @@
+
+
+#test -e "/usr/local/etc/bash_completion.d/util-linux" && source "/usr/local/etc/bash_completion.d/util-linux"
+#test -e "/usr/local/etc/bash_completion.d/tar" && source "/usr/local/etc/bash_completion.d/tar"
+#test -e "/usr/local/etc/bash_completion.d/ssh" && source "/usr/local/etc/bash_completion.d/ssh"
+#test -e "/usr/local/etc/bash_completion.d/openssl" && source "/usr/local/etc/bash_completion.d/openssl"
+#test -e "/usr/local/etc/bash_completion.d/mplayer" && source "/usr/local/etc/bash_completion.d/mplayer"
+#test -e "/usr/local/etc/bash_completion.d/java" && source "/usr/local/etc/bash_completion.d/java"
+#test -e "/usr/local/etc/bash_completion.d/jar" && source "/usr/local/etc/bash_completion.d/jar"
+#test -e "/usr/local/etc/bash_completion.d/gzip" && source "/usr/local/etc/bash_completion.d/gzip"
+#test -e "/usr/local/etc/bash_completion.d/gpg" && source "/usr/local/etc/bash_completion.d/gpg"
+#test -e "/usr/local/etc/bash_completion.d/gpg2" && source "/usr/local/etc/bash_completion.d/gpg2"
+

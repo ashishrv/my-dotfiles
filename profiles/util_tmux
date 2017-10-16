@@ -1,102 +1,70 @@
+#------------------------------------------------
+# TMUX
+#------------------------------------------------
 
+# Activate bash completion
+if [ -f /usr/local/etc/bash_completion.d/tmux ]; then
+    source /usr/local/etc/bash_completion.d/tmux
+fi
 
-
-
-function tmh(){
-
-    echo "Help on custom tmux commands"
-    echo
-    echo "tm ls : List all tmux session"
-    echo "tm lsp : List all tmux saved sessions"
-    echo "tm st : Start a tmux saved session with tmuxp"
-    echo "tm sv : Save a running session with tmuxp"
-    echo "tm all : Save all session with tmuxp"
-    
+function tmux-ls(){
+  tmux ls
 }
 
+function tmuxp-ls(){
+  for x in `ls -1 $HOME/.tmuxp/`;
+  do
+    filename="${x%.*}"
+    echo $filename
+  done
+}
 
-function tm(){
-  if [ $# -lt 1 ]
-  then
-    tmh
-    return 1
+function tmuxp-start(){
+  if [ "$#" -ne 1 ]; then
+    echo -e "\033[1;31mProvide a session to start \033[0m"
   fi
-  GIT_COMMAND=$1
-  OTHER_ARGS="${@:2}"
-  shift 1
-
-  case $GIT_COMMAND in
-    ls)
-        tmux ls
-        ;;
-    lsp)
-        for x in `ls -1 $HOME/.tmuxp/`;
-        do
-            filename="${x%.*}"
-            echo $filename
-        done
-        ;;
-    st)
-        if [ "$#" -ne 1 ]
-        then
-          echo "Start a tmuxp saved session"
-          echo "Usage: tm st <session name> "
-          echo "    tm st docs"
-          echo
-        else
-          tmux ls | cut -d":" -f 1 | grep "$1" 2> /dev/null
-          if [ $? -eq 0 ]
-          then
-            echo "Following session has already been loaded: $1"
-          else
-            tmuxp load $1 --yes -d
-          fi
-
-          tmuxp load $1 --yes -d
-        fi
-        ;;
-    sv)
-        if [ "$#" -ne 1 ]
-        then
-          echo "Start a tmuxp saved session"
-          echo "Usage: tm sv <session name> "
-          echo "    tm sv docs"
-          echo
-        else
-          tmuxp freeze $1
-        fi
-        ;;
-    all)
-        title TMUX
-        tmuxp load notes --yes -d
-        tmuxp load my --yes -d
-        tmuxp load tunnel --yes -d
-        tmuxp load docker --yes -d
-        tmuxp load work --yes -d
-        ;;
-    kl)
-        if [ "$#" -ne 1 ]
-        then
-          echo "Kill a tmuxp session"
-          echo "Usage: tm kl <session name> "
-          echo "    tm kl docs"
-          echo
-        else
-          tmux kill-session -t  $1
-        fi
-        ;;
-    klall)
-        tmux kill-session -t notes 
-        tmux kill-session -t my
-        tmux kill-session -t tunnel
-        tmux kill-session -t docker
-        tmux kill-session -t work
-
-        ;;
-    *)
-        echo "Provide correct available tm command"
-        tmh
-        ;;
-  esac
-
+  session_name=$1
+  tmux ls | cut -d":" -f 1 | grep "$session_name" 2> /dev/null
+  if [ $? -eq 0 ]
+  then
+      echo -e "\033[1;31mFollowing session has already been loaded: $session_name \033[0m"
+      echo ""
+  else
+      tmuxp load $session_name --yes -d
+  fi
 }
+
+function tmuxp-save(){
+  if [ "$#" -ne 1 ]; then
+    echo -e "\033[1;31mProvide a session name to save \033[0m"
+  fi
+  tmuxp freeze $1
+}
+
+
+function tmuxp-loadall(){
+  title TMUX
+  tmuxp load notes --yes -d
+  tmuxp load my --yes -d
+  tmuxp load tunnel --yes -d
+  tmuxp load docker --yes -d
+  tmuxp load work --yes -d
+}
+
+function tmux-kill(){
+  if [ "$#" -ne 1 ]; then
+    echo -e "\033[1;31mProvide a session name to kill \033[0m"
+  fi
+  tmux kill-session -t  $1
+}
+
+function tmux-killall(){
+  tmux kill-session -t notes 
+  tmux kill-session -t my
+  tmux kill-session -t tunnel
+  tmux kill-session -t docker
+  tmux kill-session -t work
+  tmux kill-session -t access
+}
+
+

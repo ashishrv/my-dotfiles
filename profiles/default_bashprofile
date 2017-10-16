@@ -2,6 +2,8 @@
 # BASH PROFILE - Load all profile fragments
 #------------------------------------------------
 
+source /usr/local/etc/bash_completion
+
 test -e "${PROFILE}/util_brew" && source "${PROFILE}/util_brew"
 test -e "${PROFILE}/util_bash" && source "${PROFILE}/util_bash"
 test -e "${PROFILE}/util_terminal" && source "${PROFILE}/util_terminal"
@@ -21,6 +23,7 @@ test -e "${PROFILE}/util_go" && source "${PROFILE}/util_go"
 test -e "${PROFILE}/util_docker" && source "${PROFILE}/util_docker"
 test -e "${PROFILE}/util_tmux" && source "${PROFILE}/util_tmux"
 test -e "${PROFILE}/util_prompt" && source "${PROFILE}/util_prompt"
+test -e "${PROFILE}/util_completions" && source "${PROFILE}/util_completions"
 
 # Save and reload the history after each command finishes
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
