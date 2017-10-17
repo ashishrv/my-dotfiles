@@ -20,9 +20,9 @@ fact=`command -v virtualenv`
 if [ "x${fact}" != "x" ]; then
 
     # Restrict usage of pip command to virtualenv
-    export PIP_REQUIRE_VIRTUALENV=true
+    # export PIP_REQUIRE_VIRTUALENV=true
     export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
-    alias pip='pip --require-virtualenv'
+    # alias pip='pip --require-virtualenv'
     # Where all virtualenvs reside
     VIRTUALENVHOME=${HOME}/.vpython
 
