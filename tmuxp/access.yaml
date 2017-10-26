@@ -1,21 +1,32 @@
 session_name: access
 windows:
-- focus: 'true'
-  layout: c2fd,143x55,0,0,0
+- window_name: dc1
+  focus: 'true'
   options:
     automatic-rename: 'off'
   panes:
   - focus: 'true'
-    shell_command: clear
-  start_directory: /Users/ashish_vidyarthi/works/workspace/access
-  window_name: salt
-- layout: c2fe,143x55,0,0,1
+    shell_command:
+      - startproject amlaccess
+      - clear
+  start_directory: /Users/ashish_vidyarthi/works/workspace
+- window_name: dc2
   options:
     automatic-rename: 'off'
   panes:
   - focus: 'true'
-    shell_command: clear
-  start_directory: /Users/ashish_vidyarthi/works/workspace/access
-  window_name: dc1
-
+    shell_command:
+      - startproject amlaccess
+      - clear
+  start_directory: /Users/ashish_vidyarthi/works/workspace
+- window_name: dc3
+  options:
+    automatic-rename: 'off'
+  panes:
+  - focus: 'true'
+    shell_command:
+      - startproject amlaccess
+      - clear
+  start_directory: /Users/ashish_vidyarthi/works/workspace
+  
 
