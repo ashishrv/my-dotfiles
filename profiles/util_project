@@ -70,6 +70,7 @@ fi
 # Add project bin path
 export PATH=${curdir}/${PROJECTNAME}/bin:\$PATH
 alias cdproject='cd ${curdir}/${PROJECTNAME}'
+export APP_PROJECT_PATH=${curdir}/${PROJECTNAME}
 
 # Set new Prompt
 export OLD_PS1=\$PS1
