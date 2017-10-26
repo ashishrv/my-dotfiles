@@ -3,7 +3,6 @@
 #------------------------------------------------
 
 echo -e "\033[1;33mLoading profiles ... \033[0m"
-echo
 
 if [ -f /etc/profile ]; then
     PATH=""
@@ -11,7 +10,7 @@ if [ -f /etc/profile ]; then
 fi
 
 # DOTFILES Directory
-export DOTFILES=$HOME/Dotfiles
+export DOTFILES=$HOME/personal/workspace/my-dotfiles
 
 # PROFILES DIRECTORY
 export PROFILE=$HOME/.profiles
@@ -33,7 +32,14 @@ test -e "${PROFILE}/default_bashprofile" && source "${PROFILE}/default_bashprofi
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-echo -e "\033[1;33m... which was last updated on\033[0m \033[1;31m$(stat -f "%Sm" $HOME/Dotfiles/.git/refs/heads/master)\033[0m"
+echo -e "\033[1;33m... which was last updated on\033[0m \033[1;31m$(stat -f "%Sm" $HOME/personal/workspace/my-dotfiles/.git/refs/heads/master)\033[0m"
 echo
 
+# For iterm2
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+fact=`env | grep ITERM_PROFILE`
+if [ "x${fact}" != "x" ]; then
+	# The history is shared between my iTerm2 terminal tabs how can I switch that off
+	export HISTFILE=""
+fi
 

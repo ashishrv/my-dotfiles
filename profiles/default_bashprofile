@@ -24,6 +24,8 @@ test -e "${PROFILE}/util_docker" && source "${PROFILE}/util_docker"
 test -e "${PROFILE}/util_tmux" && source "${PROFILE}/util_tmux"
 test -e "${PROFILE}/util_prompt" && source "${PROFILE}/util_prompt"
 test -e "${PROFILE}/util_completions" && source "${PROFILE}/util_completions"
+test -e "${PROFILE}/util_project" && source "${PROFILE}/util_project"
 
 # Save and reload the history after each command finishes
-export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+# Does not play well with tmux and multiple iterm windows
+# export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"

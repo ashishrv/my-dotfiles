@@ -42,29 +42,30 @@ function tmuxp-save(){
 }
 
 
-function tmuxp-loadall(){
+function tmuxp-load-all(){
+  declare -a tmux_session_arr=("my" "tunnel" "docker" "work" "access")
   title TMUX
-  tmuxp load notes --yes -d
-  tmuxp load my --yes -d
-  tmuxp load tunnel --yes -d
-  tmuxp load docker --yes -d
-  tmuxp load work --yes -d
+  for tsession_name in "${tmux_session_arr[@]}"
+  do
+    SESSION_NAME=$tsession_name
+    fact=`tmux list-sessions | grep ${tsession_name}`
+    if [ "x${fact}" == "x" ]; then
+        tmuxp load ${tsession_name} --yes -d
+    fi
+  done
+  tmux attach-session -t work
 }
 
-function tmux-kill(){
+function tmux-kill-session(){
   if [ "$#" -ne 1 ]; then
     echo -e "\033[1;31mProvide a session name to kill \033[0m"
   fi
   tmux kill-session -t  $1
 }
 
-function tmux-killall(){
-  tmux kill-session -t notes 
-  tmux kill-session -t my
-  tmux kill-session -t tunnel
-  tmux kill-session -t docker
-  tmux kill-session -t work
-  tmux kill-session -t access
+function tmux-kill-server(){
+  tmux kill-server
+  
 }
 
 

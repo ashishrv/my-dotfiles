@@ -1,0 +1,84 @@
+###########################################
+##
+## Provide functions for managing a project
+##
+############################################
+
+#
+# Sources project environment
+#
+function startproject(){
+    if [ $# -lt 1 ]; then
+        echo -e "\033[1;31m Error: Provide a project name/path \033[0m"
+        return 1
+    fi
+    PROJECTNAME=$1
+    if [ ! -d $PROJECTNAME ]; then
+        echo -e "\033[1;31m Error: project does not exists: ${PROJECTNAME}\033[0m"
+        return 1
+    fi
+    bash --init-file ${PROJECTNAME}/startproject
+}
+
+#
+# Creates project environment
+#
+function mkproject (){
+    curdir=`pwd`
+    if [ $# -lt 1 ]; then
+        echo -e "\033[1;31m Error: Provide a project name\033[0m"
+        return 1
+    fi
+    PROJECTNAME=$1
+    if [ -d $PROJECTNAME ]; then
+        echo -e "\033[1;31m Error: project already exists: ${PROJECTNAME}\033[0m"
+        return 1
+    fi
+
+    # Create project and sub-directories 
+    echo -e "\033[1;32m Creating project: ${PROJECTNAME}\033[0m"
+    mkdir -p ${PROJECTNAME}/bin
+    mkdir -p ${PROJECTNAME}/repo
+    touch ${PROJECTNAME}/projectprofile
+    touch ${PROJECTNAME}/startproject
+
+# Now create a project startup file
+cat >${curdir}/${PROJECTNAME}/startproject << EOF
+source ${HOME}/.bash_profile
+source ${curdir}/${PROJECTNAME}/projectprofile
+builtin cd ${curdir}/${PROJECTNAME}
+echo -e "\033[1;31m${PROJECTNAME} environment is ready!\033[0m"
+EOF
+
+# Now create a projectactivate source script
+cat >${curdir}/${PROJECTNAME}/projectprofile << EOF
+#!/bin/bash
+
+### Project: ${PROJECTNAME} 
+if [ -z "\$IN_APP_ENVIRONMENT" ]; then
+	export IN_APP_ENVIRONMENT="yes"
+else
+	echo -e "\033[1;31m Already in ${PROJECTNAME} environment, please deactivate first!\033[0m"
+	return;
+fi
+
+#
+# Place holder to activate python virtual environment
+# source ${HOME}/.vpython/<name>/bin/activate
+#
+
+# Add project bin path
+export PATH=${curdir}/${PROJECTNAME}/bin:\$PATH
+alias cdproject='cd ${curdir}/${PROJECTNAME}'
+
+# Set new Prompt
+export OLD_PS1=\$PS1
+export PS1="\033[1;31m(${PROJECTNAME})\033[0m\${OLD_PS1}"
+
+function exitproject () { 
+    echo -e "\033[1;31m Exiting ${PROJECTNAME} environment\033[0m"
+    exit 0
+}
+EOF
+
+}
