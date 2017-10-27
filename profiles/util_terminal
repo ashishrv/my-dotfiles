@@ -30,13 +30,45 @@ if [ "$(uname)" == "Darwin" ]; then
 	#[[ -f "/opt/local/bin/R" ]] && export RSTUDIO_WHICH_R=/usr/local/bin/R
 	#[[ -f "/opt/local/bin/Rscript" ]] && alias R='/opt/local/bin/Rscript'
 	
-	
+	#------------------------------------------------
+	# Open new tabs from command line for iTerm
+	#------------------------------------------------
+
+	function tabn(){
+		local cdto="$PWD"
+		if [ "$#" -eq 1 ]; then
+			tabcolor=`generatehexcolor $1`
+		else
+			tabcolor=`generatehexcolor`
+		fi
+		read -d '' -r script <<EOF
+		tell application "iTerm"
+  		activate
+  		repeat until frontmost
+      		delay 0.1
+  		end repeat
+  		tell current window to create tab with default profile
+		tell current session of current window to write text "${HOME}/.iterm2/it2setcolor tab $tabcolor; builtin cd $cdto; clear"
+		end tell
+EOF
+	osascript &>/dev/null <<<"$script"
+	}	
+
+	function tabcolor(){
+		if [ "$#" -eq 1 ]; then
+			tabcolor=`generatehexcolor $1`
+		else
+			tabcolor=`generatehexcolor`
+		fi
+		${HOME}/.iterm2/it2setcolor tab $tabcolor
+	}
+
 	#------------------------------------------------
 	# Open new tabs from command line
 	# http://stackoverflow.com/questions/7171725
 	#------------------------------------------------
 
-	tabnew() {
+	function tabterm() {
 		TAB_NAME=$1
 		COMMAND=$2
 		osascript \

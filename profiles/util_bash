@@ -76,3 +76,126 @@ export GREEN
 export PURPLE
 export BOLD
 export RESET
+
+
+function randomrgbhexcolor(){
+	# get three random numbers between 0-255
+	num1=$(($RANDOM % 256))
+	num2=$(($RANDOM % 256))
+	num3=$(($RANDOM % 256))
+	num1x=`printf '%x\n' $num1`
+	num2x=`printf '%x\n' $num2`
+	num3x=`printf '%x\n' $num3`
+	echo -e "${num1x}${num2x}${num3x}"
+}
+
+function generatehexcolor(){
+	# d -> dark, l -> light, r -> red, b -> blue, g-> green
+	num1=$(($RANDOM % 128))
+	num2=$(($RANDOM % 128))
+	num3=$(($RANDOM % 128))
+	num1x=`printf '%x\n' $num1`
+	num2x=`printf '%x\n' $num2`
+	num3x=`printf '%x\n' $num3`
+	if [ "$#" -eq 1 ]; then
+		expectedcolor=$1
+		case "$expectedcolor" in
+			color_drgb)
+				echo -e "${num1x}${num1x}${num1x}"
+				return
+				;;
+			color_lrgb)
+				lnum1=`expr 128 + $num1`
+				num1x=`printf '%x\n' $lnum1`
+				echo -e "${num1x}${num1x}${num1x}"
+				return
+				;;
+			color_drg)
+				echo -e "${num1x}${num2x}00"
+				return
+				;;
+			color_lrg)
+				lnum1=`expr 128 + $num1`
+				lnum2=`expr 128 + $num2`
+				num1x=`printf '%x\n' $lnum1`
+				num2x=`printf '%x\n' $lnum2`
+				echo -e "${num1x}${num2x}00"
+				return
+				;;
+			color_dgb)
+				echo -e "00${num1x}${num2x}"
+				return
+				;;
+			color_lgb)
+				lnum1=`expr 128 + $num1`
+				lnum2=`expr 128 + $num2`
+				num1x=`printf '%x\n' $lnum1`
+				num2x=`printf '%x\n' $lnum2`
+				echo -e "00${num1x}${num2x}"
+				return
+				;;
+			color_drb)
+				echo -e "${num1x}00${num2x}"
+				return
+				;;
+			color_lrb)
+				lnum1=`expr 128 + $num1`
+				lnum2=`expr 128 + $num2`
+				num1x=`printf '%x\n' $lnum1`
+				num2x=`printf '%x\n' $lnum2`
+				echo -e "${num1x}00${num2x}"
+				return
+				;;
+			color_dr)
+				echo -e "${num1x}0000"
+				return
+				;;
+			color_lr)
+				lnum1=`expr 128 + $num1`
+				num1x=`printf '%x\n' $lnum1`
+				echo -e "${num1x}0000"
+				return
+				;;
+			color_db)
+				echo -e "0000${num1x}"
+				return
+				;;
+			color_lb)
+				lnum1=`expr 128 + $num1`
+				num1x=`printf '%x\n' $lnum1`
+				echo -e "0000${num1x}"
+				return
+				;;
+			color_dg)
+				echo -e "00${num1x}00"
+				return
+				;;
+			color_lg)
+				lnum1=`expr 128 + $num1`
+				num1x=`printf '%x\n' $lnum1`
+				echo -e "00${num1x}00"
+				return
+				;;
+			*) 
+				num1x=`printf '%x\n' $num1`
+				num2x=`printf '%x\n' $num2`
+				num3x=`printf '%x\n' $num3`
+				num1x=`printf '%x\n' $lnum1`
+				num2x=`printf '%x\n' $lnum2`
+				num3x=`printf '%x\n' $lnum3`
+				echo -e "${num1x}${num2x}${num3x}"
+				return
+				;;
+    	esac
+	else
+		# get three random numbers between 0-255
+		num1=$(($RANDOM % 256))
+		num2=$(($RANDOM % 256))
+		num3=$(($RANDOM % 256))
+		num1x=`printf '%x\n' $num1`
+		num2x=`printf '%x\n' $num2`
+		num3x=`printf '%x\n' $num3`
+		echo -e "${num1x}${num2x}${num3x}"
+		return
+	fi
+}
