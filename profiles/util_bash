@@ -177,13 +177,8 @@ function generatehexcolor(){
 				return
 				;;
 			*) 
-				num1x=`printf '%x\n' $num1`
-				num2x=`printf '%x\n' $num2`
-				num3x=`printf '%x\n' $num3`
-				num1x=`printf '%x\n' $lnum1`
-				num2x=`printf '%x\n' $lnum2`
-				num3x=`printf '%x\n' $lnum3`
-				echo -e "${num1x}${num2x}${num3x}"
+				# Simply pass through the provided color
+				echo -e "${expectedcolor}"
 				return
 				;;
     	esac

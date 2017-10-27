@@ -30,6 +30,8 @@ function tmuxp-start(){
       echo -e "\033[1;31mFollowing session has already been loaded: $session_name \033[0m"
       echo ""
   else
+      it2check && tabcolor
+      title $session_name
       tmuxp load $session_name --yes -d
   fi
 }
@@ -43,6 +45,13 @@ function tmuxp-save(){
 
 
 function tmuxp-load-all(){
+  # Now try setting the tab and color
+  fact=\`env | grep tmux\`
+  if [ "x\${fact}" == "x" ];then
+      it2check && tabcolor
+  fi
+  title "tmux-all"
+
   declare -a tmux_session_arr=("my" "tunnel" "docker" "work" "access")
   title TMUX
   for tsession_name in "${tmux_session_arr[@]}"
