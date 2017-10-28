@@ -79,10 +79,11 @@ export PS1="\033[1;31m(${PROJECTNAME})\033[0m\${OLD_PS1}"
 # Now try setting the tab and color
 fact=\`env | grep tmux\`
 if [ "x\${fact}" == "x" ];then
-    it2check && tabcolor
+    it2check && settabcolor
 fi
 
-title proj-${PROJECTNAME} 
+title ${PROJECTNAME} 
+setbadge ${PROJECTNAME} 
 
 function exitproject () { 
     echo -e "\033[1;31m Exiting ${PROJECTNAME} environment\033[0m"

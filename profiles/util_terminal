@@ -34,51 +34,61 @@ if [ "$(uname)" == "Darwin" ]; then
 	# Open new tabs from command line for iTerm
 	#------------------------------------------------
 
-	function tabn(){
-		local cdto="$PWD"
-		if [ "$#" -eq 1 ]; then
-			tabcolor=`generatehexcolor $1`
-		else
-			tabcolor=`generatehexcolor`
+
+	function setbadge(){
+		# Sets iTerm badge 
+		fact=`env | grep iTerm.app`
+		if [ "x$fact" != "x" ];then
+			if [ "$#" -eq 1 ]; then
+				badgename=$1
+				#printf "\e]1337;SetBadgeFormat=%s\a" $(echo -n "\(session.name)" | base64)
+				echo "setting badge $badgename"
+				printf "\e]1337;SetBadgeFormat=%s\a" $(echo -n "$badgename" | base64)
+			fi
 		fi
-		read -d '' -r script <<EOF
-		tell application "iTerm"
-  		activate
-  		repeat until frontmost
-      		delay 0.1
-  		end repeat
-  		tell current window to create tab with default profile
-		tell current session of current window to write text "${HOME}/.iterm2/it2setcolor tab $tabcolor; builtin cd $cdto; clear"
-		end tell
+	}
+
+	function newtab(){
+		# Creates new iTerm badge 
+		fact=`env | grep iTerm.app`
+		if [ "x$fact" != "x" ];then
+			local cdto="$PWD"
+
+			if [ "$#" -eq 1 ]; then
+				tabcolor=`generatehexcolor $1`
+			else
+				tabcolor=`generatehexcolor`
+			fi
+
+			read -d '' -r script <<EOF
+			tell application "iTerm"
+			activate
+			repeat until frontmost
+				delay 0.1
+			end repeat
+			tell current window to create tab with default profile
+			tell current session of current window to write text "${HOME}/.iterm2/it2setcolor tab $tabcolor; builtin cd $cdto; clear"
+			end tell
 EOF
-	osascript &>/dev/null <<<"$script"
+			# Execute OSA script
+			osascript &>/dev/null <<<"$script"
+		fi
 	}	
 
-	function tabcolor(){
-		if [ "$#" -eq 1 ]; then
-			tabcolor=`generatehexcolor $1`
-		else
-			tabcolor=`generatehexcolor`
+	function settabcolor(){
+		# Sets iTerm tab color
+		fact=`env | grep iTerm.app`
+		if [ "x$fact" != "x" ];then
+			if [ "$#" -eq 1 ]; then
+				tabcolor=`generatehexcolor $1`
+			else
+				tabcolor=`generatehexcolor`
+			fi
+			if [ -f ${HOME}/.iterm2/it2setcolor ]; then
+				${HOME}/.iterm2/it2setcolor tab $tabcolor
+			fi
 		fi
-		${HOME}/.iterm2/it2setcolor tab $tabcolor
 	}
-
-	#------------------------------------------------
-	# Open new tabs from command line
-	# http://stackoverflow.com/questions/7171725
-	#------------------------------------------------
-
-	function tabterm() {
-		TAB_NAME=$1
-		COMMAND=$2
-		osascript \
-		  -e "tell application \"Terminal\"" \
-		  -e "tell application \"System Events\" to keystroke \"t\" using {command down}" \
-		  -e "do script \"printf '\\\e]1;$TAB_NAME\\\a'; $COMMAND\" in front window" \
-		  -e "do script \"clear \" in front window" \
-		  -e "end tell" > /dev/null
-	}
-	
 
 fi
 
