@@ -84,6 +84,7 @@ fi
 
 title ${PROJECTNAME} 
 setbadge ${PROJECTNAME} 
+clear
 
 function exitproject () { 
     echo -e "\033[1;31m Exiting ${PROJECTNAME} environment\033[0m"
