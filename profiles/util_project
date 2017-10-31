@@ -129,7 +129,7 @@ cat >>${curdir}/${PROJECTNAME}/projectprofile << EOF
 #
 # GO PROJECT ENVIRONMENT
 #
-export GOPATH= ${curdir}/${PROJECTNAME}
-export GOBIN= ${curdir}/${PROJECTNAME}/bin
+export GOPATH=${curdir}/${PROJECTNAME}
+export GOBIN=${curdir}/${PROJECTNAME}/bin
 EOF
 }
