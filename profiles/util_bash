@@ -20,7 +20,7 @@ shopt -s histappend
 
 
 # Ignore commands that begin with a space, 
-export HISTIGNORE="&:?:??:pwd:ls:ls -ltr:[ \t]*:[bf]g:exit:clear:home:disk:up:histor:emacs:rm *"
+export HISTIGNORE="&:?:??:pwd:ls:ls -ltr:ls -la:[ \t]*:#*:[bf]g:exit:clear:home:disk:up:histor:emacs:rm *"
 
 # Some Colors first
 # Bash colors

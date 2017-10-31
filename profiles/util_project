@@ -8,16 +8,19 @@
 # Sources project environment
 #
 function startproject(){
-    if [ $# -lt 1 ]; then
-        echo -e "\033[1;31m Error: Provide a project name/path \033[0m"
-        return 1
+    if [ $# -eq 1 ]; then
+        PROJECTNAME=$1
+        if [ ! -d $PROJECTNAME ]; then
+            echo -e "\033[1;31m Error: project does not exists: ${PROJECTNAME}\033[0m"
+            return 1
+        fi
+        echo -e "\033[1;31m Starting project ${PROJECTNAME}\033[0m"
+        bash --init-file ${PROJECTNAME}/startproject
+    else
+        echo -e "\033[1;31m Starting project in current directory\033[0m"
+        curdir=`pwd`
+        bash --init-file ${curdir}/startproject
     fi
-    PROJECTNAME=$1
-    if [ ! -d $PROJECTNAME ]; then
-        echo -e "\033[1;31m Error: project does not exists: ${PROJECTNAME}\033[0m"
-        return 1
-    fi
-    bash --init-file ${PROJECTNAME}/startproject
 }
 
 #
@@ -62,6 +65,14 @@ else
 	return;
 fi
 
+export HISTFILE=${curdir}/${PROJECTNAME}/.bashhistory
+shopt -s cmdhist
+shopt -s histappend 
+export HISTCONTROL=erasedups:ignorespace:ignoreboth
+export HISTSIZE=10000
+unset HISTFILESIZE
+export HISTFILESIZE=1000000
+
 #
 # Place holder to activate python virtual environment
 # source ${HOME}/.vpython/<name>/bin/activate
@@ -92,4 +103,33 @@ function exitproject () {
 }
 EOF
 
+}
+
+
+#
+# Creates goproject environment
+#
+function mkgoproject (){
+    curdir=`pwd`
+    if [ $# -lt 1 ]; then
+        echo -e "\033[1;31m Error: Provide a go project name\033[0m"
+        return 1
+    fi
+    PROJECTNAME=$1
+    if [ -d $PROJECTNAME ]; then
+        echo -e "\033[1;31m Error: go project already exists: ${PROJECTNAME}\033[0m"
+        return 1
+    fi
+
+    mkproject $PROJECTNAME
+    mkdir -p ${PROJECTNAME}/src
+    mkdir -p ${PROJECTNAME}/pkg
+
+cat >>${curdir}/${PROJECTNAME}/projectprofile << EOF
+#
+# GO PROJECT ENVIRONMENT
+#
+export GOPATH= ${curdir}/${PROJECTNAME}
+export GOBIN= ${curdir}/${PROJECTNAME}/bin
+EOF
 }
