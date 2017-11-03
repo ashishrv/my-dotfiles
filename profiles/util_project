@@ -82,6 +82,28 @@ export HISTFILESIZE=1000000
 export PATH=${curdir}/${PROJECTNAME}/bin:\$PATH
 alias cdproject='cd ${curdir}/${PROJECTNAME}'
 export APP_PROJECT_PATH=${curdir}/${PROJECTNAME}
+export PROJECTNAME=${PROJECTNAME}
+
+function ls-project(){
+    /bin/ls -1 ${curdir}/${PROJECTNAME}/repo
+}
+
+function cd-project(){
+
+    if [ $# -lt 1 ]; then
+        echo -e "\033[1;31m Error: Provide a project name\033[0m"
+        return 1
+    fi
+    if [ -d ${curdir}/${PROJECTNAME}/repo/$1 ]; then
+        setbadge "$1"
+        settabcolor
+        builtin cd ${curdir}/${PROJECTNAME}/repo/$1
+    else
+        setbadge "${PROJECTNAME}"
+        settabcolor
+        builtin cd ${curdir}/${PROJECTNAME}/repo
+    fi
+}
 
 # Set new Prompt
 export OLD_PS1=\$PS1
@@ -131,5 +153,27 @@ cat >>${curdir}/${PROJECTNAME}/projectprofile << EOF
 #
 export GOPATH=${curdir}/${PROJECTNAME}
 export GOBIN=${curdir}/${PROJECTNAME}/bin
+
+function ls-project(){
+    /bin/ls -1 ${curdir}/${PROJECTNAME}/src
+}
+
+function cd-project(){
+
+    if [ $# -lt 1 ]; then
+        echo -e "\033[1;31m Error: Provide a project name\033[0m"
+        return 1
+    fi
+    if [ -d ${curdir}/${PROJECTNAME}/src/$1 ]; then
+        setbadge "$1"
+        settabcolor
+        builtin cd ${curdir}/${PROJECTNAME}/src/$1
+    else
+        setbadge "${PROJECTNAME}"
+        settabcolor
+        builtin cd ${curdir}/${PROJECTNAME}/src
+    fi
+}
+
 EOF
 }
