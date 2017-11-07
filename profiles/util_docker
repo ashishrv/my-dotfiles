@@ -18,11 +18,25 @@ function dock-help() {
 
 }
 
-function dock-image-clean() {
+
+###########
+##
+## Docker images
+##
+###########
+
+# show docker images
+function di-ls(){
+  docker image ls
+}
+
+# Remove dangling images
+function di-clean() {
   	docker rmi $* $(docker images -q -a -f dangling=true)
 }
 
-function dock-image-rm() { 
+
+function di-rm() { 
   if [ $# -lt 1 ]
     then
       echo "Provide image id"
@@ -31,21 +45,91 @@ function dock-image-rm() {
   docker rmi $1; 
 }
 
-function dock-container-rm() { 
-    echo "Deleting all containers"
-	docker rm $* $(docker ps -q -a); 
+
+
+# remove latest created images
+function di-rm-la(){
+  dc-rm $(docker images -q | awk 'NR == 1 {print $0}')
 }
 
-alias dock-container-killall='docker kill $(docker ps -q)'
+# Remove all Docker images
+alias di-rm-all='docker rmi $(docker images -q)'
+alias di='docker images'
 
 
-function dock-container-find() {
+###########
+##
+## Docker containers
+##
+###########
+
+function dc-rm() { 
+	docker rm $@
+}
+
+function dc-rm-all(){
+  # Remove all Docker container
+  docker rm $(docker ps -a -q)
+}
+
+#Inspect a running Docker container
+function dc-find() {
   docker ps | grep "$1 " | cut -d ' ' -f1
 }
 
-function dock-container-inspect() {
-  docker exec -it `dock-container-find $1` bash
+function dc-exec() {
+  docker exec -it `find_docker_container $1` /bin/bash
 }
+
+# show cotainer logs. You would pass the container id
+function dc-logs(){
+  docker logs $1
+}
+
+# watching cotainer logs. You would pass the container id
+function dc-tail(){
+  docker logs -f $1
+}
+
+function dc-run(){
+}
+
+function dc-stop(){
+  docker stop $@
+}
+
+function dc-stop-all(){
+  docker stop $(docker ps -a -q)
+}
+
+function dc-rm-all() { 
+  echo "Deleting all containers"
+  docker rm $(docker ps -qf "status=exited") $(docker ps -qf "status=created")
+}
+
+
+alias dc-ps='docker ps'
+alias dc-psa='docker ps -a'
+alias dc-pss='docker ps -f "status=exited"'
+alias dc-up='docker-compose up -d'
+alias dc-down='docker-compose down -v'
+# Kill all running Docker container
+alias dc-kill-all='docker kill $(docker ps -q)'
+
+###########
+##
+## Docker volumes
+##
+###########
+
+# show all docker volulmes
+alias dv-ls='docker volume ls'
+
+# remove some volumes. You would pass the volume names.
+function dv-rm(){
+  docker volume rm $@
+}
+
 
 # Store all container commands in host bash history
 alias dock-bash='docker run -e HIST_FILE=/root/.bash_history -v=$HOME/.bash_history:/root/.bash_history'
