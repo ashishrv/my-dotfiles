@@ -78,6 +78,16 @@ export PURPLE
 export BOLD
 export RESET
 
+_generatehexcolor () {
+    candidates=(color_drgb color_lrgb color_drg color_lrg color_dgb color_lgb color_drb color_lrb color_dr color_lr color_db color_lb color_dg color_lg)
+    COMPREPLY=()
+    for candidate in ${candidates[@]}; do
+        if [[ "$candidate" == "$2"* ]]; then
+            COMPREPLY+=("$candidate")
+        fi
+    done
+}
+
 
 function generatehexcolor(){
 	# d -> dark, l -> light, r -> red, b -> blue, g-> green
@@ -184,3 +194,6 @@ function generatehexcolor(){
 		return
 	fi
 }
+
+complete -F _generatehexcolor generatehexcolor
+

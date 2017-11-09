@@ -93,5 +93,5 @@ EOF
 
 fi
 
-
+complete -F _generatehexcolor settabcolor
 
