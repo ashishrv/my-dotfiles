@@ -1,3 +1,4 @@
+#!/bin/bash
 #------------------------------------------------
 # Docker helpers
 #------------------------------------------------
@@ -92,6 +93,7 @@ function dc-tail(){
 }
 
 function dc-run(){
+  echo
 }
 
 function dc-stop(){

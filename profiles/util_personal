@@ -1,5 +1,26 @@
+#!/bin/bash
 #------------------------------------------------
 # PERSONAL ENVRIONMENT
 #------------------------------------------------
 
 test -d "${HOME}/personal/software/bin" && export PATH="${HOME}/personal/software/bin:$PATH"
+
+
+function _cdpersonal()
+{
+    local cur
+    COMPREPLY=()
+    cur=${COMP_WORDS[COMP_CWORD]}
+    COMPREPLY=($( compgen -W "$(ls -d ${HOME}/personal/workspace/*/|awk -F "/" '{print $(NF-2)}')" -- $cur ) )
+}
+
+function cd-personal(){
+    if [ $# -lt 1 ]; then
+        builtin cd ${HOME}/personal/workspace
+    else
+        builtin cd ${HOME}/personal/workspace/$1
+    fi
+}
+
+complete -F _cdpersonal cd-personal
+

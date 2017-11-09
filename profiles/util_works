@@ -1,6 +1,37 @@
+#!/bin/bash
 #------------------------------------------------
 # WORK ENVRIONMENT
 #------------------------------------------------
 
 
 test -d "${HOME}/works/software/bin" && export PATH="${HOME}/works/software/bin:$PATH"
+
+
+function _cdworks()
+{
+    local cur
+    COMPREPLY=()
+    cur=${COMP_WORDS[COMP_CWORD]}
+    COMPREPLY=($( compgen -W "$(ls -d ${HOME}/works/workspace/*/|awk -F "/" '{print $(NF-2)}')" -- $cur ) )
+}
+
+function cd-works(){
+    if [ $# -lt 1 ]; then
+        builtin cd ${HOME}/works/workspace
+    else
+        builtin cd ${HOME}/works/workspace/$1
+    fi
+}
+
+function start-works(){
+    if [ $# -lt 1 ]; then
+        builtin cd ${HOME}/works/workspace
+    else
+        builtin cd ${HOME}/works/workspace/$1
+        startproject
+    fi
+}
+
+complete -F _cdworks cd-works
+complete -F _cdworks start-works
+

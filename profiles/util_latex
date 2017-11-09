@@ -1,3 +1,4 @@
+#!/bin/bash
 # Additional environment paths
 if [[ "$PATH" != *"/usr/texbin"* ]]; then
 	export PATH=$PATH:/usr/texbin/

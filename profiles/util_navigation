@@ -1,3 +1,4 @@
+#!/bin/bash
 #------------------------------------------------
 # Navigational helpers
 #------------------------------------------------
@@ -67,7 +68,7 @@ function ls-new() { /bin/ls -lt ${1+"$@"} | head -20;}
 function ls-newall() { /bin/ls -lt -r | tail -n $@ ;}
 
 # showtimes: show the modification, metadata-change, and access times of a file
-function showtimes () { /usr/bin/stat -f "%N:   %m %c %a" "$@" ; }
+function show-times () { /usr/bin/stat -f "%N:   %m %c %a" "$@" ; }
 
 #   -----------------------------
 #   MAKE TERMINAL BETTER
@@ -82,5 +83,5 @@ alias ~="cd ~" # GO HOME
 alias c='clear'
 alias which='type -all' 
 alias path='echo -e ${PATH//:/\\n}'
-alias show_options='shopt'
+alias show-options='shopt'
 
