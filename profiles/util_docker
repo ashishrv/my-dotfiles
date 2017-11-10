@@ -88,9 +88,6 @@ function dock-container-tail(){
   docker logs -f $1
 }
 
-function dock-container-run(){
-  echo
-}
 
 function dock-container-stop(){
   docker stop $@
@@ -113,6 +110,29 @@ alias dock-up='docker-compose up -d'
 alias dock-down='docker-compose down -v'
 # Kill all running Docker container
 alias dock-kill-all='docker kill $(docker ps -q)'
+
+
+function _dock_container_run() {
+
+	local cur opt candidates
+	cur=${COMP_WORDS[COMP_CWORD]}
+	prev=${COMP_WORDS[COMP_CWORD-1]}
+	candidates=`docker image ls | tail -n +2 | awk '{printf $1}{printf ":"}{printf $2}{printf " "}'`
+	COMPREPLY=( $(compgen -W "${candidates}" -- $2) )
+}
+
+function dock-container-run(){
+  if [ $# -lt 1 ]; then
+      echo "Provide image id"
+      return 1
+  fi
+  psid=`docker run --detach --restart always --tty $1`
+  psidshort=${psid::12}
+  echo "Starting container: ${psidshort}"
+}
+
+complete -F _dock_container_run -o default dock-container-run
+
 
 ###########
 ##
