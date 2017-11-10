@@ -24,7 +24,16 @@
 	#editor = atom --wait
 	excludesfile = ~/.gitignore_global
 	pager = diff-so-fancy | less --tabs=4 -RFX
+[format]
+	pretty = "Commit:  %C(yellow)%H%nAuthor:  %C(green)%aN <%aE>%nDate:    (%C(red)%ar%Creset) %ai%nSubject: %s%n%n%b"
 
+[color]
+	diff = auto
+  	status = auto
+  	branch = auto
+	interactive = auto
+	ui = true
+	pager = true
 [diff]
 	# Enables a heuristic to make the patch output more readable by using a blank
 	# line as a strong hint that the contents before and after it belong to
@@ -35,9 +44,14 @@
 	markEmptyLines = false
 	# Do not remove the pesky + or - at line-start.
 	stripLeadingSymbols = false
+	changeHunkIndicators = false
 [color "diff"]
 	meta = yellow # Default is white
 	frag = magenta # Default is cyan
+	commit = "227 bold"
+	old = "red bold"
+	new = "green bold"
+	whitespace = "red reverse"
 [interactive]
 	# Use this color filter in `rebase --interactive` and `add --patch`
 	diffFilter = diff-so-fancy
@@ -48,6 +62,10 @@
 	newHighlight = "green #004400" # Default is green reverse
 [color "status"]
 	untracked = yellow # Default is red
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+	remote = green
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path =
@@ -56,6 +74,17 @@
 	trustExitCode = true
 [push]
 	default = simple
+
+[url "https://bitbucket.org/"]
+    insteadOf = bb:
+
+[url "https://github.com/"]
+    insteadOf = gh:
+
+[url "https://gist.github.com/"]
+	insteadOf = gist:
+
+
 [alias]
 	apple = "!git config user.email \"vidyarthi@apple.com\""
 	personal = "!git config user.email \"ashish.vid@gmail.com\""
@@ -92,6 +121,7 @@
 
 	# log
 	graph = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	last = log -1 HEAD
 
 	# configuration
@@ -102,3 +132,6 @@
 	br = branch
 	st = status
 	staged = diff --staged
+
+	# cleanup branches that has been merged
+	cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 git branch -d"
