@@ -10,34 +10,30 @@ test -e "/Applications/Docker.app/Contents/Resources/etc/docker-machine.bash-com
 test -e "/Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion" && source "/Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion"
 
 function dock-help() {
-	echo "dock-image-clean :  Clean dangling images"
-  echo "dock-image-rm :  Remove an image"
-	echo "dock-container-rm :  Delete all containers"
-  echo "dock-container-killall : Kill all containers"
-  echo "dock-container-find : Find container id based on name"
-  echo "dock-container-inspect : Inspect container based on name"
+cat << EOF
+Special docker functions are marked with dock-
+
+  Image commands: dock-image-*
+  Containers:     dock-container-*
+  Volume:         dock-volume-*
+  Exec commands:  dock-exec-*
+EOF
 
 }
 
-
-###########
-##
-## Docker images
-##
-###########
-
 # show docker images
-function di-ls(){
+function dock-image-ls(){
   docker image ls
 }
 
 # Remove dangling images
-function di-clean() {
+function dock-image-clean-dangling() {
   	docker rmi $* $(docker images -q -a -f dangling=true)
 }
 
-
-function di-rm() { 
+# Remove an docker image
+# Provide a completion function
+function dock-image-rm() { 
   if [ $# -lt 1 ]
     then
       echo "Provide image id"
@@ -49,13 +45,13 @@ function di-rm() {
 
 
 # remove latest created images
-function di-rm-la(){
-  dc-rm $(docker images -q | awk 'NR == 1 {print $0}')
+function dock-image-rm-latest(){
+  dock-image-rm $(docker images -q | awk 'NR == 1 {print $0}')
 }
 
 # Remove all Docker images
-alias di-rm-all='docker rmi $(docker images -q)'
-alias di='docker images'
+alias dock-image-rm-all='docker rmi $(docker images -q)'
+alias dock-image='docker images'
 
 
 ###########
@@ -64,59 +60,59 @@ alias di='docker images'
 ##
 ###########
 
-function dc-rm() { 
+function dock-container-rm() { 
 	docker rm $@
 }
 
-function dc-rm-all(){
+function dock-container-rm-all(){
   # Remove all Docker container
   docker rm $(docker ps -a -q)
 }
 
 #Inspect a running Docker container
-function dc-find() {
+function dock-container-find() {
   docker ps | grep "$1 " | cut -d ' ' -f1
 }
 
-function dc-exec() {
-  docker exec -it `find_docker_container $1` /bin/bash
+function dock-container-exec() {
+  docker exec -it `dock-container-find $1` /bin/bash
 }
 
 # show cotainer logs. You would pass the container id
-function dc-logs(){
+function dock-container-logs(){
   docker logs $1
 }
 
 # watching cotainer logs. You would pass the container id
-function dc-tail(){
+function dock-container-tail(){
   docker logs -f $1
 }
 
-function dc-run(){
+function dock-container-run(){
   echo
 }
 
-function dc-stop(){
+function dock-container-stop(){
   docker stop $@
 }
 
-function dc-stop-all(){
+function dock-container-stop-all(){
   docker stop $(docker ps -a -q)
 }
 
-function dc-rm-all() { 
+function dock-container-rm-exited() { 
   echo "Deleting all containers"
   docker rm $(docker ps -qf "status=exited") $(docker ps -qf "status=created")
 }
 
 
-alias dc-ps='docker ps'
-alias dc-psa='docker ps -a'
-alias dc-pss='docker ps -f "status=exited"'
-alias dc-up='docker-compose up -d'
-alias dc-down='docker-compose down -v'
+alias dock-ps='docker ps'
+alias dock-ps-all='docker ps -a'
+alias dock-ps-exited='docker ps -f "status=exited"'
+alias dock-up='docker-compose up -d'
+alias dock-down='docker-compose down -v'
 # Kill all running Docker container
-alias dc-kill-all='docker kill $(docker ps -q)'
+alias dock-kill-all='docker kill $(docker ps -q)'
 
 ###########
 ##
@@ -125,10 +121,10 @@ alias dc-kill-all='docker kill $(docker ps -q)'
 ###########
 
 # show all docker volulmes
-alias dv-ls='docker volume ls'
+alias dock-volume-ls='docker volume ls'
 
 # remove some volumes. You would pass the volume names.
-function dv-rm(){
+function dock-volume-rm(){
   docker volume rm $@
 }
 
