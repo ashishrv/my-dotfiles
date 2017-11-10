@@ -6,7 +6,7 @@
 [user]
 	name = Ashish Ranjan Vidyarthi
 	# Forces user.email and user.name configuration variables to always be set
-  # when committing, useful when using multiple email addresses.
+    # when committing, useful when using multiple email addresses.
 	useconfigonly = true
 [branch]
   # When a new branch is created with git branch or git checkout that tracks
@@ -15,8 +15,12 @@
   autosetuprebase = always
 [push]
 	default = current
+[commit]
+	template=~/.config/git/commit.template
+	cleanup=strip
 [core]
-        editor = "/usr/bin/vim -f -u NONE"
+	editor = jove
+    #editor = "/usr/bin/vim -f -u NONE"
 	#editor = atom --wait
 	excludesfile = ~/.gitignore_global
 	pager = diff-so-fancy | less --tabs=4 -RFX
