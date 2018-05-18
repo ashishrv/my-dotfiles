@@ -89,7 +89,7 @@ export PROJECTNAME=${PROJECTNAME}
 
 # Set new Prompt
 export OLD_PS1=\$PS1
-export PS1="\033[1;31m(${PROJECTNAME})\033[0m\${OLD_PS1}"
+export PS1="\[\033[1;31m\](${PROJECTNAME})\[\033[0m\]\${OLD_PS1}"
 clear
 
 function exitproject () { 

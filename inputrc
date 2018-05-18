@@ -1,3 +1,21 @@
+# Bind inputrc with following command
+# bind -f ~/.inputrc
+
+# You can type a command and use up/down arrows keys to search all command completion
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+
+# This pair allows you to move the cursor left and right by word boundaries using Option-Left and Option-Right.
+"\e[1;5C": forward-word
+"\e[1;5D": backward-word
+
 set completion-ignore-case On
 set bell-style none
+set expand-tilde on
+set convert-meta off
+set input-meta on
+set output-meta on
+set show-all-if-ambiguous on
+set visible-stats on
+set editing-mode emacs
 

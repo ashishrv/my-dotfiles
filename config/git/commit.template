@@ -1,11 +1,14 @@
 # <type>: (If applied, this commit will...) <subject> (Max 50 char)
-# feat: 
-# fix: 
+# git issue:
+# jira: LOGMINE:
+# radar:
+# feat:
+# fix:
 # refactor:
-# style: 
-# docs: 
-# test: 
-# chore: 
+# style:
+# docs:
+# test:
+# chore:
 # |<----  Using a Maximum Of 50 Characters  ---->|
 
 
@@ -16,7 +19,7 @@
 # Example: Github issue #23
 
 # --- COMMIT END ---
-# Type can be 
+# Type can be
 #    feat     (new feature)
 #    fix      (bug fix)
 #    refactor (refactoring production code)
