@@ -18,7 +18,24 @@ Special docker functions are marked with dock-
   Volume:         dock-volume-*
   Exec commands:  dock-exec-*
 EOF
+}
 
+function _dock_image_tag() {
+
+	local cur opt candidates
+	cur=${COMP_WORDS[COMP_CWORD]}
+	prev=${COMP_WORDS[COMP_CWORD-1]}
+	candidates=`docker image ls | tail -n +2 | awk '{printf $1}{printf ":"}{printf $2}{printf " "}'`
+	COMPREPLY=( $(compgen -W "${candidates}" -- $2) )
+}
+
+function _dock_image_id() {
+
+	local cur opt candidates
+	cur=${COMP_WORDS[COMP_CWORD]}
+	prev=${COMP_WORDS[COMP_CWORD-1]}
+	candidates=`docker image ls | tail -n +2 | awk '{printf $3}'`
+	COMPREPLY=( $(compgen -W "${candidates}" -- $2) )
 }
 
 # show docker images
@@ -32,17 +49,35 @@ function dock-image-clean-dangling() {
 }
 
 # Remove an docker image
-# Provide a completion function
-function dock-image-rm() { 
+function dock-image-rm() {
   if [ $# -lt 1 ]
     then
       echo "Provide image id"
       return 1
     fi
-  docker rmi $1; 
+  docker rmi $1;
 }
 
+function dock-image-rm-tag() {
+  if [ $# -lt 1 ]
+    then
+      echo "Provide image repo:tag"
+      return 1
+    fi
+  docker rmi $1;
+}
 
+function dock-image-rm-id() {
+  if [ $# -lt 1 ]
+    then
+      echo "Provide image id"
+      return 1
+    fi
+  docker rmi $1;
+}
+
+complete -F _dock_image_tag -o default dock-image-rm-tag
+complete -F _dock_image_id -o default dock-image-rm-id
 
 # remove latest created images
 function dock-image-rm-latest(){
@@ -51,7 +86,45 @@ function dock-image-rm-latest(){
 
 # Remove all Docker images
 alias dock-image-rm-all='docker rmi $(docker images -q)'
-alias dock-image='docker images'
+
+# Spwan containers from images
+function dock-image-spawn-id(){
+  if [ $# -lt 1 ]; then
+      echo "Provide image id"
+      return 1
+  fi
+  cur_dir=`pwd`
+  if  [ $# -ge 2 ]; then
+    ps_id="docker run --name $2 -v ${cur_dir}:/native --detach --restart always --tty $1"
+  else
+    ps_id="docker run -v ${cur_dir}:/native --detach --restart always --tty $1"
+  fi
+  echo $ps_id
+  psid=`${ps_id}`
+  psidshort=${psid::12}
+  echo "Starting container: ${psidshort}"
+}
+
+# Spwan containers from images
+function dock-image-spawn-tag(){
+  if [ $# -lt 1 ]; then
+      echo "Provide image id"
+      return 1
+  fi
+  cur_dir=`pwd`
+  if  [ $# -ge 2 ]; then
+    ps_id="docker run --name $2 -v ${cur_dir}:/native --detach --restart always --tty $1"
+  else
+    ps_id="docker run -v ${cur_dir}:/native --detach --restart always --tty $1"
+  fi
+  echo $ps_id
+  psid=`${ps_id}`
+  psidshort=${psid::12}
+  echo "Starting container: ${psidshort}"
+}
+
+complete -F _dock_image_id -o default dock-image-spawn-id
+complete -F _dock_image_tag -o default dock-image-spawn-tag
 
 
 ###########
@@ -60,9 +133,33 @@ alias dock-image='docker images'
 ##
 ###########
 
-function dock-container-rm() { 
-	docker rm $@
+function _dock_container_id() {
+
+	local cur opt candidates
+	cur=${COMP_WORDS[COMP_CWORD]}
+	prev=${COMP_WORDS[COMP_CWORD-1]}
+	candidates=`docker ps | tail -n +2 | awk '{printf $1}'`
+	COMPREPLY=( $(compgen -W "${candidates}" -- $2) )
 }
+
+function _dock_container_name() {
+
+	local cur opt candidates
+	cur=${COMP_WORDS[COMP_CWORD]}
+	prev=${COMP_WORDS[COMP_CWORD-1]}
+	candidates=`docker ps | tail -n +2 | awk '{printf $NF}'`
+	COMPREPLY=( $(compgen -W "${candidates}" -- $2) )
+}
+
+function dock-container-ps() {
+	docker ps
+}
+
+function dock-container-rm-id() {
+	docker rm $1
+}
+
+complete -F _dock_container_id -o default dock-container-rm-id
 
 function dock-container-rm-all(){
   # Remove all Docker container
@@ -74,30 +171,42 @@ function dock-container-find() {
   docker ps | grep "$1 " | cut -d ' ' -f1
 }
 
-function dock-container-exec() {
-  docker exec -it `dock-container-find $1` /bin/bash
+function dock-container-exec-id() {
+  docker exec -it $1 /bin/bash
 }
+
+function dock-container-exec-name() {
+  docker exec -it $1 /bin/bash
+}
+
+complete -F _dock_container_id -o default dock-container-exec-id
+complete -F _dock_container_name -o default dock-container-exec-name
 
 # show cotainer logs. You would pass the container id
 function dock-container-logs(){
   docker logs $1
 }
 
+complete -F _dock_container_id -o default dock-container-logs
+
 # watching cotainer logs. You would pass the container id
 function dock-container-tail(){
   docker logs -f $1
 }
 
+complete -F _dock_container_id -o default dock-container-tail
 
 function dock-container-stop(){
   docker stop $@
 }
 
+complete -F _dock_container_id -o default dock-container-stop
+
 function dock-container-stop-all(){
   docker stop $(docker ps -a -q)
 }
 
-function dock-container-rm-exited() { 
+function dock-container-rm-exited() {
   echo "Deleting all containers"
   docker rm $(docker ps -qf "status=exited") $(docker ps -qf "status=created")
 }
@@ -112,26 +221,6 @@ alias dock-down='docker-compose down -v'
 alias dock-kill-all='docker kill $(docker ps -q)'
 
 
-function _dock_container_run() {
-
-	local cur opt candidates
-	cur=${COMP_WORDS[COMP_CWORD]}
-	prev=${COMP_WORDS[COMP_CWORD-1]}
-	candidates=`docker image ls | tail -n +2 | awk '{printf $1}{printf ":"}{printf $2}{printf " "}'`
-	COMPREPLY=( $(compgen -W "${candidates}" -- $2) )
-}
-
-function dock-container-run(){
-  if [ $# -lt 1 ]; then
-      echo "Provide image id"
-      return 1
-  fi
-  psid=`docker run --detach --restart always --tty $1`
-  psidshort=${psid::12}
-  echo "Starting container: ${psidshort}"
-}
-
-complete -F _dock_container_run -o default dock-container-run
 
 
 ###########
@@ -151,4 +240,3 @@ function dock-volume-rm(){
 
 # Store all container commands in host bash history
 alias dock-bash='docker run -e HIST_FILE=/root/.bash_history -v=$HOME/.bash_history:/root/.bash_history'
-

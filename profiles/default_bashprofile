@@ -40,3 +40,5 @@ test -e "${PROFILE}/util_works" && source "${PROFILE}/util_works"
 # Save and reload the history after each command finishes
 # Does not play well with tmux and multiple iterm windows
 # export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+
+alias dot-reload=". ~/.bash_profile"
