@@ -34,7 +34,7 @@ function _dock_image_id() {
 	local cur opt candidates
 	cur=${COMP_WORDS[COMP_CWORD]}
 	prev=${COMP_WORDS[COMP_CWORD-1]}
-	candidates=`docker image ls | tail -n +2 | awk '{printf $3}'`
+	candidates=`docker image ls | tail -n +2 | awk '{printf $3}{printf " "}'`
 	COMPREPLY=( $(compgen -W "${candidates}" -- $2) )
 }
 
@@ -81,7 +81,7 @@ complete -F _dock_image_id -o default dock-image-rm-id
 
 # remove latest created images
 function dock-image-rm-latest(){
-  dock-image-rm $(docker images -q | awk 'NR == 1 {print $0}')
+  dock-image-rm $(docker images -q | awk 'NR == 1 {print $0}{printf " "}')
 }
 
 # Remove all Docker images
@@ -138,7 +138,7 @@ function _dock_container_id() {
 	local cur opt candidates
 	cur=${COMP_WORDS[COMP_CWORD]}
 	prev=${COMP_WORDS[COMP_CWORD-1]}
-	candidates=`docker ps | tail -n +2 | awk '{printf $1}'`
+	candidates=`docker ps | tail -n +2 | awk '{printf $1}{printf " "}'`
 	COMPREPLY=( $(compgen -W "${candidates}" -- $2) )
 }
 
@@ -147,7 +147,7 @@ function _dock_container_name() {
 	local cur opt candidates
 	cur=${COMP_WORDS[COMP_CWORD]}
 	prev=${COMP_WORDS[COMP_CWORD-1]}
-	candidates=`docker ps | tail -n +2 | awk '{printf $NF}'`
+	candidates=`docker ps | tail -n +2 | awk '{printf $NF}{printf " "}'`
 	COMPREPLY=( $(compgen -W "${candidates}" -- $2) )
 }
 
@@ -172,11 +172,11 @@ function dock-container-find() {
 }
 
 function dock-container-exec-id() {
-  docker exec -it $1 /bin/bash
+  docker exec -e COLUMNS=$COLUMNS -e LINES=$LINES -e TERM=$TERM -it $1 /bin/bash
 }
 
 function dock-container-exec-name() {
-  docker exec -it $1 /bin/bash
+  docker exec -e COLUMNS=$COLUMNS -e LINES=$LINES -e TERM=$TERM -it $1 /bin/bash
 }
 
 complete -F _dock_container_id -o default dock-container-exec-id
