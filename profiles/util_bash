@@ -25,7 +25,7 @@ export HISTIGNORE="&:?:??:pwd:ls:ls -ltr:ls -la:[ \t]*:#*:[bf]g:exit:clear:home:
 
 # Some Colors first
 # Bash colors
-export GREP_OPTIONS='--color=auto'
+#export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;32'
 export GREP_COLOR="33;40" 
 export CLICOLOR=1
