@@ -60,4 +60,4 @@ LC_CTYPE=en_US.UTF-8
 symbol_voltage=$'\xe2\x9a\xa1'
 symbol_music=$'\xe2\x99\xa9'
 symbol_integ=$'\xe2\x88\xad'
-export PS1='\[\e[31m\]$symbol_voltage\[\e[0m\] \[\e[36;1m\]\W\[\e[0m\] $(__git_ps1 "[\[\e[0;32m\]%s\[\e[0m\]\[\e[0;33m\]$(parse_git_dirty)\[\e[0m\]]")\[\e[31m\]\$\[\e[0m\]'
+export PS1='\[\e[31m\]\d \A\[\e[0m\] \[\e[31m\]$symbol_voltage\[\e[0m\] \[\e[36;1m\]\W\[\e[0m\] $(__git_ps1 "[\[\e[0;32m\]%s\[\e[0m\]\[\e[0;33m\]$(parse_git_dirty)\[\e[0m\]]")\[\e[31m\]\$\[\e[0m\]'
