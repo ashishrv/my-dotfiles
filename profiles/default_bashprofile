@@ -5,6 +5,7 @@
 
 #
 ##  Basic idea
+#   custom functions starts with my-
 #   File functions starts witrh f-
 #   Directory functions starts with d-
 #   Project functions starts with p-

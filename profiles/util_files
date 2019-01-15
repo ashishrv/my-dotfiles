@@ -45,7 +45,7 @@ extract ()
 }
 
 # colorized man support
-cman () {
+man-color () {
 env \
   LESS_TERMCAP_mb=$'\e'"[1;31m" \
   LESS_TERMCAP_md=$'\e'"[1;31m" \
@@ -60,5 +60,5 @@ env \
 # Man pages : Required only for Mac OSX
 if [ "$(uname)" == "Darwin" ]; then
    # Open a manpage in Preview, which can be saved to PDF
-   pman() { man -t "${1}" | open -f -a /Applications/Preview.app ; }
+   man-pdf() { man -t "${1}" | open -f -a /Applications/Preview.app ; }
 fi

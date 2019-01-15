@@ -33,7 +33,8 @@ test -e "${PROFILE}/default_bashprofile" && source "${PROFILE}/default_bashprofi
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-echo -e "\033[1;33m... which was last updated on\033[0m \033[1;31m$(stat -f "%Sm" $HOME/personal/workspace/my-dotfiles/.git/refs/heads/master)\033[0m"
+echo -e "\033[1;33mwhich was last updated on\033[0m \033[1;31m$(stat -f "%Sm" $HOME/personal/workspace/my-dotfiles/.git/refs/heads/master)\033[0m"
+echo -e "\033[1;33mLoaded ... \033[0m"
 echo
 
 # For iterm2
