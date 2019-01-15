@@ -1,5 +1,6 @@
 #------------------------------------------------
 # BASH PROFILE - Entry Point
+# https://news.ycombinator.com/item?id=18898523
 #------------------------------------------------
 
 echo -e "\033[1;33mLoading profiles ... \033[0m"
