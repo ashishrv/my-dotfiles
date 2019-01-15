@@ -39,7 +39,9 @@ echo
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 fact=`env | grep ITERM_PROFILE`
 if [ "x${fact}" != "x" ]; then
-	# The history is shared between my iTerm2 terminal tabs how can I switch that off
-	export HISTFILE=""
-fi
 
+    if [ "${fact}" != "ITERM_PROFILE=Default" ]; then
+	    # The history is shared between my iTerm2 terminal tabs how can I switch that off
+	    export HISTFILE=""
+    fi
+fi

@@ -69,3 +69,7 @@ fi
 # You must install Pygments first - "pip nstall Pygments"
 alias c='pygmentize -O style=monokai -f console256 -g'
 
+# Changes your current working directory to be the library or site-packages location of that library
+pycd () {
+        pushd `python -c "import os.path, $1; print(os.path.dirname($1.__file__))"`;
+    }

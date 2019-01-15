@@ -4,11 +4,14 @@
 
 
 #
-#:- Basic idea
+##  Basic idea
 #   File functions starts witrh f-
 #   Directory functions starts with d-
 #   Project functions starts with p-
-#
+#   Git function and commands starts with gi-
+#   Docker functions and commands starts with do-
+#   Python commands and function starts with pi-
+#   Go commands and function starts with go-
 
 
 source /usr/local/etc/bash_completion
@@ -37,8 +40,5 @@ test -e "${PROFILE}/util_project" && source "${PROFILE}/util_project"
 test -e "${PROFILE}/util_personal" && source "${PROFILE}/util_personal"
 test -e "${PROFILE}/util_works" && source "${PROFILE}/util_works"
 
-# Save and reload the history after each command finishes
-# Does not play well with tmux and multiple iterm windows
-# export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 alias dot-reload=". ~/.bash_profile"

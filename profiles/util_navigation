@@ -14,8 +14,8 @@ alias ..='builtin cd ..'
 alias ...='builtin cd ../..'
 
 # cd: use cd to move into a directory and list files
-function cd() { 
-  builtin cd "$1"; ls; 
+function cd() {
+  builtin cd "$1"; ls;
 }
 
 #
@@ -29,11 +29,11 @@ if [ "$(uname)" == "Darwin" ]; then
   #------------------------------------------------
 
   # show graphical tree directory on mac
-  function tree-all ()  { 
+  function tree-all ()  {
     ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/';
   }
-  function tree-dir () { 
-    find . -maxdepth $1 -type d | sed -e "s/[^-][^\/]*\//  |/g" -e "s/|\([^ ]\)/|-\1/" ; 
+  function tree-dir () {
+    find . -maxdepth $1 -type d | sed -e "s/[^-][^\/]*\//  |/g" -e "s/|\([^ ]\)/|-\1/" ;
   }
 
   # cppwd :  Copy current path to do Cmd+V after you do Cmd+T
@@ -74,14 +74,15 @@ function show-times () { /usr/bin/stat -f "%N:   %m %c %a" "$@" ; }
 #   MAKE TERMINAL BETTER
 #   -----------------------------
 
-alias cp='/bin/cp -iv' 
+alias cp='/bin/cp -iv'
 alias mv='/bin/mv -iv'
 alias mkdir='/bin/mkdir -pv'
 alias less='/usr/bin/less -FSRXc'
 alias edit='subl'
 alias ~="cd ~" # GO HOME
 alias c='clear'
-alias which='type -all' 
+alias which='type -all'
 alias path='echo -e ${PATH//:/\\n}'
 alias show-options='shopt'
-
+# check recent files
+alias llth='ls -hFlat | head'

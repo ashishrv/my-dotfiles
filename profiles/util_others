@@ -14,3 +14,35 @@ if [ "$(uname)" == "Darwin" ]; then
    alias fox='/Applications/Firefox.app/Contents/MacOS/firefox-bin -profilemanager'
 
 fi
+
+# pops open a new instance of Firefox with a completely clean, temporary profile.
+alias foxtemp='firefox --new-instance --profile $(mktemp -d)'
+
+#------------------------------------------------
+# queries the cht.sh cheatsheet of various Unix commands.
+# Example: 'cheat tar' prints
+#------------------------------------------------
+
+
+function cheat() {
+      curl cht.sh/$1
+  }
+
+#------------------------------------------------
+# chromium
+#------------------------------------------------
+
+alias chromium_prof='chromium --user-data-dir $(mktemp -d)'
+
+
+#------------------------------------------------
+# Other Queries
+#------------------------------------------------
+
+alias weather='curl wttr.in/$1'
+
+# downloading mp3s of songs from youtube
+# pip install youtube_dl
+# brew install ffmpeg
+# Example: getmp3 https://www.youtube.com/watch?v=<id-of-some-nice-tune>
+alias getmp3="youtube-dl -x --audio-format mp3 "

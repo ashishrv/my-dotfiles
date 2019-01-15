@@ -147,3 +147,26 @@ function g(){
 
 #test -e "/Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-prompt.sh" && source "/Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-prompt.sh"
 #test -e "/Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-completion.bash" && source "/Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-completion.bash"
+
+
+alias glnp="git --no-pager log --oneline -n30"
+alias gitstat="git log --stat"
+alias gittopcontrib="git shortlog -ns"
+
+
+#------------------------------------------------
+# Other utilities
+#------------------------------------------------
+
+# Viduallize changes in a html file
+# Install the tool with: npm install -g diff2html-cli
+alias folderdiff='diff2html -s side'
+
+# git branches I've worked on lately
+git_branch_dates() {
+      git for-each-ref --sort=authordate --format '%(authordate:iso) %(align:left,25)%(refname:short)%(end) %(subject)' refs/heads
+    }
+# this gets the git branch to display when I cd into a git repo
+parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}

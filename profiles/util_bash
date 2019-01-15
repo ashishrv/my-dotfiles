@@ -3,15 +3,9 @@
 # Bash shell improvements
 #------------------------------------------------
 
-# Format
-export HISTTIMEFORMAT='%F %T '
-# Ignore duplicate commands
-export HISTCONTROL=erasedups:ignorespace:ignoreboth
-
-# Set a larger bash history
-export HISTSIZE=10000
-unset HISTFILESIZE
-export HISTFILESIZE=1000000
+#------------------------------------------------
+# History
+#------------------------------------------------
 
 export AUTOFEATURE=true autotest
 
@@ -19,21 +13,46 @@ shopt -s cmdhist
 # append to bash_history if Terminal.app quits
 shopt -s histappend
 
+# Ignore duplicate commands
+export HISTCONTROL=erasedups:ignorespace:ignoreboth
+export HISTTIMEFORMAT="%d/%m/%Y-%H:%M:%S "
+# Ignore commands that begin with a space,
+export HISTIGNORE='&:bg:fg:clear:ls:pwd:history:exit:make*:* --help:'
+# Set a larger bash history
 
-# Ignore commands that begin with a space, 
-export HISTIGNORE="&:?:??:pwd:ls:ls -ltr:ls -la:[ \t]*:#*:[bf]g:exit:clear:home:disk:up:histor:emacs:rm *"
+unset HISTFILESIZE
+export HISTFILESIZE=1000000
+export HISTSIZE=
+
+if [ ! -d ~/.history/$(date -u +%Y/%m/) ]; then
+        mkdir -p ~/.history/$(date -u +%Y/%m/)
+fi
+export HISTFILE="${HOME}/.history/$(date -u +%Y/%m/%d)_${HOSTNAME}_$$"
+histgrep ()
+{
+	grep -r "$@" ~/.history
+	history | grep "$@"
+}
+
+
+#------------------------------------------------
+# Grep
+#------------------------------------------------
+
 
 # Some Colors first
 # Bash colors
 #export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;32'
-export GREP_COLOR="33;40" 
+export GREP_COLOR="33;40"
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 
-#
-# Some colors for the files
-#
+
+#------------------------------------------------
+# Colors for the files
+#------------------------------------------------
+
 export LS_COLORS="no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:bd=40;33;01:cd=40;33;01:or=01;37;41:mi=01;37;41:ex=01;32:*.cmd=01;32:*.exe=01;32:*.com=01;32:*.btm=01;32:*.bat=01;3
 2:*.sh=01;32:*.csh=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.bz=01;31:*.tz=01;31:*.rpm=01;31:*.cpio=
 01;31:*.jpg=01;35:*.gif=01;35:*.bmp=01;35:*.xbm=01;35:*.xpm=01;35:*.png=01;35:*.tif=01;35:*.py=00;35:*.java=00;35"
@@ -176,7 +195,7 @@ function generatehexcolor(){
 				echo -e "00${num1x}00"
 				return
 				;;
-			*) 
+			*)
 				# Simply pass through the provided color
 				echo -e "${expectedcolor}"
 				return
@@ -198,7 +217,7 @@ function generatehexcolor(){
 complete -F _generatehexcolor generatehexcolor
 
 
-# Provide execution helper 
+# Provide execution helper
 function dothis() {
     if [ -z "$1" ]; then
         echo "No command number passed"
@@ -233,4 +252,3 @@ function _dothis_completions() {
 }
 
 complete -F _dothis_completions dothis
-

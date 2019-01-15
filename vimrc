@@ -33,3 +33,11 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 
 " let g:solarized_termcolors=256
+
+" get infinite undo in your files.
+set undofile
+set undodir=~/.vim/undodir
+
+let s:undos = split(globpath(&undodir, '*'), "\n")
+call filter(s:undos, 'getftime(v:val) < localtime() - (60 * 60 * 24 * 90)')
+call map(s:undos, 'delete(v:val)')

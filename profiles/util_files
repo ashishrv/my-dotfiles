@@ -9,13 +9,13 @@ zip-unsecure () { zip -r "$1".zip "$1" ; }
 zip-secure () { zip -er "$1".zip "$1" ; }
 
 # num-files:  Count of non-hidden files in current dir
-alias f-num-files='echo $(ls -1 | wc -l)' 
+alias f-num-files='echo $(ls -1 | wc -l)'
 # make-1mb:      Creates a file of 1mb size (all zeros)
-alias f-make-1mb='mkfile 1m ./1MB.dat'   
-# make-5mb:      Creates a file of 5mb size (all zeros)      
-alias f-make-5mb='mkfile 5m ./5MB.dat'  
-# make-10mb:     Creates a file of 10mb size (all zeros)       
-alias f-make-10mb='mkfile 10m ./10MB.dat' 
+alias f-make-1mb='mkfile 1m ./1MB.dat'
+# make-5mb:      Creates a file of 5mb size (all zeros)
+alias f-make-5mb='mkfile 5m ./5MB.dat'
+# make-10mb:     Creates a file of 10mb size (all zeros)
+alias f-make-10mb='mkfile 10m ./10MB.dat'
 
 # archive shortcuts
 tar-compress () { tar -zcf "$1".tar.gz "$1"; }
