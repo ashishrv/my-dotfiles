@@ -4,8 +4,16 @@
 #------------------------------------------------
 
 
+
 test -d "${HOME}/works/software/bin" && export PATH="${HOME}/works/software/bin:$PATH"
 
+# Support Trillium editor
+test -d "${HOME}/works/worknotes/trilium-data" && mkdir -p "${HOME}/works/worknotes/trilium-data"
+export TRILIUM_DATA_DIR=${HOME}/works/worknotes/trilium-data
+
+function trillium(){
+    open "/Applications/Trilium Notes.app"
+}
 
 function _cdworks()
 {
@@ -34,4 +42,3 @@ function start-works(){
 
 complete -F _cdworks cd-works
 complete -F _cdworks start-works
-
