@@ -11,7 +11,7 @@ test -d "${HOME}/works/software/bin" && export PATH="${HOME}/works/software/bin:
 test -d "${HOME}/works/worknotes/trilium-data" && mkdir -p "${HOME}/works/worknotes/trilium-data"
 export TRILIUM_DATA_DIR=${HOME}/works/worknotes/trilium-data
 
-function trillium(){
+function apps-trillium(){
     open "/Applications/Trilium Notes.app"
 }
 
