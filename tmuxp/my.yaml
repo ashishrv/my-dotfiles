@@ -5,8 +5,8 @@ windows:
     automatic-rename: 'off'
   panes:
   - focus: 'true'
-    shell_command: source /Users/ashish_vidyarthi/.vpython/notes/bin/activate
-  start_directory: /Users/ashish_vidyarthi/personal/workspace/mynotes
+    shell_command: source /Users/ashish/.vpython/notes/bin/activate
+  start_directory: /Users/ashish/personal/workspace/mynotes
   window_name: mynotes
 - focus: 'true'
   options:
@@ -14,15 +14,15 @@ windows:
   panes:
   - focus: 'true'
     shell_command: clear
-  start_directory: /Users/ashish_vidyarthi/personal/workspace
+  start_directory: /Users/ashish/personal/workspace
   window_name: personal
 - focus: 'true'
   options:
     automatic-rename: 'off'
   panes:
   - focus: 'true'
-    shell_command: source /Users/ashish_vidyarthi/.vpython/dotfiles/bin/activate
-  start_directory: /Users/ashish_vidyarthi/personal/workspace/my-dotfiles
+    shell_command: source /Users/ashish/.vpython/dotfiles/bin/activate
+  start_directory: /Users/ashish/personal/workspace/my-dotfiles
   window_name: my-dotfiles
 - focus: 'true'
   options:
@@ -30,7 +30,7 @@ windows:
   panes:
   - focus: 'true'
     shell_command: clear
-  start_directory: /Users/ashish_vidyarthi/personal/workspace/macosx-bootstrap
+  start_directory: /Users/ashish/personal/workspace/macosx-bootstrap
   window_name: macosx-bootstrap
 
 

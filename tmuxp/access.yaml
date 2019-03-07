@@ -7,26 +7,28 @@ windows:
   panes:
   - focus: 'true'
     shell_command:
-      - startproject amlaccess
+      - source minerva/profile
       - clear
-  start_directory: /Users/ashish_vidyarthi/works/workspace
+  start_directory: /Users/ashish/works/workspace/access
 - window_name: dc2
   options:
     automatic-rename: 'off'
   panes:
   - focus: 'true'
     shell_command:
-      - startproject amlaccess
+      - source minerva/profile
       - clear
-  start_directory: /Users/ashish_vidyarthi/works/workspace
+  start_directory: /Users/ashish/works/workspace/access
 - window_name: dc3
   options:
     automatic-rename: 'off'
   panes:
   - focus: 'true'
     shell_command:
-      - startproject amlaccess
+      - source minerva/profile
       - clear
-  start_directory: /Users/ashish_vidyarthi/works/workspace
+  start_directory: /Users/ashish/works/workspace/access
+
+
   
 

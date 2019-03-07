@@ -6,6 +6,9 @@ windows:
     automatic-rename: 'off'
   panes:
   - focus: 'true'
-    shell_command: clear
-  start_directory: /Users/ashish_vidyarthi/works/workspace/access/tunnel
+    shell_command: 
+      - source minerva/profile
+      - clear
+  start_directory: /Users/ashish/works/workspace/access
   window_name: tunnel
+

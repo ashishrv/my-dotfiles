@@ -7,40 +7,33 @@ windows:
   panes:
   - focus: 'true'
     shell_command: clear
-  start_directory: /Users/ashish_vidyarthi/works/workspace/github-repo/ops_deployment_minerva
+  start_directory: /Users/ashish/works/workspace/ops_deployment_minerva
 - window_name: ansible
   options:
     automatic-rename: 'off'
   panes:
   - focus: 'true'
     shell_command: clear
-  start_directory: /Users/ashish_vidyarthi/works/workspace/github-repo/ops_ansible
-- window_name: exbase
+  start_directory: /Users/ashish/works/workspace/ops_ansible
+- window_name: saltlib
   options:
     automatic-rename: 'off'
   panes:
   - focus: 'true'
     shell_command: clear
-  start_directory: /Users/ashish_vidyarthi/works/workspace/github-repo/exbase
+  start_directory: /Users/ashish/works/workspace/aml-salt-lib
 - window_name: amlsalt
   options:
     automatic-rename: 'off'
   panes:
   - focus: 'true'
     shell_command: clear
-  start_directory: /Users/ashish_vidyarthi/works/workspace/github-repo/amlsalt
-- window_name: github
-  options:
-    automatic-rename: 'off'
-  panes:
-  - focus: 'true'
-    shell_command: clear
-  start_directory: /Users/ashish_vidyarthi/works/workspace/github-repo
+  start_directory: /Users/ashish/works/workspace/amlsalt
 - window_name: nogit
   options:
     automatic-rename: 'off'
   panes:
   - focus: 'true'
     shell_command: clear
-  start_directory: /Users/ashish_vidyarthi/works/workspace/non_git
+  start_directory: /Users/ashish/works/workspace/non_git
   
