@@ -4,6 +4,9 @@
 #------------------------------------------------
 
 # Bash completion
+# Bash completion has been installed to:
+# /usr/local/etc/bash_completion.d
+
 # brew install bash-completion
 # brew tap homebrew/completions
 

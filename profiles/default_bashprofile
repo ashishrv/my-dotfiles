@@ -17,6 +17,7 @@
 
 source /usr/local/etc/bash_completion
 
+test -e "${PROFILE}/util_editor" && source "${PROFILE}/util_editor"
 test -e "${PROFILE}/util_brew" && source "${PROFILE}/util_brew"
 test -e "${PROFILE}/util_bash" && source "${PROFILE}/util_bash"
 test -e "${PROFILE}/util_terminal" && source "${PROFILE}/util_terminal"
