@@ -5,30 +5,23 @@ windows:
   options:
     automatic-rename: 'off'
   panes:
-  - focus: 'true'
+  - focus: 'false'
     shell_command:
-      - source minerva/profile
-      - clear
+      - ls
   start_directory: /Users/ashish/works/workspace/access
 - window_name: dc2
   options:
     automatic-rename: 'off'
   panes:
-  - focus: 'true'
+  - focus: 'false'
     shell_command:
-      - source minerva/profile
-      - clear
+      - ls
   start_directory: /Users/ashish/works/workspace/access
 - window_name: dc3
   options:
     automatic-rename: 'off'
   panes:
-  - focus: 'true'
+  - focus: 'false'
     shell_command:
-      - source minerva/profile
-      - clear
+      - ls
   start_directory: /Users/ashish/works/workspace/access
-
-
-  
-

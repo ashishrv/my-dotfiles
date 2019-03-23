@@ -31,8 +31,6 @@ function tmuxp-start(){
       echo -e "\033[1;31mFollowing session has already been loaded: $session_name \033[0m"
       echo ""
   else
-      it2check && tabcolor
-      title $session_name
       tmuxp load $session_name --yes -d
   fi
 }

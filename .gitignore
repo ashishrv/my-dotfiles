@@ -3,3 +3,5 @@ config/ranger/tagged
 joplin-desktop/
 config/vnote/vnote.log
 vim/undodir
+tmuxp/athena.yaml
+tmuxp/minerva.yaml
