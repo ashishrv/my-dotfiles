@@ -10,4 +10,5 @@ tmuxp/minerva.yaml
 emacs.d/straight
 emacs.d/.cache
 emacs.d/auto-save-list
+emacs.d/transient
 emacs.d/transient/*
