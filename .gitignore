@@ -5,3 +5,9 @@ config/vnote/vnote.log
 vim/undodir
 tmuxp/athena.yaml
 tmuxp/minerva.yaml
+
+
+emacs.d/straight
+emacs.d/.cache
+emacs.d/auto-save-list
+emacs.d/transient/*
