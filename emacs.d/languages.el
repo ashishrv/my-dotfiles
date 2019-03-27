@@ -18,3 +18,12 @@
 (autoload 'gfm-mode "markdown-mode"
    "Major mode for editing GitHub Flavored Markdown files" t)
 (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
+
+;; Saltstack
+(straight-use-package 'salt-mode)
+(add-hook 'salt-mode-hook
+   (lambda ()
+      (flyspell-mode 1)))
+
+;; restructured text
+;; http://docutils.sourceforge.net/docs/user/emacs.html

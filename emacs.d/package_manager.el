@@ -17,30 +17,15 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
+;; Effectively replace use-package with straight-use-package
+;; https://github.com/raxod502/straight.el/blob/develop/README.md#integration-with-use-package
+(straight-use-package 'use-package)
+(setq straight-use-package-by-default t)
+;; ensure we can install from git sources
+(use-package git)
 
-
-;; Now to install a package permanently, place a call to straight-use-package
-;; Example: (straight-use-package 'el-patch)
-;; All packages that I like are listed below
-;; These may be required by other packages so installed here
-
-
-;; Git
-(straight-use-package 'magit)
-
-;; generic completion frontend for Emacs
-;; https://github.com/abo-abo/swiper
-;; Installing Counsel will bring in Ivy and Swiper as dependencies.
-(straight-use-package 'counsel)
-(require 'counsel)
-(ivy-mode 1)
-(setq ivy-use-virtual-buffers t)
-;; intentional space before end of string
-(setq ivy-count-format "(%d/%d) ")
-(setq ivy-initial-inputs-alist nil)
-(setq ivy-re-builders-alist
-        '((t . ivy--regex-fuzzy)))
-(setq ivy-magic-slash-non-match-action nil)
-
-(global-set-key (kbd "M-j") #'counsel-M-x)
-(global-set-key (kbd "C-o") #'counsel-find-file)
+;; Packages required by many other packages
+(use-package dash :config (require 'dash))    ;; lists
+(use-package ht :config (require 'ht))        ;; hash-tables
+(use-package s :config (require 's))          ;; strings
+(use-package a :config (require 'a))          ;; association lists

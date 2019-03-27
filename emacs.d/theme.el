@@ -1,6 +1,4 @@
 
-;; Use Menlo as default font
-(set-default-font "Menlo 10")
 
 ;; Install doom themes
 ;; https://github.com/hlissner/emacs-doom-themes
