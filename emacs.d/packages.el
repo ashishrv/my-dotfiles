@@ -175,8 +175,7 @@
     ;; yasnippet for git commit messages
     (add-hook 'git-commit-mode-hook
           (lambda ()
-            (when (derived-mode-p 'text-mode)
-              (yas-activate-extra-mode 'text-mode+git-commit-mode))))
+              (yas-activate-extra-mode 'text-mode+git-commit-mode)))
   :mode ("\\.yas" . snippet-mode))
 
 ;; https://github.com/mineo/yatemplate
