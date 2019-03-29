@@ -173,7 +173,7 @@
     (yas-global-mode 1)
   :config
     ;; yasnippet for git commit messages
-    (add-hook 'git-commit-mode-hook
+    (add-hook 'git-commit-setup-hook
           (lambda ()
               (yas-activate-extra-mode 'text-mode+git-commit-mode)))
   :mode ("\\.yas" . snippet-mode))
