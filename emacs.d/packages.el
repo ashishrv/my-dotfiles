@@ -170,12 +170,11 @@
                 (lambda ()
                   (when (eql major-mode 'snippet-mode)
                     (yas-reload-all)))))
-    (yas-global-mode 1)
-  :config
     ;; yasnippet for git commit messages
     (add-hook 'git-commit-setup-hook
           (lambda ()
               (yas-activate-extra-mode 'text-mode+git-commit-mode)))
+    (yas-global-mode 1)
   :mode ("\\.yas" . snippet-mode))
 
 ;; https://github.com/mineo/yatemplate
