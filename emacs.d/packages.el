@@ -174,6 +174,7 @@
     (add-hook 'git-commit-setup-hook
           (lambda ()
               (yas-activate-extra-mode 'git-commit-mode)))
+    (add-hook 'git-commit-setup-hook 'yas-minor-mode-on)
     (yas-global-mode 1)
   :diminish yas-minor-mode
   :mode ("\\.yas" . snippet-mode))
