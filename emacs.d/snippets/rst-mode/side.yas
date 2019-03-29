@@ -2,6 +2,6 @@
 # name: side bar
 # key: side
 # --
-.. sidebar:: $title
+.. sidebar:: ${1:title}
 
     $0

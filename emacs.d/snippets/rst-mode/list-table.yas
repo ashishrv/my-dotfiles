@@ -2,8 +2,8 @@
 # name: List Table
 # key: table
 # --
-.. list-table:: $tablename
-   :widths: 15 10 30
+.. list-table:: ${1:tablename}
+   :widths: ${2:"15 10 30"}
    :header-rows: 1
 
    * - hrow1

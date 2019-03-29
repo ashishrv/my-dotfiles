@@ -2,6 +2,6 @@
 # name: warning
 # key: warn
 # --
-.. warning:: $title
+.. warning:: ${1:title}
 
    $0

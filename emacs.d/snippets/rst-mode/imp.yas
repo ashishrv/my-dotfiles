@@ -2,6 +2,6 @@
 # name: important
 # key: imp
 # --
-.. important:: $title
+.. important:: ${1:title}
 
    $0

@@ -2,7 +2,7 @@
 # name: CSV Table
 # key: table
 # --
-.. csv-table:: $tablename
+.. csv-table:: ${1:tablename}
    :header: "a", "b", "c"
    :widths: 15, 10, 30
 

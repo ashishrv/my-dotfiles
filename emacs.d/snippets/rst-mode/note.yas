@@ -2,6 +2,6 @@
 # name: note
 # key: note
 # --
-.. note:: $title
+.. note:: ${1:title}
 
    $0

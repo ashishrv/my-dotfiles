@@ -2,4 +2,4 @@
 # name: URL link
 # key: url
 # --
-`$url_description <$link>`_$0
+`${1:url_description} <${2:link}>`_$0
