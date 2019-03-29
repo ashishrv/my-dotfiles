@@ -16,10 +16,10 @@
 [push]
 	default = current
 [commit]
-	template=~/.config/git/commit.template
+	#template=~/.config/git/commit.template
 	cleanup=strip
 [core]
-	editor = jove
+	#editor = jove
     #editor = "/usr/bin/vim -f -u NONE"
 	#editor = atom --wait
 	excludesfile = ~/.gitignore_global

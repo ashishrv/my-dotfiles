@@ -190,3 +190,9 @@
   :bind
     ("C-x y" . ivy-yasnippet)
 )
+
+;; yasnippet for git commit messages
+(add-hook 'git-commit-mode
+          (lambda ()
+            (when (derived-mode-p 'text-mode)
+              (yas-activate-extra-mode 'text-mode+git-commit-mode))))
