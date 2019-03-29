@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: image
+# key: img
+# --
+.. image:: ${1:path}
+   :height: ${2:100}
+   :width: ${3:200}
+   :scale: ${4:50%}
+   :alt: ${5:description}
+
+$0

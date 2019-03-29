@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: CSV Table
+# key: table
+# --
+.. csv-table:: $tablename
+   :header: "a", "b", "c"
+   :widths: 15, 10, 30
+
+   $0

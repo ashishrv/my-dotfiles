@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: URL link
+# key: url
+# --
+`$url_description <$link>`_$0

@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: List Table
+# key: table
+# --
+.. list-table:: $tablename
+   :widths: 15 10 30
+   :header-rows: 1
+
+   * - hrow1
+     - hrow2
+     - hrow2
+   * -
+     -
+     - $0

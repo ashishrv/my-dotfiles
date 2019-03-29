@@ -1,8 +1,5 @@
-
-
-;; Projectile
-;; https://github.com/bbatsov/projectile
-(straight-use-package 'projectile)
-(straight-use-package 'counsel-projectile)
-(counsel-projectile-mode)
-(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+;; provides intelligent editing of anything that you normally have to type twice
+(use-package smartparens
+  :straight t
+  :init
+  (smartparens-global-mode))

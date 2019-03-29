@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: side bar
+# key: side
+# --
+.. sidebar:: $title
+
+    $0

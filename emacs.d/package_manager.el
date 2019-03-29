@@ -22,10 +22,23 @@
 (straight-use-package 'use-package)
 (setq straight-use-package-by-default t)
 ;; ensure we can install from git sources
-(use-package git)
+(use-package git
+  :straight t)
 
 ;; Packages required by many other packages
-(use-package dash :config (require 'dash))    ;; lists
-(use-package ht :config (require 'ht))        ;; hash-tables
-(use-package s :config (require 's))          ;; strings
-(use-package a :config (require 'a))          ;; association lists
+;; lists
+(use-package dash
+  :straight t
+  :config (require 'dash))
+;; hash-tables
+(use-package ht
+  :straight t
+  :config (require 'ht))
+;; strings
+(use-package s
+  :straight t
+  :config (require 's))
+;; association lists
+(use-package a
+  :straight t
+  :config (require 'a))
