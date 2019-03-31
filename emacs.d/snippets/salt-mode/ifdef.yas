@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: if variable is defined
+# key: ifdef
+# --
+{% if ${1:variable_name} is defined %}
+$0
+{% else %} 
+
+{% endif %}

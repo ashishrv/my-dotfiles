@@ -20,9 +20,10 @@
 (straight-use-package 'doom-themes)
 (require 'doom-themes)
 ;; Selecting a doom theme
-;; (load-theme 'doom-one t)
+(load-theme 'doom-one t)
 ;; (load-theme 'doom-one-light t)
-(load-theme 'doom-vibrant t)
+;;(load-theme 'doom-vibrant t)
+
 
 (doom-themes-visual-bell-config)
 (doom-themes-treemacs-config)

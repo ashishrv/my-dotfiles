@@ -2,4 +2,4 @@
 # name: radar
 # key: type
 # --
-${1:$$(yas-choose-value '("fix" "hotfix" "add" "update" "change" "clean" "disable" "remove" "upgrade" "revert"))}: radar:${2:number}$0
+${1:$$(yas-choose-value '("fix" "hotfix" "add" "update" "change" "clean" "disable" "remove" "upgrade" "revert"))}: radar:${2:number} $0

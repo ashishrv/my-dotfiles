@@ -4,6 +4,12 @@
 ;; These may be required by other packages so installed here
 
 
+;;smex
+(use-package smex
+  :straight t)
+(use-package flx
+  :straight t)
+
 ;; generic completion frontend for Emacs
 ;; https://github.com/abo-abo/swiper
 ;; Installing Counsel will bring in Ivy and Swiper as dependencies.
@@ -75,11 +81,24 @@
 
 
 ;; Company for command completion
-(straight-use-package 'company)
-(require 'company)
-(add-hook 'after-init-hook 'global-company-mode)
 
+(use-package company
+  :straight t
+  :bind (:map company-active-map
+         ("C-n" . company-select-next)
+         ("C-p" . company-select-previous))
+  :init
+  (global-company-mode)
+  :config
+  (setq company-idle-delay 0) ; Delay to complete
+  (setq company-minimum-prefix-length 1)
+  (setq company-selection-wrap-around t) ; Loops around suggestions
 
+  (if (display-graphic-p)
+      (define-key company-active-map [tab] 'company-select-next)
+    (define-key company-active-map (kbd "C-i") 'company-select-next)))
+
+(setq company-dabbrev-downcase nil)
 
 ;; https://framagit.org/steckerhalter/discover-my-major
 (straight-use-package 'discover-my-major)
@@ -103,7 +122,47 @@
           which-key-min-display-lines 7
           which-key-prefix-prefix "+"))
 
-
+;; https://github.com/hlissner/doom-emacs/blob/master/modules/tools/neotree/packages.el
+;; https://github.com/jaypei/emacs-neotree
+(use-package neotree
+  :straight t
+  :commands (neotree-show
+             neotree-hide
+             neotree-toggle
+             neotree-dir
+             neotree-find
+             neo-global--with-buffer
+             neo-global--window-exists-p)
+  :config
+  (setq neo-create-file-auto-open nil
+        neo-auto-indent-point nil
+        ;;neo-autorefresh nil
+        neo-mode-line-type 'none
+        neo-window-width 25
+        neo-show-updir-line nil
+        neo-theme 'nerd ; fallback
+        neo-banner-message nil
+        neo-confirm-create-file #'off-p
+        neo-confirm-create-directory #'off-p
+        neo-show-hidden-files nil
+        neo-keymap-style 'concise
+        neo-hidden-regexp-list
+        '(;; vcs folders
+          "^\\.\\(git\\|hg\\|svn\\)$"
+          ;; compiled files
+          "\\.\\(pyc\\|o\\|elc\\|lock\\|css.map\\)$"
+          ;; generated files, caches or local pkgs
+          "^\\(node_modules\\|vendor\\|.\\(project\\|cask\\|yardoc\\|sass-cache\\)\\)$"
+          ;; org-mode folders
+          "^\\.\\(sync\\|export\\|attach\\)$"
+          "~$"
+          "^#.*#$"))
+  (setq projectile-switch-project-action 'neotree-projectile-action)
+  (setq neo-force-change-root t)
+  (setq neo-toggle-window-keep-p t)
+  (when (bound-and-true-p winner-mode)
+    (push neo-buffer-name winner-boring-buffers))
+)
 
 
 ;; projectile
@@ -195,4 +254,10 @@
   :straight t
   :bind
     ("C-x y" . ivy-yasnippet)
+)
+
+;; Make sure Emacs gui has same environment as one launched in shell
+;; https://github.com/purcell/exec-path-from-shell
+(use-package exec-path-from-shell
+  :straight t
 )

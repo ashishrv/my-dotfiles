@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: manage directory
+# key: s.dir 
+# --
+{{state_name}}_${1:state_name_extension}:                                                                                                                     
+  file.directory:                                                                                                                                                   
+    - name: ${2:directory_path}
+    - makedirs: True                                                                                                                                                
+    - if_missing: ${2}
+
+$0

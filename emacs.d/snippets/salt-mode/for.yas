@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: for loop
+# key: for
+# --
+{% for ${1:loop_variable_name} in ${2:"'var1', 'var2'"} %}
+$0
+{% endfor %}

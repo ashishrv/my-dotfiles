@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: import yaml
+# key: imp
+# --
+{%- import_yaml ${1:file_name} as ${2:variable_name} %}
+$0

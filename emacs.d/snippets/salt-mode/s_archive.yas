@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: state archive extracted
+# key: s.archive
+# --
+{{state_name}}_${1:state_name_extension}:                                                                                                                 
+  archive.extracted:                                                                                                                                                               
+    - name: ${2:path/where/archive/is/extracted}
+    - source: salt://${3:path/to/tarball.tar.gz}
+    - archive_format: tar                                                                                                                                                          
+    - enforce_toplevel: False                                                                                                                                                      
+    - options: --strip-components=1            
+
+$0

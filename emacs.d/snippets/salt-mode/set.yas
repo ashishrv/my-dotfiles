@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: set a variable 
+# key: set
+# --
+{% set ${1:variable_name} = '${2:string_value}' %}
+$0

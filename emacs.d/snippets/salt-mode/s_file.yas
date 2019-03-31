@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: state manage file
+# key: s.file 
+# --
+{{state_name}}_${1:state_name_extension}:                                                                                                                      
+  file.managed:                                                                                                                                                     
+    - name: ${2:file_name_to_manage}
+    - source:                                                                                                                                                       
+      - salt://${3:template_path}
+    - template: jinja                                                                                                                                               
+    - mode: ${3:755}                                                                                                                                                     
+    - context: 
+      context_data: {{ context_data }} 
+ 
+${0}
