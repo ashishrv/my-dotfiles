@@ -27,7 +27,6 @@
   (org-babel-load-file (expand-file-name "~/.emacs.d/package_manager.org")))
 
 ;; package manager
-(load "~/.emacs.d/package_manager.el")
 (load "~/.emacs.d/packages.el")
 (load "~/.emacs.d/languages.el")
 (load "~/.emacs.d/tools.el")
