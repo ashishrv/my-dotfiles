@@ -20,10 +20,14 @@
 (when (file-readable-p "~/.emacs.d/standard.org")
   (org-babel-load-file (expand-file-name "~/.emacs.d/standard.org")))
 
+(when (file-readable-p "~/.emacs.d/variables.org")
+  (org-babel-load-file (expand-file-name "~/.emacs.d/variables.org")))
+
+(when (file-readable-p "~/.emacs.d/package_manager.org")
+  (org-babel-load-file (expand-file-name "~/.emacs.d/package_manager.org")))
 
 ;; package manager
 (load "~/.emacs.d/package_manager.el")
-(load "~/.emacs.d/variables.el")
 (load "~/.emacs.d/packages.el")
 (load "~/.emacs.d/languages.el")
 (load "~/.emacs.d/tools.el")
