@@ -26,8 +26,11 @@
 (when (file-readable-p "~/.emacs.d/package_manager.org")
   (org-babel-load-file (expand-file-name "~/.emacs.d/package_manager.org")))
 
+(when (file-readable-p "~/.emacs.d/packages.org")
+  (org-babel-load-file (expand-file-name "~/.emacs.d/packages.org")))
+
 ;; package manager
-(load "~/.emacs.d/packages.el")
+;;(load "~/.emacs.d/packages.el")
 (load "~/.emacs.d/languages.el")
 (load "~/.emacs.d/tools.el")
 (load "~/.emacs.d/keychords.el")
