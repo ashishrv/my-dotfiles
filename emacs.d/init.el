@@ -32,8 +32,11 @@
 (when (file-readable-p "~/.emacs.d/languages.org")
   (org-babel-load-file (expand-file-name "~/.emacs.d/languages.org")))
 
-;; package manager
-;;(load "~/.emacs.d/languages.el")
-(load "~/.emacs.d/tools.el")
-(load "~/.emacs.d/keychords.el")
-(load "~/.emacs.d/theme.el")
+(when (file-readable-p "~/.emacs.d/tools.org")
+  (org-babel-load-file (expand-file-name "~/.emacs.d/tools.org")))
+
+(when (file-readable-p "~/.emacs.d/keychords.org")
+  (org-babel-load-file (expand-file-name "~/.emacs.d/keychords.org")))
+
+(when (file-readable-p "~/.emacs.d/theme.org")
+  (org-babel-load-file (expand-file-name "~/.emacs.d/theme.org")))
