@@ -36,6 +36,9 @@
           (clojure-mode . outline-5)
           (org-mode . outline-3)))
     (setq ivy-magic-slash-non-match-action nil)
+    (setq ivy-re-builders-alist
+      '((swiper . ivy--regex-plus)
+        (t      . ivy--regex-fuzzy)))
   :bind
     (("M-x". counsel-M-x)
     ("C-x C-f". counsel-find-file)
@@ -189,11 +192,12 @@
       (setq counsel-projectile-rg-options-history (list "-uuu"))
       (add-hook 'text-mode-hook 'counsel-projectile-mode)
       (add-hook 'prog-mode-hook 'counsel-projectile-mode)
-      (setq counsel-projectile-switch-project-action 'deer)
+      ;;(setq counsel-projectile-switch-project-action 'projectile-find-file)
       (projectile-global-mode)
     :bind
       ("C-c g". counsel-projectile-rg)
       ("C-c p". projectile-command-map))
+
 
 ;; Ranger
 ;; https://github.com/ralesi/ranger.el

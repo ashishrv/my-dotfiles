@@ -1,4 +1,8 @@
 
+;; https://github.com/emacs-lsp/dap-mode
+
+
+
 ;; Python development environment
 ;; https://github.com/jorgenschaefer/elpy
 ;; https://elpy.readthedocs.io/en/latest/index.html
@@ -32,7 +36,7 @@
 (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
 ;; Add a live preview
 ;; https://github.com/shime/emacs-livedown
-;;
+(load "~/.emacs.d/external/emacs-livedown/livedown.el")
 
 
 ;; Saltstack

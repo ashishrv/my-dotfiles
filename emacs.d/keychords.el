@@ -9,3 +9,4 @@
 (key-chord-define-global "PP" 'counsel-projectile-switch-project)
 (key-chord-define-global "SS" 'counsel-projectile-ag)
 (key-chord-define-global "UU" 'undo-tree-visualize)
+(key-chord-define-global "WS" 'ace-swap-window)

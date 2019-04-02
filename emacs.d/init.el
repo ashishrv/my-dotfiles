@@ -1,45 +1,25 @@
+;; This fixed garbage collection, makes emacs start up faster
+(setq gc-cons-threshold 402653184
+      gc-cons-percentage 0.6)
 
-;; refactor every functionality into sepearte files
-;; Use: https://github.com/emacs-tw/awesome-emacs
+(defvar startup/file-name-handler-alist file-name-handler-alist)
+(setq file-name-handler-alist nil)
 
-;; Do not display the splash screen
-(setq inhibit-startup-screen t)
-;; Remove the menu bar
-(customize-set-variable 'menu-bar-mode nil)
-;; Remove the tool bar
-(if window-system
-    (customize-set-variable 'tool-bar-mode nil))
-;; Remove the scroll bar
-(customize-set-variable 'scroll-bar-mode nil)
-;; maximize my emacs frame on start-up
-(toggle-frame-maximized)
-;; no error bell
-(setq ring-bell-function 'ignore)
-;; Make the yes or no prompts shorter.
-(defalias 'yes-or-no-p 'y-or-n-p)
-;; Create a central repository for backup
-(setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
-    backup-by-copying t    ; Don't delink hardlinks
-    version-control t      ; Use version numbers on backups
-    delete-old-versions t  ; Automatically delete excess backups
-    kept-new-versions 20   ; how many of the newest versions to keep
-    kept-old-versions 5    ; and how many of the old
-    )
+(defun startup/revert-file-name-handler-alist ()
+  (setq file-name-handler-alist startup/file-name-handler-alist))
 
-;; Make sure that UTF-8 is used everywhere
-(set-terminal-coding-system  'utf-8)
-(set-keyboard-coding-system  'utf-8)
-(set-language-environment    'utf-8)
-(set-selection-coding-system 'utf-8)
-(setq locale-coding-system   'utf-8)
-(prefer-coding-system        'utf-8)
-(set-input-method nil)
+(defun startup/reset-gc ()
+  (setq gc-cons-threshold 16777216
+	gc-cons-percentage 0.1))
 
-;; stops emacs adding customised settings to init.el
-(setq custom-file (make-temp-file "emacs-custom"))
+(add-hook 'emacs-startup-hook 'startup/revert-file-name-handler-alist)
+(add-hook 'emacs-startup-hook 'startup/reset-gc)
 
-;; Highlight the current line.
-(global-hl-line-mode 1)
+;; load rest of emacs configuration as org files
+
+(when (file-readable-p "~/.emacs.d/standard.org")
+  (org-babel-load-file (expand-file-name "~/.emacs.d/standard.org")))
+
 
 ;; package manager
 (load "~/.emacs.d/package_manager.el")

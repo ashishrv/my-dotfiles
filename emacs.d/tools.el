@@ -14,19 +14,6 @@
   :straight t)
 
 
-;; https://github.com/cyrus-and/zoom
-(use-package zoom
-  :straight t
-  :delight
-  :config
-  (zoom-mode t)
-  (defun size-callback ()
-    (cond ((> (frame-pixel-width) 1280) '(90 . 0.75))
-          (t                            '(0.618 . 0.618))))
-  (setf zoom-ignored-major-modes '(dired-mode markdown-mode ediff-mode magit-popup-mode treemacs-mode ranger-mode))
-  (setf zoom-size 'size-callback))
-
-
 ;; crux has useful functions extracted from Emacs Prelude
 ;; https://github.com/bbatsov/crux
 (use-package crux
@@ -119,7 +106,26 @@
 (use-package git-timemachine
     :straight t)
 
+;; https://github.com/cyrus-and/zoom
+(use-package zoom
+  :straight t
+  :delight
+  :config
+  (zoom-mode t)
+  (defun size-callback ()
+    (cond ((> (frame-pixel-width) 1280) '(90 . 0.75))
+          (t                            '(0.618 . 0.618))))
+  (setf zoom-ignored-major-modes '(dired-mode markdown-mode ediff-mode magit-popup-mode treemacs-mode ranger-mode))
+  (setf zoom-size 'size-callback))
 
+;; Easy workspaces creation and switching
+;;
+(use-package eyebrowse
+  :straight t
+  :config
+  (setq eyebrowse-mode-line-separator " "
+                 eyebrowse-new-workspace t)
+  (eyebrowse-mode t))
 
 ;; https://github.com/magnars/multiple-cursors.el
 ;; https://github.com/phillord/lentic
