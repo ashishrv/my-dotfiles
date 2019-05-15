@@ -5,7 +5,7 @@ config/vnote/vnote.log
 vim/undodir
 tmuxp/athena.yaml
 tmuxp/minerva.yaml
-
+config/alacritty
 
 emacs.d/straight
 emacs.d/.cache

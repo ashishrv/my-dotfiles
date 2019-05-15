@@ -1,7 +1,3 @@
-* Standard configurations
-** Basic startup configuration
-
-#+BEGIN_SRC emacs-lisp
 ;; Do not display the splash screen
 (setq inhibit-startup-screen t)
 ;; Remove the menu bar
@@ -24,11 +20,7 @@
 (global-prettify-symbols-mode t)
 ;; Make minibuffer larger
 (setq max-mini-window-height 1.5)
-#+END_SRC
 
-** Configure backups
-
-#+BEGIN_SRC emacs-lisp
 ;; Create a central repository for backup
 (setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
     backup-by-copying t    ; Don't delink hardlinks
@@ -37,11 +29,6 @@
     kept-new-versions 20   ; how many of the newest versions to keep
     kept-old-versions 5    ; and how many of the old
     )
-#+END_SRC
-
-** UTF-8
-
-#+BEGIN_SRC emacs-lisp
 
 ;; Make sure that UTF-8 is used everywhere
 (set-terminal-coding-system  'utf-8)
@@ -52,4 +39,7 @@
 (prefer-coding-system        'utf-8)
 (set-input-method nil)
 
-#+END_SRC
+;; Enable winner mode
+;; allows you to “undo” (and “redo”) changes with C-Left and C-Right
+(when (fboundp 'winner-mode)
+  (winner-mode 1))

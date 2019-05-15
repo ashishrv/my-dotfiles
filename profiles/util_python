@@ -6,6 +6,9 @@
 # startup script for python
 export PYTHONSTARTUP=$PROFILE/pythonstartup
 
+# PIPE ENVV
+export PIPENV_VENV_IN_PROJECT=1
+
 # SETUP PYENV
 fact=`command -v pyenv`
 if [ "x${fact}" != "x" ]; then
@@ -25,7 +28,8 @@ if [ "x${fact}" != "x" ]; then
     export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
     # alias pip='pip --require-virtualenv'
     # Where all virtualenvs reside
-    VIRTUALENVHOME=${HOME}/.vpython
+    export VIRTUALENVHOME=${HOME}/.vpython
+    mkdir -p ${HOME}/.vpython
 
     # Helper function to activate/deactivate python virtual environment
     venv (){
@@ -73,3 +77,88 @@ alias c='pygmentize -O style=monokai -f console256 -g'
 pycd () {
         pushd `python -c "import os.path, $1; print(os.path.dirname($1.__file__))"`;
     }
+
+
+pip-upgrade(){
+    echo "Upgrading all packages ...."
+    pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U
+}
+
+pyenv-bootstrap(){
+    brew_install_package readline
+    brew install zlib
+    brew_install_package xz
+    brew_install_package sqlite3
+    brew_install_package openssl
+    brew_install_package expat
+    brew install 'openssl@1.1'
+}
+
+pyenv-avail(){
+    pyenv install -l
+}
+
+
+pyenv-install(){
+
+version=$1
+
+unset CFLAGS
+unset CPPFLAGS
+unset LDFLAGS
+unset PKG_CONFIG_PATH
+
+export CFLAGS="-I$(xcrun --show-sdk-path)/usr/include"
+export CFLAGS="-I$(brew --prefix readline)/include $CFLAGS"
+#export CFLAGS="-I$(brew --prefix openssl)/include $CFLAGS"
+export CFLAGS="-I$(brew --prefix sqlite)/include $CFLAGS"
+export CFLAGS="-I$(brew --prefix xz)/include $CFLAGS"
+
+export CPPFLAGS="-I$(xcrun --show-sdk-path)/usr/include"
+export CPPFLAGS="-I$(brew --prefix readline)/include $CPPFLAGS"
+#export CPPFLAGS="-I$(brew --prefix openssl)/include $CPPFLAGS"
+export CPPFLAGS="-I$(brew --prefix sqlite)/include $CPPFLAGS"
+export CPPFLAGS="-I$(brew --prefix xz)/include $CPPFLAGS"
+export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include $CPPFLAGS"
+
+#export PKG_CONFIG_PATH="$(brew --prefix openssl)/lib/pkgconfig $PKG_CONFIG_PATH"
+export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig $PKG_CONFIG_PATH"
+
+export LDFLAGS="-I$(xcrun --show-sdk-path)/usr/lib $LDFLAGS"
+export LDFLAGS="-L$(brew --prefix readline)/lib $LDFLAGS"
+#export LDFLAGS="-L$(brew --prefix openssl)/lib $LDFLAGS"
+export LDFLAGS="-L$(brew --prefix sqlite)/lib $LDFLAGS"
+export LDFLAGS="-L$(brew --prefix xz)/lib $LDFLAGS"
+export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib $LDFLAGS"
+
+# export CONFIGURE_OPTS="--with-openssl=$(brew --prefix openssl) $CONFIGURE_OPTS"
+export CONFIGURE_OPTS="--with-openssl=$(brew --prefix openssl@1.1) $CONFIGURE_OPTS"
+
+export PYTHON_CONFIGURE_OPTS="--enable-unicode=ucs2 $PYTHON_CONFIGURE_OPTS"
+export PYTHON_CONFIGURE_OPTS="--enable-optimizations $PYTHON_CONFIGURE_OPTS"
+
+CFLAGS="$CFLAGS" \
+LDFLAGS="$LDFLAGS" \
+PKG_CONFIG_PATH="$PKG_CONFIG_PATH" \
+CPPFLAGS="$CPPFLAGS" \
+CONFIGURE_OPTS="$CONFIGURE_OPTS" \
+PYTHON_CONFIGURE_OPTS="$PYTHON_CONFIGURE_OPTS" \
+pyenv install -v ${version}
+}
+
+venv-make(){
+    name=$1
+    pversion=`python -c "import platform; print(platform.sys.version_info.major)"`
+    mkdir -p $HOME/.vpython/$pversion
+    virtualenv $HOME/.vpython/$pversion/$name
+}
+
+venv-3(){
+    name=$1
+    source $HOME/.vpython/3/$name/bin/activate
+}
+
+venv-2(){
+    name=$1
+    source $HOME/.vpython/3/$name/bin/activate
+}

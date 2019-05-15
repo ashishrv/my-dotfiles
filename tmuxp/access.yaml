@@ -1,27 +1,34 @@
 session_name: access
 windows:
-- window_name: dc1
-  focus: 'true'
+- focus: 'true'
+  layout: abf6,221x64,0,0{110x64,0,0[110x32,0,0,49,110x31,0,33,54],110x64,111,0[110x32,111,0,52,110x31,111,33,53]}
   options:
     automatic-rename: 'off'
   panes:
-  - focus: 'false'
-    shell_command:
-      - ls
+  - focus: 'true'
+    shell_command: source /Users/ashish/works/workspace/access/minerva/profile
+  - source /Users/ashish/works/workspace/access/minerva/profile
+  - source /Users/ashish/works/workspace/access/minerva/profile
+  - source /Users/ashish/works/workspace/access/minerva/profile
   start_directory: /Users/ashish/works/workspace/access
-- window_name: dc2
+  window_name: minerva
+- layout: cbf0,221x64,0,0{110x64,0,0[110x32,0,0,50,110x31,0,33,57],110x64,111,0[110x32,111,0,55,110x31,111,33,56]}
   options:
     automatic-rename: 'off'
   panes:
-  - focus: 'false'
-    shell_command:
-      - ls
+  - source /Users/ashish/works/workspace/access/athena/profile
+  - focus: 'true'
+    shell_command: source /Users/ashish/works/workspace/access/athena/profile
+  - source /Users/ashish/works/workspace/access/athena/profile
+  - source /Users/ashish/works/workspace/access/athena/profile
   start_directory: /Users/ashish/works/workspace/access
-- window_name: dc3
+  window_name: athena
+- layout: d836,221x64,0,0{110x64,0,0,51,110x64,111,0,58}
   options:
     automatic-rename: 'off'
   panes:
-  - focus: 'false'
-    shell_command:
-      - ls
+  - bash
+  - focus: 'true'
+    shell_command: source /Users/ashish/works/workspace/access/profile
   start_directory: /Users/ashish/works/workspace/access
+  window_name: datacenter

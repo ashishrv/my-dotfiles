@@ -1,36 +1,20 @@
-session_name: my
+session_name: 'my'
 windows:
 - focus: 'true'
+  layout: 5f0d,210x64,0,0{105x64,0,0[105x32,0,0,45,105x31,0,33,49],104x64,106,0[104x32,106,0,46,104x15,106,33,47,104x15,106,49,48]}
   options:
     automatic-rename: 'off'
   panes:
+  - shell_command:
+    - cd /Users/ashish/personal/workspace/mynotes
+    - source /Users/ashish/.vpython/notes/bin/activate
   - focus: 'true'
-    shell_command: source /Users/ashish/.vpython/notes/bin/activate
-  start_directory: /Users/ashish/personal/workspace/mynotes
+    shell_command:
+    - cd /Users/ashish/temp
+  - shell_command:
+    - cd /Users/ashish/personal/workspace/my-dotfiles
+  - shell_command:
+    - cd /Users/ashish/personal/workspace/macosx-bootstrap
+  - shell_command:
+    - cd /Users/ashish/personal/workspace
   window_name: mynotes
-- focus: 'true'
-  options:
-    automatic-rename: 'off'
-  panes:
-  - focus: 'true'
-    shell_command: clear
-  start_directory: /Users/ashish/personal/workspace
-  window_name: personal
-- focus: 'true'
-  options:
-    automatic-rename: 'off'
-  panes:
-  - focus: 'true'
-    shell_command: source /Users/ashish/.vpython/dotfiles/bin/activate
-  start_directory: /Users/ashish/personal/workspace/my-dotfiles
-  window_name: my-dotfiles
-- focus: 'true'
-  options:
-    automatic-rename: 'off'
-  panes:
-  - focus: 'true'
-    shell_command: clear
-  start_directory: /Users/ashish/personal/workspace/macosx-bootstrap
-  window_name: macosx-bootstrap
-
-

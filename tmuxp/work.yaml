@@ -1,38 +1,30 @@
 session_name: work
 windows:
-- window_name: minervasalt
-  focus: 'true'
+- focus: 'true'
+  layout: 0943,221x64,0,0{110x64,0,0[110x32,0,0,17,110x15,0,33,18,110x15,0,49,31],110x64,111,0[110x16,111,0,19,110x15,111,17,20,110x15,111,33,21,110x15,111,49,22]}
   options:
     automatic-rename: 'off'
   panes:
-  - focus: 'false'
-    shell_command: clear
-  start_directory: /Users/ashish/works/workspace/ops_deployment_minerva
-- window_name: ansible
-  options:
-    automatic-rename: 'off'
-  panes:
-  - focus: 'false'
-    shell_command: clear
-  start_directory: /Users/ashish/works/workspace/ops_ansible
-- window_name: saltlib
-  options:
-    automatic-rename: 'off'
-  panes:
-  - focus: 'false'
-    shell_command: clear
-  start_directory: /Users/ashish/works/workspace/aml-salt-lib
-- window_name: amlsalt
-  options:
-    automatic-rename: 'off'
-  panes:
-  - focus: 'false'
-    shell_command: clear
-  start_directory: /Users/ashish/works/workspace/amlsalt
-- window_name: nogit
-  options:
-    automatic-rename: 'off'
-  panes:
-  - focus: 'false'
-    shell_command: clear
-  start_directory: /Users/ashish/works/workspace/non_git
+  - shell_command:
+    - cd /Users/ashish/works/workspace/ops_deployment_minerva
+    - clear
+  - shell_command:
+    - cd /Users/ashish/works/workspace/notes-aml-local
+    - clear
+  - focus: 'true'
+    shell_command:
+    - cd /Users/ashish/works/workspace/documentations/notes
+    - clear
+  - shell_command:
+    - cd /Users/ashish/works/workspace/amlgroup-py
+    - clear
+  - shell_command:
+    - cd /Users/ashish/works/workspace/aml-salt-lib
+    - clear
+  - shell_command:
+    - cd /Users/ashish/works/workspace/amlsalt
+    - clear
+  - shell_command:
+    - cd /Users/ashish/works/workspace/ops_ansible
+    - clear
+  window_name: minervadev

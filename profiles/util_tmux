@@ -51,7 +51,7 @@ function tmuxp-load-all(){
   fi
   title "tmux-all"
 
-  declare -a tmux_session_arr=("my" "tunnel" "docker" "work" "access")
+  declare -a tmux_session_arr=("my" "work" "access")
   title TMUX
   for tsession_name in "${tmux_session_arr[@]}"
   do
@@ -73,7 +73,5 @@ function tmux-kill-session(){
 
 function tmux-kill-server(){
   tmux kill-server
-  
+
 }
-
-
