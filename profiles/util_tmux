@@ -9,7 +9,7 @@ if [ -f /usr/local/etc/bash_completion.d/tmux ]; then
 fi
 
 
-function _mux(){
+function _my_mux(){
   local cur prev opts
   COMPREPLY=()
   cur=${COMP_WORDS[COMP_CWORD]}
@@ -75,7 +75,7 @@ function _mux(){
 }
 
 
-function mux(){
+function my-mux(){
   numargs=$#
   action=
   for ((i=1 ; i <= numargs ; i++))
@@ -168,7 +168,7 @@ function mux(){
   done 
 }
 
-complete -F _mux mux
+complete -F _my_mux my-mux
 
 
 
