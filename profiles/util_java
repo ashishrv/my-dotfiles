@@ -2,8 +2,23 @@
 # JAVA ENVIRONMENT
 #--------------------------
 
+#export JAVA_HOME="`/usr/libexec/java_home`"
 
-export JAVA_HOME="`/usr/libexec/java_home`"
-export SCALA_HOME=/usr/local/opt/scala
+# Support jenv
 if which jenv > /dev/null; then eval "$(jenv init -)"; fi
 export PATH="$HOME/.jenv/shims:$PATH"
+
+export JAVA_HOME="$HOME/.jenv/versions/`jenv version-name`"
+alias jenv-set-java-home='export JAVA_HOME="$HOME/.jenv/versions/`jenv version-name`"'
+
+
+
+#--------------------------
+# SCALA ENVIRONMENT
+#--------------------------
+
+export SCALA_HOME=/usr/local/opt/scala
+
+
+
+

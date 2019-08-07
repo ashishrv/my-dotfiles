@@ -1,0 +1,20 @@
+session_name: 'amlprojects'
+windows:
+- focus: 'true'
+  layout: 7315,238x62,0,0{119x62,0,0,29,118x62,120,0,30}
+  options: {}
+  panes:
+  - shell_command:
+    - cd /Users/ashish/works/workspace/devprojects
+    - jenv local 1.8
+    - jenv-set-java-home
+    - cd /Users/ashish/works/workspace/devprojects/log-mining
+    - clear
+  - focus: 'true'
+    shell_command:
+    - cd /Users/ashish/works/workspace/devprojects
+    - jenv local 1.8
+    - jenv-set-java-home
+    - cd /Users/ashish/works/workspace/devprojects/mtp
+    - clear
+  window_name: bash
