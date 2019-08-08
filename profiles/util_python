@@ -19,6 +19,86 @@ if [ "x${fact}" != "x" ]; then
     pyenv rehash
 fi
 
+
+function _my_venv(){
+  local cur prev opts
+  COMPREPLY=()
+  cur=${COMP_WORDS[COMP_CWORD]}
+  prev="${COMP_WORDS[COMP_CWORD-1]}"
+  startup_arguments="--help --pyenv"
+  all_arguments="--help --pyenv --activate --pip-upgrade"
+  if [[ "$prev" == "my-venv" ]]; then
+        COMPREPLY=($( compgen -W "${startup_arguments}" -- $cur ) )
+        return
+  fi
+  if [[ "$cur" == -* ]]; then
+        COMPREPLY=($( compgen -W "${all_arguments}" -- $cur ) )
+        return
+  fi
+  case "$prev" in
+      --help )
+            COMPREPLY=()
+            return
+            ;;
+      --pyenv )
+            local pyenvlist=`ls -1 $HOME/.vpython/ | cut -d '/' -f1`
+            COMPREPLY=($( compgen -W "${pyenvlist}" -- $cur ) )
+            return
+            ;;
+      --activate )
+            COMPREPLY=()
+            return
+            ;;
+      --pip-upgrade )
+            COMPREPLY=()
+            return
+            ;;
+      --* )
+            COMPREPLY=($( compgen -W "${all_arguments}" -- $cur ) )
+            return
+            ;;
+  esac
+  if [[ "$cur" != -* ]]; then
+        COMPREPLY=($( compgen -W "${all_arguments}" -- $cur ) )
+        return
+  fi
+}
+
+
+function my-venv(){
+  numargs=$#
+  action=
+  for ((i=1 ; i <= numargs ; i++))
+  do
+    if [[ "x$1" == "x" ]];  then
+        break
+    fi
+    case "$1" in
+        --help)
+                echo "Command line options:"
+                echo "  --help            Show this help"
+                echo "  --pyenv           Choose pyenv version associated with the virtualenv"
+                echo "  --activate        Activate master virtualenv"
+                echo "  --pip-upgrade     Upgrade PIP and PIPENV "
+                break
+                ;;
+        --pyenv)
+                break
+                ;;
+        --activate)
+                break
+                ;;
+        --pip-upgrade)
+                break
+                ;;
+    esac
+  done
+}
+
+complete -F _my_venv my-venv
+
+
+
 # SETUP VIRTUALENV HOME DIRECTORY
 fact=`command -v virtualenv`
 if [ "x${fact}" != "x" ]; then
