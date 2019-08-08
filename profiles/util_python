@@ -153,12 +153,6 @@ venv-make(){
     virtualenv $HOME/.vpython/$pversion/$name
 }
 
-venv-3(){
-    name=$1
-    source $HOME/.vpython/3/$name/bin/activate
-}
-
-venv-2(){
-    name=$1
-    source $HOME/.vpython/3/$name/bin/activate
+venv-master(){
+    source $HOME/.vpython/3.7.4/master/bin/activate
 }
