@@ -8,6 +8,7 @@ if [ -f /usr/local/etc/bash_completion.d/tmux ]; then
     source /usr/local/etc/bash_completion.d/tmux
 fi
 
+TMUXP_BIN=/Users/ashish/.vpython/3.7.4/master/bin/tmuxp
 
 function _my_mux(){
   local cur prev opts
@@ -128,14 +129,14 @@ function my-mux(){
                     echo ""
                 else
                     echo "Starting tmux profile: ${var_profile}"
-                    tmuxp load ${var_profile} --yes -d
+                    ${TMUXP_BIN} load ${var_profile} --yes -d
                 fi
                 break
                 ;;
         --save-profile)
                 var_profile=$2
                 shift 2
-                tmuxp freeze ${var_profile}
+                ${TMUXP_BIN} freeze ${var_profile}
                 break
                 ;;
         --load-all)
@@ -146,9 +147,9 @@ function my-mux(){
                   fact=`tmux list-sessions | grep ${profile}`
                   if [ "x${fact}" == "x" ]; then
                       echo "Loading profile: $profile"
-                    tmuxp load ${profile} --yes -d
+                    ${TMUXP_BIN} load ${profile} --yes -d
                   fi
-                done 
+                done
                 break
                 ;;
           --attach-session)
@@ -165,10 +166,7 @@ function my-mux(){
                 break
                 ;;
     esac
-  done 
+  done
 }
 
 complete -F _my_mux my-mux
-
-
-

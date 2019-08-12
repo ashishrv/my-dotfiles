@@ -1,0 +1,156 @@
+# ----------------------
+# PREFIX COMMAND
+# -----------------------
+
+# GNU-Screen compatible prefix
+# C-a acts as secondary prefix, while keeping default C-b prefix
+set -g prefix2 C-a
+# use send-prefix to pass C-a through to application
+bind C-a send-prefix -2
+
+
+# ----------------------
+# GENERAL
+# -----------------------
+
+# make tmux display things in 256 colors
+set -g default-terminal "screen-256color"
+setw -g xterm-keys on
+# Make it responsive
+set -s escape-time 10
+# increase repeat timeout
+set -sg repeat-time 600
+set -s focus-events on
+# expect UTF-8 (tmux < 2.2)
+set -q -g status-utf8 on
+setw -q -g utf8 on
+# set scrollback history to 10000 (10k)
+# boost history
+set -g history-limit 10000
+
+# reload configuration ~/.tmux.conf using PREFIX r
+bind r source-file ~/.tmux.conf \; display '~/.tmux.conf sourced'
+
+
+# ----------------------
+# WINDOWS
+# -----------------------
+
+# start windows numbering at 1
+set -g base-index 1
+# make pane numbering consistent with windows
+setw -g pane-base-index 1
+# rename window to reflect current program
+setw -g automatic-rename on
+# renumber windows when a window is closed
+set -g renumber-windows on
+# set terminal title
+set -g set-titles on
+# slightly longer pane indicators display time
+set -g display-panes-time 800
+# slightly longer status messages display time
+set -g display-time 1000
+# redraw status line every 10 seconds
+set -g status-interval 10
+# clear both screen and history
+bind -n C-l send-keys C-l \; run 'sleep 0.1' \; clear-history
+# activity
+set -g monitor-activity on
+set -g visual-activity off
+
+
+# ----------------------
+# NAVIGATION
+# -----------------------
+
+# create session
+bind C-c new-session
+# find session: you can also use PREFIX s to choose a session
+bind C-f command-prompt -p find-session 'switch-client -t %%'
+# Use PREFIX - to split window horizontally
+bind-key - split-window -c "#{pane_current_path}"
+# Use PREFIX | to split vertically
+bind-key \ split-window -h -c "#{pane_current_path}"
+# Create new window with current path
+bind-key c new-window -c "#{pane_current_path}"
+# pane navigation: map vi movement keys as pane movement keys
+bind -r h select-pane -L  # move left
+bind -r j select-pane -D  # move down
+bind -r k select-pane -U  # move up
+bind -r l select-pane -R  # move right
+# swap current pane with the next one
+bind > swap-pane -D
+# swap current pane with the next one
+bind < swap-pane -U
+# Moving windows
+bind-key -r [ swap-window -t :+
+bind-key -r ] swap-window -t :-
+# maximize current pane
+bind + run 'cut -c3- ~/.tmux.conf | sh -s _maximize_pane "#{session_name}" #D'
+# resize panes using PREFIX H, J, K, L
+# Use ctrl-a (prefix) and then shift-h/j/k/l
+bind H resize-pane -L 5
+bind J resize-pane -D 5
+bind K resize-pane -U 5
+bind L resize-pane -R 5
+# Synchronize panes
+bind-key * set-window-option synchronize-pane
+# window navigation
+unbind n
+unbind p
+# select previous window
+bind -r C-h previous-window
+# select next window
+bind -r C-l next-window
+# move to last active window
+bind Tab last-window
+#Enable mouse
+set-option -g mouse on
+# Toggle mouse
+bind m run "cut -c3- ~/.tmux.conf | sh -s _toggle_mouse"
+
+
+#-----------------------
+# OLD Mac configuration
+#-----------------------
+
+## provide access to the clipboard for pbpaste, pbcopy
+#set-option -g default-command "reattach-to-user-namespace -l bash"
+#set-window-option -g automatic-rename on
+## don't rename windows automatically
+#set-option -g allow-rename off
+## Vi copypaste
+## With these configurations, all you need to do whenever you need to scroll through your tmux panes and/or copy text is to press preffix+[ to start scrolling, h j k l (or Ctrl+u and Ctrl+d) to move the cursor, v or shift+v (for entire lines) for making a selection and y to copy the selection you made.
+#setw -g mode-keys vi
+#unbind p
+#bind p paste-buffer
+#bind-key -T copy-mode-vi v send-keys -X begin-selection
+#bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
+#bind y run 'tmux save-buffer - | reattach-to-user-namespace pbcopy '
+#bind C-y run 'tmux save-buffer - | reattach-to-user-namespace pbcopy '
+## Clear buffer history
+#bind-key w send-keys -R \; clear-history \; send-keys "Enter"
+
+# ----------------------
+# Old Status Bar
+# -----------------------
+#set-option -g status on                # turn the status bar on
+#set -g status-interval 5               # set update frequencey (default 15 seconds)
+#set -g status-justify centre           # center window list for clarity
+# set-option -g status-position top    # position the status bar at top of screen
+## visual notification of activity in other windows
+#setw -g monitor-activity on
+#set -g visual-activity on
+## https://mutelight.org/practical-tmux
+#setw -g aggressive-resize on
+
+#----------------------
+# Colors
+#----------------------
+
+## powerline
+## git clone https://github.com/jimeh/tmux-themepack.git ~/.tmux-themepack
+## source "/Users/ashish_vidyarthi/.local/lib/python2.7/site-packages/powerline/bindings/tmux/powerline.conf"
+## source ${HOME}/.tmux-themepack/powerline/default/yellow.tmuxtheme
+##source ${HOME}/.tmux-themepack/powerline/block/yellow.tmuxtheme
+#source ${HOME}/.tmux-themepack/powerline/block/red.tmuxtheme

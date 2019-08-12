@@ -6,7 +6,7 @@
 # startup script for python
 export PYTHONSTARTUP=$PROFILE/pythonstartup
 
-# PIPE ENVV
+# PIPE ENV
 export PIPENV_VENV_IN_PROJECT=1
 
 # SETUP PYENV

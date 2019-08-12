@@ -1,34 +1,45 @@
 session_name: access
 windows:
 - focus: 'true'
-  layout: abf6,221x64,0,0{110x64,0,0[110x32,0,0,49,110x31,0,33,54],110x64,111,0[110x32,111,0,52,110x31,111,33,53]}
+  layout: 7838,238x62,0,0{119x62,0,0,1,118x62,120,0,5}
   options:
     automatic-rename: 'off'
   panes:
   - focus: 'true'
-    shell_command: source /Users/ashish/works/workspace/access/minerva/profile
-  - source /Users/ashish/works/workspace/access/minerva/profile
-  - source /Users/ashish/works/workspace/access/minerva/profile
-  - source /Users/ashish/works/workspace/access/minerva/profile
-  start_directory: /Users/ashish/works/workspace/access
-  window_name: minerva
-- layout: cbf0,221x64,0,0{110x64,0,0[110x32,0,0,50,110x31,0,33,57],110x64,111,0[110x32,111,0,55,110x31,111,33,56]}
+    shell_command:
+    - cd /Users/ashish/works/workspace/access
+    - source /Users/ashish/works/workspace/access/minerva/profile
+    - clear
+  - shell_command:
+    - cd /Users/ashish/works/workspace/access
+    - source /Users/ashish/works/workspace/access/minerva/profile
+    - clear
+  window_name: Minerva
+- layout: 783e,238x62,0,0{119x62,0,0,6,118x62,120,0,7}
   options:
     automatic-rename: 'off'
   panes:
-  - source /Users/ashish/works/workspace/access/athena/profile
+  - shell_command:
+    - cd /Users/ashish/works/workspace/access
+    - source /Users/ashish/works/workspace/access/profile
+    - clear
   - focus: 'true'
-    shell_command: source /Users/ashish/works/workspace/access/athena/profile
-  - source /Users/ashish/works/workspace/access/athena/profile
-  - source /Users/ashish/works/workspace/access/athena/profile
-  start_directory: /Users/ashish/works/workspace/access
-  window_name: athena
-- layout: d836,221x64,0,0{110x64,0,0,51,110x64,111,0,58}
+    shell_command:
+    - cd /Users/ashish/works/workspace/access
+    - source /Users/ashish/works/workspace/access/profile
+    - clear
+  window_name: Athena
+- layout: 783e,238x62,0,0{119x62,0,0,6,118x62,120,0,7}
   options:
     automatic-rename: 'off'
   panes:
-  - bash
+  - shell_command:
+    - cd /Users/ashish/works/workspace/access
+    - source /Users/ashish/works/workspace/access/profile
+    - clear
   - focus: 'true'
-    shell_command: source /Users/ashish/works/workspace/access/profile
-  start_directory: /Users/ashish/works/workspace/access
-  window_name: datacenter
+    shell_command:
+    - cd /Users/ashish/works/workspace/access
+    - source /Users/ashish/works/workspace/access/profile
+    - clear
+  window_name: DC
