@@ -1,48 +1,264 @@
 #!/bin/bash
+
 #------------------------------------------------
 # Miscellaneous utilities
 #------------------------------------------------
 
 #------------------------------------------------
-# Firefox profile
+# Firefox utilities
 #------------------------------------------------
 
 
 if [ "$(uname)" == "Darwin" ]; then
 
-   # Open firefox in profile mode
-   alias fox='/Applications/Firefox.app/Contents/MacOS/firefox-bin -profilemanager'
+# Firefox binaries on mac
+# /Applications/Firefox.app/Contents/MacOS/firefox-bin
+# Firefox profiles on mac
+# /Users/ashish/Library/Application Support/Firefox/Profiles
+
+function _my_fox(){
+  local cur prev opts
+  COMPREPLY=()
+  cur=${COMP_WORDS[COMP_CWORD]}
+  prev="${COMP_WORDS[COMP_CWORD-1]}"
+  all_arguments="--help --open-profile --ls-profile --start-profile --backup-profile --temp-profile --version --create-profile"
+  if [[ "$prev" == "mux" ]]; then
+        COMPREPLY=($( compgen -W "${all_arguments}" -- $cur ) )
+        return
+  fi
+  if [[ "$cur" == -* ]]; then
+        COMPREPLY=($( compgen -W "${all_arguments}" -- $cur ) )
+        return
+  fi
+  case "$prev" in
+      --help )
+            COMPREPLY=()
+            return
+            ;;
+      --version )
+            COMPREPLY=()
+            return
+            ;;
+      --temp-profile )
+            COMPREPLY=()
+            return
+            ;;
+      --open-profile )
+            COMPREPLY=()
+            return
+            ;;
+      --ls-profile )
+            COMPREPLY=()
+            return
+            ;;
+      --create-profile )
+            COMPREPLY=()
+            return
+            ;;
+      --start-profile )
+            local profilelist=`/bin/ls -GFh "$HOME/Library/Application Support/Firefox/Profiles" | cut -d '.' -f2 | cut -d '/' -f1`
+            COMPREPLY=($( compgen -W "${profilelist}" -- $cur ) )
+            return
+            ;;
+      --backup-profile )
+            local profilelist=`/bin/ls -GFh "$HOME/Library/Application Support/Firefox/Profiles" | cut -d '.' -f2 | cut -d '/' -f1`
+            COMPREPLY=($( compgen -W "${profilelist}" -- $cur ) )
+            return
+            ;;
+      --* )
+            COMPREPLY=($( compgen -W "${all_arguments}" -- $cur ) )
+            return
+            ;;
+  esac
+  if [[ "$cur" != -* ]]; then
+        COMPREPLY=($( compgen -W "${all_arguments}" -- $cur ) )
+        return
+  fi
+}
+
+function my-fox(){
+  numargs=$#
+  action=
+  for ((i=1 ; i <= numargs ; i++))
+  do
+    if [[ "x$1" == "x" ]];  then
+        break
+    fi
+    case "$1" in
+        --help)
+                echo "Command line options:"
+                echo "  --help              Show this help"
+                echo "  --ls-profile        Show firefox profiles"
+                echo "  --open-profile      Open firefox profile folder"
+                echo "  --start-profile     Open firefox profile"
+                echo "  --temp-profile      Open firefox with temporary profile"
+                echo "  --backup-profile    Backup firefox profile to dropbox"
+                echo "  --create-profile    Create a profile"
+                echo "  --version           Show version"
+                break
+                ;;
+        --open-profile)
+                echo "All profiles located @ $HOME/Library/Application Support/Firefox/Profiles"
+                open "$HOME/Library/Application Support/Firefox/Profiles"
+                break
+                ;;
+        --backup-profile)
+                var_fox_profile=$2
+                shift 2
+                echo "Backing up profile: ${var_fox_profile}"
+                f_profile_dir=`/bin/ls -GFh "$HOME/Library/Application Support/Firefox/Profiles" | grep ${var_fox_profile} | cut -d '/' -f1`
+                if [ "x$f_profile_dir" != "x" ];then
+                  rm -rf "$HOME/Dropbox/Private/Ashish/Firefox/Profiles/${f_profile_dir}"
+                  cp -R "$HOME/Library/Application Support/Firefox/Profiles/${f_profile_dir}" "$HOME/Dropbox/Private/$USER/Firefox/Profiles/"
+                fi
+                break
+                ;;
+        --ls-profile)
+                echo "All profiles located @ $HOME/Library/Application Support/Firefox/Profiles"
+                /bin/ls -GFh "$HOME/Library/Application Support/Firefox/Profiles" | cut -d '.' -f2 | cut -d '/' -f1
+                break
+                ;;
+        --start-profile)
+                var_fox_profile=$2
+                shift 2
+                echo "Starting profile: ${var_fox_profile}"
+                #f_profile_dir=`/bin/ls -GFh "$HOME/Library/Application Support/Firefox/Profiles" | grep ${var_fox_profile} | cut -d '/' -f1`
+                #"/Applications/Firefox.app/Contents/MacOS/firefox-bin" --new-instance --profile "$HOME/Library/Application Support/Firefox/Profiles/${f_profile_dir}"
+                export DISPLAY=:0.0; "/Applications/Firefox.app/Contents/MacOS/firefox-bin" --new-instance -P ${var_fox_profile} &
+                break
+                ;;
+        --temp-profile)
+                echo "Starting firefox with a temporary profile"
+                export DISPLAY=:0.0; "/Applications/Firefox.app/Contents/MacOS/firefox-bin" --safe-mode --new-instance --profile $(mktemp -d) &
+                break
+                ;;
+        --create-profile)
+                var_fox_profile=$2
+                shift 2
+                "/Applications/Firefox.app/Contents/MacOS/firefox-bin" -CreateProfile ${var_fox_profile}
+                break
+                ;;
+        --version)
+                "/Applications/Firefox.app/Contents/MacOS/firefox-bin" --version
+                break
+                ;;
+    esac
+  done
+}
+
+
+complete -F _my_fox my-fox
 
 fi
 
-# pops open a new instance of Firefox with a completely clean, temporary profile.
-alias foxtemp='firefox --new-instance --profile $(mktemp -d)'
 
 #------------------------------------------------
-# queries the cht.sh cheatsheet of various Unix commands.
-# Example: 'cheat tar' prints
+# Various utilities
+# and tinker toys
 #------------------------------------------------
 
 
-function cheat() {
-      curl cht.sh/$1
-  }
+function _my_utils(){
+  local cur prev opts
+  COMPREPLY=()
+  cur=${COMP_WORDS[COMP_CWORD]}
+  prev="${COMP_WORDS[COMP_CWORD-1]}"
+  all_arguments="--help --cheat --chromium-profile --weather --getmp3"
+  if [[ "$prev" == "mux" ]]; then
+        COMPREPLY=($( compgen -W "${all_arguments}" -- $cur ) )
+        return
+  fi
+  if [[ "$cur" == -* ]]; then
+        COMPREPLY=($( compgen -W "${all_arguments}" -- $cur ) )
+        return
+  fi
+  case "$prev" in
+      --help )
+            COMPREPLY=()
+            return
+            ;;
+      --cheat )
+            COMPREPLY=()
+            return
+            ;;
+      --chromium-profile )
+            COMPREPLY=()
+            return
+            ;;
+      --weather )
+            COMPREPLY=()
+            return
+            ;;
+      --getmp3 )
+            COMPREPLY=()
+            return
+            ;;
+      --* )
+            COMPREPLY=($( compgen -W "${all_arguments}" -- $cur ) )
+            return
+            ;;
+  esac
+  if [[ "$cur" != -* ]]; then
+        COMPREPLY=($( compgen -W "${all_arguments}" -- $cur ) )
+        return
+  fi
+}
 
-#------------------------------------------------
-# chromium
-#------------------------------------------------
-
-alias chromium_prof='chromium --user-data-dir $(mktemp -d)'
 
 
-#------------------------------------------------
-# Other Queries
-#------------------------------------------------
+function my-utils(){
+  numargs=$#
+  action=
+  for ((i=1 ; i <= numargs ; i++))
+  do
+    if [[ "x$1" == "x" ]];  then
+        break
+    fi
+    case "$1" in
+        --help)
+                echo "Command line options:"
+                echo "  --help                  Show this help"
+                echo "  --cheat                 Show cheatsheets on command line for given command"
+                echo "  --chromium-profile      Open chromium with temporary profile"
+                echo "  --weather               Check weather by giving city name or pincode"
+                echo "  --getmp3                Download mp3s of songs from youtube like https://www.youtube.com/watch?v=<id-of-some-nice-tune>"
+                break
+                ;;
+        --cheat)
+                var_arg=$2
+                shift 2
+                if [ "x$var_arg" != "x" ];then
+                  curl cht.sh/${var_arg}
+                fi
+                break
+                ;;
+        --chromium-profile)
+                chromium --user-data-dir $(mktemp -d)
+                break
+                ;;
+        --weather)
+                # See: https://github.com/chubin/wttr.in
+                var_arg=$2
+                shift 2
+                if [ "x$var_arg" != "x" ];then
+                  curl wttr.in/${var_arg}
+                fi
+                break
+                ;;
+        --getmp3)
+                # downloading mp3s of songs from youtube
+                # pip install youtube_dl
+                # brew install ffmpeg
+                # Example: getmp3 https://www.youtube.com/watch?v=<id-of-some-nice-tune>
+                var_arg=$2
+                shift 2
+                if [ "x$var_arg" != "x" ];then
+                   youtube-dl -x --audio-format mp3 ${var_arg}
+                fi
+                break
+                ;;
+    esac
+  done
+}
 
-alias weather='curl wttr.in/$1'
-
-# downloading mp3s of songs from youtube
-# pip install youtube_dl
-# brew install ffmpeg
-# Example: getmp3 https://www.youtube.com/watch?v=<id-of-some-nice-tune>
-alias getmp3="youtube-dl -x --audio-format mp3 "
+complete -F _my_utils my-utils
