@@ -20,3 +20,18 @@ emacs.d/cache
 emacs.d/backup
 emacs.d/smex-items
 tmuxp/devops.yaml
+
+# Iterm2 shell integrations
+iterm2/imgcat
+iterm2/imgls
+iterm2/it2api
+iterm2/it2attention
+iterm2/it2check
+iterm2/it2copy
+iterm2/it2dl
+iterm2/it2getvar
+iterm2/it2git
+iterm2/it2setcolor
+iterm2/it2setkeylabel
+iterm2/it2ul
+iterm2/it2universion
