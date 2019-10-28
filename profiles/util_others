@@ -124,12 +124,12 @@ function my-fox(){
                 echo "Starting profile: ${var_fox_profile}"
                 #f_profile_dir=`/bin/ls -GFh "$HOME/Library/Application Support/Firefox/Profiles" | grep ${var_fox_profile} | cut -d '/' -f1`
                 #"/Applications/Firefox.app/Contents/MacOS/firefox-bin" --new-instance --profile "$HOME/Library/Application Support/Firefox/Profiles/${f_profile_dir}"
-                export DISPLAY=:0.0; "/Applications/Firefox.app/Contents/MacOS/firefox-bin" --new-instance -P ${var_fox_profile} &
+                export DISPLAY=:0.0; "/Applications/Firefox.app/Contents/MacOS/firefox-bin" --new-instance -P ${var_fox_profile} > /dev/null 2>&1 & disown
                 break
                 ;;
         --temp-profile)
                 echo "Starting firefox with a temporary profile"
-                export DISPLAY=:0.0; "/Applications/Firefox.app/Contents/MacOS/firefox-bin" --safe-mode --new-instance --profile $(mktemp -d) &
+                export DISPLAY=:0.0; "/Applications/Firefox.app/Contents/MacOS/firefox-bin" --safe-mode --new-instance --profile $(mktemp -d) > /dev/null 2>&1 & disown
                 break
                 ;;
         --create-profile)
