@@ -262,3 +262,38 @@ function my-utils(){
 }
 
 complete -F _my_utils my-utils
+
+# Setup command line completions for known ssh hosts
+
+
+# determine if known hosts file is hashed
+is_known_hosts_hashed=""
+ssh_config_file=$HOME/.ssh/config
+
+if [ -f "${ssh_config_file}" ]; then
+if [ -z "${is_known_hosts_hashed}" ]; then
+is_known_hosts_hashed=$(awk '/^#/ {next} /HashKnownHosts/ {print $2}' ${ssh_config_file})
+fi
+fi
+
+# assume that by default known hosts file is not hashed
+if [ -z "${is_known_hosts_hashed}" ]; then
+  is_known_hosts_hashed="yes";
+fi
+
+# generate completion reply with compgen
+function _ssh_known_hosts()
+{
+  local current_argument
+  local ssh_known_hosts
+
+  current_argument=${COMP_WORDS[COMP_CWORD]};
+  if [ -f ${HOME}/.ssh/known_hosts ]; then
+    ssh_known_hosts=($(awk '{print $1}' $HOME/.ssh/known_hosts | cut -d, -f1 | xargs | sort | uniq  ))
+  fi
+  COMPREPLY=($(compgen -W '${ssh_known_hosts[*]}' -- ${current_argument}))
+}
+
+if [ "${is_known_hosts_hashed}" == "no" ]; then
+  complete -F _ssh_known_hosts ssh
+fi
