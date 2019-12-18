@@ -4,7 +4,7 @@
 #------------------------------------------------
 
 test -d "${HOME}/personal/software/bin" && export PATH="${HOME}/personal/software/bin:$PATH"
-
+test -d "${HOME}/personal/workspace/scripts" && export PATH="${HOME}/personal/workspace/scripts:$PATH"
 
 function _cdpersonal()
 {
@@ -23,4 +23,3 @@ function cd-personal(){
 }
 
 complete -F _cdpersonal cd-personal
-

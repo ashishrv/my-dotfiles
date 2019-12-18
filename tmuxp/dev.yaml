@@ -6,6 +6,7 @@ windows:
   panes:
   - shell_command:
     - cd /Users/ashish/works/workspace/devprojects
+    - source /Users/ashish/.bash_profile
     - jenv local 1.8
     - jenv-set-java-home
     - cd /Users/ashish/works/workspace/devprojects/log-mining
@@ -13,6 +14,7 @@ windows:
   - focus: 'true'
     shell_command:
     - cd /Users/ashish/works/workspace/devprojects
+    - source /Users/ashish/.bash_profile
     - jenv local 1.8
     - jenv-set-java-home
     - cd /Users/ashish/works/workspace/devprojects/mtp

@@ -20,6 +20,11 @@ if [ "x${fact}" != "x" ]; then
 fi
 
 
+# Poetry paths add
+export PATH="$PATH:/Users/ashish/.local/bin"
+
+alias poetry_shell='. "$(dirname $(poetry run which python))/activate"'
+
 function _my_venv(){
   local cur prev opts
   COMPREPLY=()
