@@ -4,3 +4,10 @@ if [ -f /etc/zprofile ]; then
     PATH=""
     source /etc/zprofile
 fi
+
+#------------------------------------------------
+# Zsh can handle bash completions functions.
+# The latest development version of zsh has a function bashcompinit, that when run will allow zsh to read bash completion specifications and functions.
+#------------------------------------------------
+autoload bashcompinit
+bashcompinit

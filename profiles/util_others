@@ -294,6 +294,6 @@ function _ssh_known_hosts()
   COMPREPLY=($(compgen -W '${ssh_known_hosts[*]}' -- ${current_argument}))
 }
 
-if [ "${is_known_hosts_hashed}" == "no" ]; then
+if [[ "${is_known_hosts_hashed}" == "no" ]]; then
   complete -F _ssh_known_hosts ssh
 fi
