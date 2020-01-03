@@ -9,7 +9,7 @@
 #------------------------------------------------
 
 
-if [ "$(uname)" == "Darwin" ]; then
+if [[ "$OSTYPE" =~ "darwin*" ]]; then
 
 # Firefox binaries on mac
 # /Applications/Firefox.app/Contents/MacOS/firefox-bin

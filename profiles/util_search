@@ -13,8 +13,8 @@ function ffs () { /usr/bin/find . -name "$@"'*' ; }
 function ffe () { /usr/bin/find . -name '*'"$@" ; }
 
 
-if [ "$(uname)" == "Darwin" ]; then
-	
+if [[ "$OSTYPE" =~ "darwin*" ]]; then
+
 	#------------------------------------------------
 	# Mac OSX spotlight utilities using mdfind
 	#------------------------------------------------
@@ -40,7 +40,7 @@ if [ "$(uname)" == "Darwin" ]; then
 	function spotauthor { mdfind -onlyin $EBOOKS/ "kMDItemAuthors == '*$@'cdw"; }
 	fi
 
-	if [ -d "$EJOURNALS" ]; then   
+	if [ -d "$EJOURNALS" ]; then
 	   	# spotarticles: search articles
 	function spotarticles { mdfind -onlyin $EJOURNALS/ "kMDItemDisplayName == '$@*'cdw"; }
 	fi
@@ -87,11 +87,8 @@ if [ "$(uname)" == "Darwin" ]; then
 
 	# showauthor: show author of a document
 	function showauthor { mdls -raw -name kMDItemAuthors "$@" ;}
-	
+
 	# Tag author name
 	function tagauthor { xattr -w "com.apple.metadata:kMDItemAuthors" "$2" "$1" ; }
 
 fi
-
-
-

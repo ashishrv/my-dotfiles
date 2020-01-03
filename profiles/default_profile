@@ -1,0 +1,76 @@
+#!/bin/bash
+
+#------------------------------------------------
+# BASH PROFILE - Load all profile fragments
+#------------------------------------------------
+
+
+#
+##  Basic idea
+#   custom functions starts with my-
+#   File functions starts witrh f-
+#   Directory functions starts with d-
+#   Project functions starts with p-
+#   Git function and commands starts with gi-
+#   Docker functions and commands starts with do-
+#   Python commands and function starts with pi-
+#   Go commands and function starts with go-
+
+# https://docs.brew.sh/Shell-Completion
+if [[ "$BASH" == "/bin/bash" ]]; then
+source /usr/local/etc/bash_completion
+test -e "${PROFILE}/default_bashprofile" && source "${PROFILE}/default_bashprofile"
+fi
+
+# ZSH support
+if [[ "$ZSH_NAME" == "zsh" ]]; then
+test -e "${PROFILE}/default_zprofile" && source "${PROFILE}/default_zprofile"
+fi
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+#------------------------------------------------
+# Profile customizations
+#------------------------------------------------
+
+test -e "${PROFILE}/util_editor" && source "${PROFILE}/util_editor"
+test -e "${PROFILE}/util_brew" && source "${PROFILE}/util_brew"
+
+if [[ "$BASH" == "/bin/bash" ]]; then
+test -e "${PROFILE}/util_bash" && source "${PROFILE}/util_bash"
+fi
+
+test -e "${PROFILE}/util_terminal" && source "${PROFILE}/util_terminal"
+test -e "${PROFILE}/util_java" && source "${PROFILE}/util_java"
+test -e "${PROFILE}/util_docker" && source "${PROFILE}/util_docker"
+test -e "${PROFILE}/util_navigation" && source "${PROFILE}/util_navigation"
+test -e "${PROFILE}/util_files" && source "${PROFILE}/util_files"
+test -e "${PROFILE}/util_search" && source "${PROFILE}/util_search"
+test -e "${PROFILE}/util_apple" && source "${PROFILE}/util_apple"
+test -e "${PROFILE}/util_process" && source "${PROFILE}/util_process"
+test -e "${PROFILE}/util_others" && source "${PROFILE}/util_others"
+test -e "${PROFILE}//util_latex" && source "${PROFILE}/util_latex"
+test -e "${PROFILE}/util_mercurial" && source "${PROFILE}/util_mercurial"
+test -e "${PROFILE}/util_git" && source "${PROFILE}/util_git"
+test -e "${PROFILE}/util_go" && source "${PROFILE}/util_go"
+test -e "${PROFILE}/util_docker" && source "${PROFILE}/util_docker"
+test -e "${PROFILE}/util_tmux" && source "${PROFILE}/util_tmux"
+test -e "${PROFILE}/util_prompt" && source "${PROFILE}/util_prompt"
+test -e "${PROFILE}/util_completions" && source "${PROFILE}/util_completions"
+test -e "${PROFILE}/util_project" && source "${PROFILE}/util_project"
+test -e "${PROFILE}/util_personal" && source "${PROFILE}/util_personal"
+test -e "${PROFILE}/util_works" && source "${PROFILE}/util_works"
+test -e "${PROFILE}/util_python" && source "${PROFILE}/util_python"
+
+
+#------------------------------------------------
+# Reload dot profiles
+#------------------------------------------------
+if [[ "$BASH" == "/bin/bash" ]]; then
+alias dot-reload=". ~/.bash_profile"
+fi
+
+if [[ "$ZSH_NAME" == "zsh" ]]; then
+alias dot-reload=". ~/.zprofile"
+fi

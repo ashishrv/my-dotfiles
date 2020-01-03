@@ -3,11 +3,14 @@
 # Support git
 #------------------------------------------------
 
-# Enable bash completion for git
-if [ -f "/usr/local/bin/git" ]; then
-  if [ -f "/usr/local/etc/bash_completion.d/git-completion.bash" ]; then
-    source /usr/local/etc/bash_completion.d/git-completion.bash
-    source /usr/local/etc/bash_completion.d/git-prompt.sh
+# Enable bash completion for git only if using bash shell
+
+if [[ "$BASH" == "/bin/bash" ]]; then
+  if [ -f "/usr/local/bin/git" ]; then
+    if [ -f "/usr/local/etc/bash_completion.d/git-completion.bash" ]; then
+      source /usr/local/etc/bash_completion.d/git-completion.bash
+      source /usr/local/etc/bash_completion.d/git-prompt.sh
+    fi
   fi
 fi
 

@@ -22,7 +22,7 @@ function cd() {
 # terminal utilities
 #
 
-if [ "$(uname)" == "Darwin" ]; then
+if [[ "$OSTYPE" =~ "darwin*" ]]; then
 
   #------------------------------------------------
   # Tree emulation and current path in clipboard

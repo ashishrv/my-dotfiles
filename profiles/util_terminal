@@ -8,19 +8,19 @@ function title {
 }
 
 
-if [ "$(uname)" == "Darwin" ]; then
-	
+if [[ "$OSTYPE" =~ "darwin*" ]]; then
+
 	#------------------------------------------------
 	# Cleanup terminal logs for speed up
 	#------------------------------------------------
 
 	# Clear terminal logs, useful for "Terminal App" in Mac
 	alias terminal_clearlogs='sudo rm -rf /private/var/log/asl/*.asl'
-	
+
 	#------------------------------------------------
 	# Map some macport installation for direct use
 	#------------------------------------------------
-	
+
 	[[ -f "/opt/local/bin/emacs" ]] && alias emacs='/opt/local/bin/emacs'
 	[[ -f "/opt/local/bin/emacs" ]] && alias startemacs='/opt/local/bin/emacs --daemon'
 	[[ -f "/opt/local/bin/emacsclient" ]] && alias stopemacs="/opt/local/bin/emacsclient -e '(kill-emacs)'"
@@ -30,14 +30,14 @@ if [ "$(uname)" == "Darwin" ]; then
 	#[[ -f "/opt/local/bin/R" ]] && alias R='/opt/local/bin/R'
 	#[[ -f "/opt/local/bin/R" ]] && export RSTUDIO_WHICH_R=/usr/local/bin/R
 	#[[ -f "/opt/local/bin/Rscript" ]] && alias R='/opt/local/bin/Rscript'
-	
+
 	#------------------------------------------------
 	# Open new tabs from command line for iTerm
 	#------------------------------------------------
 
 
 	function setbadge(){
-		# Sets iTerm badge 
+		# Sets iTerm badge
 		fact=`env | grep iTerm.app`
 		if [ "x$fact" != "x" ];then
 			if [ "$#" -eq 1 ]; then
@@ -50,7 +50,7 @@ if [ "$(uname)" == "Darwin" ]; then
 	}
 
 	function newtab(){
-		# Creates new iTerm badge 
+		# Creates new iTerm badge
 		fact=`env | grep iTerm.app`
 		if [ "x$fact" != "x" ];then
 			local cdto="$PWD"
@@ -74,7 +74,7 @@ EOF
 			# Execute OSA script
 			osascript &>/dev/null <<<"$script"
 		fi
-	}	
+	}
 
 	function settabcolor(){
 		# Sets iTerm tab color
@@ -94,4 +94,3 @@ EOF
 fi
 
 complete -F _generatehexcolor settabcolor
-

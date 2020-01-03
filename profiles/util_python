@@ -20,7 +20,7 @@ if [ "x${fact}" != "x" ]; then
 fi
 
 
-# Poetry paths add
+# Support for poetry and pipx
 export PATH="$PATH:/Users/ashish/.local/bin"
 
 alias poetry_shell='. "$(dirname $(poetry run which python))/activate"'

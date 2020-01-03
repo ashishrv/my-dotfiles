@@ -3,9 +3,11 @@
 # TMUX
 #------------------------------------------------
 
-# Activate bash completion
-if [ -f /usr/local/etc/bash_completion.d/tmux ]; then
-    source /usr/local/etc/bash_completion.d/tmux
+# Activate bash completion only if using bash
+if [[ "$BASH" == "/bin/bash" ]]; then
+      if [ -f /usr/local/etc/bash_completion.d/tmux ]; then
+      source /usr/local/etc/bash_completion.d/tmux
+      fi
 fi
 
 TMUXP_BIN=/Users/ashish/.vpython/3.7.4/master/bin/tmuxp
