@@ -103,3 +103,22 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+#------------------------------------------------
+# Export PATHS
+#------------------------------------------------
+export DOTFILES=$HOME/personal/workspace/my-dotfiles
+export PROFILE=$HOME/.profiles
+export OLDCLASSPATH=$CLASSPATH
+
+#------------------------------------------------
+# PRIVATE AND PERSONAL SCRIPTS
+#------------------------------------------------
+test -d "${HOME}/.privatescripts" && export PATH=${HOME}/.privatescripts:${PATH}
+test -d "${HOME}/.myscripts" &&  export PATH=${HOME}/.myscripts:${PATH}
+
+#------------------------------------------------
+# Source Profiles
+#------------------------------------------------
+test -e "${HOME}/.private_bashprofile" && source "${HOME}/.private_bashprofile"
+test -e "${PROFILE}/default_profile" && source "${PROFILE}/default_profile"

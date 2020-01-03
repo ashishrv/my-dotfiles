@@ -8,6 +8,7 @@ fi
 #------------------------------------------------
 # Zsh can handle bash completions functions.
 # The latest development version of zsh has a function bashcompinit, that when run will allow zsh to read bash completion specifications and functions.
+# See: https://github.com/zsh-users/zsh-completions/blob/master/zsh-completions-howto.org
 #------------------------------------------------
 autoload bashcompinit
 bashcompinit
