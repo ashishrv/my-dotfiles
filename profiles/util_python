@@ -239,5 +239,5 @@ venv-make(){
 }
 
 venv-master(){
-    source $HOME/.vpython/3.7.4/master/bin/activate
+    source $HOME/.vpython/3/3.7.4/venv-3.7.4/bin/activate
 }

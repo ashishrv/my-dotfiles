@@ -125,8 +125,7 @@ function my-mux(){
                 var_profile=$2
                 shift 2
                 tmux ls | cut -d":" -f 1 | grep "${var_profile}" 2> /dev/null
-                if [ $? -eq 0 ]
-                then
+                if [[ $? -eq 0 ]]; then
                     echo "Following profile has already been loaded: ${var_profile}"
                     echo ""
                 else
@@ -147,9 +146,9 @@ function my-mux(){
                 do
                   profile="${x%.*}"
                   fact=`tmux list-sessions | grep ${profile}`
-                  if [ "x${fact}" == "x" ]; then
+                  if [[ "x${fact}" == "x" ]]; then
                       echo "Loading profile: $profile"
-                    ${TMUXP_BIN} load ${profile} --yes -d
+                      ${TMUXP_BIN} load ${profile} --yes -d
                   fi
                 done
                 break
@@ -158,8 +157,7 @@ function my-mux(){
                 var_session=$2
                 shift 2
                 tmux ls | grep ${var_session} | grep attached
-                if [ $? -eq 0 ]
-                then
+                if [[ $? -eq 0 ]]; then
                     echo "Following profile has already been attached to: ${var_session}"
                     echo ""
                 else

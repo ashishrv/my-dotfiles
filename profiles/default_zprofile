@@ -12,3 +12,5 @@ fi
 #------------------------------------------------
 autoload bashcompinit
 bashcompinit
+
+export DISABLE_AUTO_TITLE='true'

@@ -81,7 +81,6 @@ alias less='/usr/bin/less -FSRXc'
 alias edit='subl'
 alias ~="cd ~" # GO HOME
 alias c='clear'
-alias which='type -all'
 alias path='echo -e ${PATH//:/\\n}'
 alias show-options='shopt'
 # check recent files
