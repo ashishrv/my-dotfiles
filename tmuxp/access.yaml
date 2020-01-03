@@ -8,12 +8,10 @@ windows:
   - focus: 'true'
     shell_command:
     - cd /Users/ashish/works/workspace/access
-    - source /Users/ashish/.bash_profile
     - source /Users/ashish/works/workspace/access/minerva/profile
     - clear
   - shell_command:
     - cd /Users/ashish/works/workspace/access
-    - source /Users/ashish/.bash_profile
     - source /Users/ashish/works/workspace/access/minerva/profile
     - clear
   window_name: Minerva
@@ -23,13 +21,11 @@ windows:
   panes:
   - shell_command:
     - cd /Users/ashish/works/workspace/access
-    - source /Users/ashish/.bash_profile
     - source /Users/ashish/works/workspace/access/all/profile
     - clear
   - focus: 'true'
     shell_command:
     - cd /Users/ashish/works/workspace/access
-    - source /Users/ashish/.bash_profile
     - source /Users/ashish/works/workspace/access/all/profile
     - clear
   window_name: Athena
@@ -39,13 +35,11 @@ windows:
   panes:
   - shell_command:
     - cd /Users/ashish/works/workspace/access
-    - source /Users/ashish/.bash_profile
     - source /Users/ashish/works/workspace/access/all/profile
     - clear
   - focus: 'true'
     shell_command:
     - cd /Users/ashish/works/workspace/access
-    - source /Users/ashish/.bash_profile
     - source /Users/ashish/works/workspace/access/all/profile
     - clear
   window_name: DC
