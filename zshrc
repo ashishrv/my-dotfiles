@@ -19,8 +19,8 @@ export ZSH="/Users/ashish/.oh-my-zsh"
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
 # If set to an empty array, this variable will have no effect.
-ZSH_THEME=random
-ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" "avit" "agnoster" )
+#ZSH_THEME=random
+#ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" "avit" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -104,12 +104,23 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+
 #------------------------------------------------
 # Export PATHS
 #------------------------------------------------
 export DOTFILES=$HOME/personal/workspace/my-dotfiles
 export PROFILE=$HOME/.profiles
 export OLDCLASSPATH=$CLASSPATH
+
+
+
+#------------------------------------------------
+# Antibody plugin manager
+# brew install getantibody/tap/antibody
+# antibody bundle < ~/.config/antibody/zsh_plugins.txt > ~/.config/antibody/zsh_plugins.sh
+#------------------------------------------------
+source ~/.config/antibody/zsh_plugins.sh
+
 
 #------------------------------------------------
 # PRIVATE AND PERSONAL SCRIPTS

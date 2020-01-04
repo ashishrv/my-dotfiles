@@ -60,6 +60,9 @@ test -e "${PROFILE}/util_tmux" && source "${PROFILE}/util_tmux"
 if [[ "$BASH" == "/bin/bash" ]]; then
 test -e "${PROFILE}/util_prompt" && source "${PROFILE}/util_prompt"
 fi
+if [[ "$ZSH_NAME" == "zsh" ]]; then
+test -e "${PROFILE}/util_spaceship_prompt" && source "${PROFILE}/util_spaceship_prompt"
+fi
 
 test -e "${PROFILE}/util_completions" && source "${PROFILE}/util_completions"
 test -e "${PROFILE}/util_project" && source "${PROFILE}/util_project"

@@ -3731,7 +3731,7 @@
 	<key>Default Arrangement Name</key>
 	<string>MainGroup</string>
 	<key>Default Bookmark Guid</key>
-	<string>7EDCE297-132D-463B-A00B-5B197696AB46</string>
+	<string>DC6538DE-EA63-4454-9A54-8E8B4628A78A</string>
 	<key>DimInactiveSplitPanes</key>
 	<true/>
 	<key>DimOnlyText</key>
@@ -3866,7 +3866,7 @@
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>127 443 592 584 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 94 940 933 0 0 1680 1027 </string>
+	<string>0 94 1680 933 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>0 90 1680 937 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -21205,14 +21205,14 @@
 	<key>NoSyncAllAppVersions</key>
 	<array>
 		<string>3.3.6</string>
-		<string>3.3.4</string>
+		<string>3.3.0</string>
 		<string>3.3.1</string>
 		<string>3.3.3</string>
 		<string>3.3.5</string>
 		<string>3.3.7</string>
 		<string>3.2.9</string>
 		<string>3.3.2</string>
-		<string>3.3.0</string>
+		<string>3.3.4</string>
 	</array>
 	<key>NoSyncBFPRecents</key>
 	<array>
@@ -21246,7 +21246,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>75A649C8-430F-40E2-8D87-A883A43DA182</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>33</integer>
+	<integer>34</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
