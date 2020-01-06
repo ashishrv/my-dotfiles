@@ -79,5 +79,5 @@ alias dot-reload=". ~/.bash_profile"
 fi
 
 if [[ "$ZSH_NAME" == "zsh" ]]; then
-alias dot-reload=". ~/.zprofile"
+alias dot-reload=". ~/.zshrc"
 fi
