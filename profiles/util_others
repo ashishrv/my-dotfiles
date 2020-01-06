@@ -291,7 +291,7 @@ function _ssh_known_hosts()
   if [ -f ${HOME}/.ssh/known_hosts ]; then
     ssh_known_hosts=($(awk '{print $1}' $HOME/.ssh/known_hosts | cut -d, -f1 | xargs | sort | uniq  ))
   fi
-  COMPREPLY=($(compgen -W '${ssh_known_hosts[*]}' -- ${current_argument}))
+  COMPREPLY=($(compgen -W "${ssh_known_hosts[*]}" -- ${current_argument}))
 }
 
 if [[ "${is_known_hosts_hashed}" == "no" ]]; then
