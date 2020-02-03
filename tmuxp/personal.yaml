@@ -1,0 +1,23 @@
+session_name: personal
+windows:
+- focus: 'true'
+  layout: 2272,238x52,0,0{119x52,0,0,21,118x52,120,0,22}
+  options:
+    automatic-rename: 'off'
+  panes:
+  - shell_command:
+    - cd /Users/ashish/personal/workspace/mynotes
+  - focus: 'true'
+    shell_command:
+    - cd /Users/ashish/personal/workspace
+  window_name: mynotes
+- layout: 2274,238x52,0,0{119x52,0,0,23,118x52,120,0,24}
+  options:
+    automatic-rename: 'off'
+  panes:
+  - focus: 'true'
+    shell_command:
+    - cd /Users/ashish/personal/workspace/my-dotfiles
+  - shell_command:
+    - cd /Users/ashish/personal/workspace/macosx-bootstrap
+  window_name: macos
