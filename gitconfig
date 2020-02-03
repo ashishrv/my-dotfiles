@@ -85,6 +85,9 @@
 [url "https://gist.github.com/"]
 	insteadOf = gist:
 
+[url "ssh://git@github.pie.apple.com/"]
+	insteadOf = https://github.pie.apple.com/
+
 
 [alias]
 	apple = "!git config user.email \"vidyarthi@apple.com\""

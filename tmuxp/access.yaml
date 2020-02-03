@@ -1,7 +1,6 @@
 session_name: access
 windows:
-- focus: 'true'
-  layout: 7838,238x62,0,0{119x62,0,0,1,118x62,120,0,5}
+- layout: b5f6,238x52,0,0{119x52,0,0,1,118x52,120,0,2}
   options:
     automatic-rename: 'off'
   panes:
@@ -10,35 +9,22 @@ windows:
     - cd /Users/ashish/works/workspace/access
     - source /Users/ashish/works/workspace/access/minerva/profile
     - clear
-  - shell_command:
+    shell_command:
     - cd /Users/ashish/works/workspace/access
     - source /Users/ashish/works/workspace/access/minerva/profile
     - clear
   window_name: Minerva
-- layout: 783e,238x62,0,0{119x62,0,0,6,118x62,120,0,7}
+- focus: 'true'
+  layout: b5fc,238x52,0,0{119x52,0,0,5,118x52,120,0,6}
   options:
     automatic-rename: 'off'
   panes:
-  - shell_command:
-    - cd /Users/ashish/works/workspace/access
-    - source /Users/ashish/works/workspace/access/all/profile
-    - clear
   - focus: 'true'
     shell_command:
     - cd /Users/ashish/works/workspace/access
     - source /Users/ashish/works/workspace/access/all/profile
     - clear
-  window_name: Athena
-- layout: 783e,238x62,0,0{119x62,0,0,6,118x62,120,0,7}
-  options:
-    automatic-rename: 'off'
-  panes:
   - shell_command:
-    - cd /Users/ashish/works/workspace/access
-    - source /Users/ashish/works/workspace/access/all/profile
-    - clear
-  - focus: 'true'
-    shell_command:
     - cd /Users/ashish/works/workspace/access
     - source /Users/ashish/works/workspace/access/all/profile
     - clear
