@@ -60,5 +60,5 @@ env \
 # Man pages : Required only for Mac OSX
 if [[ "$OSTYPE" =~ "darwin*" ]]; then
    # Open a manpage in Preview, which can be saved to PDF
-   man-pdf() { man -t "${1}" | open -f -a /Applications/Preview.app ; }
+   man-pdf() { man -t "${1}" | open -f -a "Preview" ; }
 fi
