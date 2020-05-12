@@ -74,7 +74,7 @@ export DISABLE_AUTO_TITLE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git command-not-found docker golang mvn mix sbt scala pip python pyenv themes)
+plugins=(git command-not-found docker golang mvn mix sbt scala pip python pyenv themes per-directory-history)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -133,3 +133,14 @@ test -d "${HOME}/.myscripts" &&  export PATH=${HOME}/.myscripts:${PATH}
 #------------------------------------------------
 test -e "${HOME}/.private_bashprofile" && source "${HOME}/.private_bashprofile"
 test -e "${PROFILE}/default_profile" && source "${PROFILE}/default_profile"
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+#------------------------------------------------
+# Enable highlighting
+#------------------------------------------------
+export VIRTUAL_ENV_DISABLE_PROMPT=
+export LC_CTYPE=en_GB.UTF-8
+export TERM="xterm-256color"
+export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor line)
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh

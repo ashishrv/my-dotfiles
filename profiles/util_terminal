@@ -7,6 +7,10 @@ function title {
     echo -ne "\033]0;"$*"\007"
 }
 
+function hr
+{
+	printf '%0*d' $(tput cols) | tr 0 ${1:-_};
+}
 
 if [[ "$OSTYPE" =~ "darwin*" ]]; then
 
