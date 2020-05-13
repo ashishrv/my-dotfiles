@@ -6,20 +6,54 @@
 test -d "${HOME}/personal/software/bin" && export PATH="${HOME}/personal/software/bin:$PATH"
 test -d "${HOME}/personal/workspace/scripts" && export PATH="${HOME}/personal/workspace/scripts:$PATH"
 
-function _cdpersonal()
-{
-    local cur
-    COMPREPLY=()
-    cur=${COMP_WORDS[COMP_CWORD]}
-    COMPREPLY=($( compgen -W "$(ls -d ${HOME}/personal/workspace/*/|awk -F "/" '{print $(NF-2)}')" -- $cur ) )
-}
+if [[ "$BASH" == "/bin/bash" ]]; then
 
-function cd-personal(){
-    if [ $# -lt 1 ]; then
-        builtin cd ${HOME}/personal/workspace
-    else
-        builtin cd ${HOME}/personal/workspace/$1
-    fi
-}
+    function _cdpersonal()
+    {
+        local cur
+        COMPREPLY=()
+        cur=${COMP_WORDS[COMP_CWORD]}
+        COMPREPLY=($( compgen -W "$(ls -d ${HOME}/personal/workspace/*/|awk -F "/" '{print $(NF-2)}')" -- $cur ) )
+    }
 
-complete -F _cdpersonal cd-personal
+    function cd-personal(){
+        if [ $# -lt 1 ]; then
+            builtin cd ${HOME}/personal/workspace
+        else
+            builtin cd ${HOME}/personal/workspace/$1
+        fi
+    }
+
+    complete -F _cdpersonal cd-personal
+
+fi
+
+if [[ "$ZSH_NAME" == "zsh" ]]; then
+
+    function _cdpersonal()
+    {
+        local -a ops lib dev
+        ops=('/Users/ashish/personal/workspace/mynotes: My Notes & Documentation'
+            '/Users/ashish/personal/workspace/my-dotfiles: My dot files'
+            '/Users/ashish/personal/workspace/macosx-bootstrap: Mac laptop management'
+            )
+        lib=('/Users/ashish/personal/workspace/scalaprojects: Scala projects'
+            '/Users/ashish/personal/workspace/scripts: cli scripts'
+            )
+        dev=('/Users/ashish/personal/workspace/resume_ashish: My resume'
+            '/Users/ashish/personal/workspace/staticblog: My blog'
+            )
+        _describe 'command' ops -- lib -- dev
+    }
+
+    function cd-personal(){
+        if [ $# -lt 1 ]; then
+            builtin cd ${HOME}/personal/workspace
+        else
+            builtin cd $1
+        fi
+    }
+
+    compdef _cdpersonal cd-personal
+
+fi
