@@ -4095,6 +4095,8 @@
 	<false/>
 	<key>HideMenuBarInFullscreen</key>
 	<false/>
+	<key>HideScrollbar</key>
+	<false/>
 	<key>HideTab</key>
 	<false/>
 	<key>Hotkey</key>
@@ -19603,15 +19605,15 @@
 	<array>
 		<string>3.3.6</string>
 		<string>3.3.8</string>
-		<string>3.3.0</string>
+		<string>3.3.4</string>
 		<string>3.3.1</string>
 		<string>3.3.3</string>
 		<string>3.3.5</string>
 		<string>3.3.7</string>
 		<string>3.3.9</string>
 		<string>3.2.9</string>
+		<string>3.3.0</string>
 		<string>3.3.2</string>
-		<string>3.3.4</string>
 	</array>
 	<key>NoSyncBFPRecents</key>
 	<array>
@@ -19642,7 +19644,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>75A649C8-430F-40E2-8D87-A883A43DA182</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>50</integer>
+	<integer>55</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -20469,7 +20471,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-05-12T06:36:04Z</date>
+	<date>2020-05-18T16:56:12Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateGroupIdentifier</key>

@@ -145,3 +145,10 @@ export TERM="xterm-256color"
 export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor line)
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+#------------------------------------------------
+# Setup direnv
+# https://direnv.net/docs/hook.html
+#------------------------------------------------
+
+test -e "/usr/local/bin/direnv" && eval "$(direnv hook zsh)"

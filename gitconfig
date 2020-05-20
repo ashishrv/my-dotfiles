@@ -22,7 +22,8 @@
 	#editor = jove
     #editor = "/usr/bin/vim -f -u NONE"
 	#editor = atom --wait
-	editor = "code -n -w"
+	#editor = "code -n -w"
+	editor = "/usr/local/bin/micro"
 	excludesfile = ~/.gitignore_global
 	pager = diff-so-fancy | less --tabs=4 -RFX
 [format]

@@ -1,0 +1,43 @@
+session_name: works
+windows:
+- focus: 'true'
+  layout: 743f,238x52,0,0{119x52,0,0,1,118x52,120,0[118x26,120,0,7,118x25,120,27,8]}
+  options:
+    automatic-rename: 'off'
+  panes:
+  - shell_command:
+    - cd /Users/ashish/works/workspace/saltstack-projects
+    - clear
+  - shell_command:
+    - cd /Users/ashish/works/workspace/devops-common
+    - clear
+  - focus: 'true'
+    shell_command:
+    - cd /Users/ashish/works/workspace/devops-common
+    - clear
+  window_name: Salt
+- layout: bcaa,238x52,0,0{119x52,0,0[119x26,0,0,5,119x25,0,27,9],118x52,120,0,6}
+  options:
+    automatic-rename: 'off'
+  panes:
+  - shell_command:
+    - cd /Users/ashish/works/docs
+    - venv-master
+    - setup-mkdocs
+  - shell_command:
+    - cd /Users/ashish/works/docs
+    - venv-master
+    - clear
+  - focus: 'true'
+    shell_command:
+    - cd /Users/ashish/personal/workspace/mynotes
+    - clear
+  window_name: Docs
+- layout: 5cdf,238x52,0,0,10
+  options:
+    automatic-rename: 'off'
+  panes:
+  - focus: 'true'
+    shell_command: clear
+  start_directory: /Users/ashish/personal/workspace
+  window_name: Personal
