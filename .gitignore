@@ -8,6 +8,7 @@ tmuxp/minerva.yaml
 config/alacritty
 config/geany
 config/antibody/
+config/micro/
 
 emacs.d/straight
 emacs.d/.cache
