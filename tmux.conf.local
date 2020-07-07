@@ -26,7 +26,7 @@ set -q -g status-utf8 on
 setw -q -g utf8 on
 # set scrollback history to 10000 (10k)
 # boost history
-set -g history-limit 10000
+set -g history-limit 50000
 
 # reload configuration ~/.tmux.conf using PREFIX r
 bind r source-file ~/.tmux.conf \; display '~/.tmux.conf sourced'
@@ -154,3 +154,9 @@ bind m run "cut -c3- ~/.tmux.conf | sh -s _toggle_mouse"
 ## source ${HOME}/.tmux-themepack/powerline/default/yellow.tmuxtheme
 ##source ${HOME}/.tmux-themepack/powerline/block/yellow.tmuxtheme
 #source ${HOME}/.tmux-themepack/powerline/block/red.tmuxtheme
+
+#-------------------
+# Plugins
+#-------------------
+
+run-shell ~/.tmux/tmux-logging/logging.tmux
