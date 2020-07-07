@@ -7,6 +7,7 @@ tmuxp/athena.yaml
 tmuxp/minerva.yaml
 config/alacritty
 config/geany
+config/antibody/
 
 emacs.d/straight
 emacs.d/.cache
@@ -36,3 +37,4 @@ iterm2/it2setcolor
 iterm2/it2setkeylabel
 iterm2/it2ul
 iterm2/it2universion
+config/antibody/zsh_plugins.sh

@@ -7,7 +7,7 @@ if type brew &>/dev/null; then
 fi
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/ashish/.oh-my-zsh"
+export ZSH="${HOME}/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -133,7 +133,7 @@ test -d "${HOME}/.myscripts" &&  export PATH=${HOME}/.myscripts:${PATH}
 #------------------------------------------------
 
 test -e "${PROFILE}/default_profile" && source "${PROFILE}/default_profile"
-test -e "${HOME}/.private_bashprofile" && source "${HOME}/.private_bashprofile"
+#test -e "${HOME}/.private_bashprofile" && source "${HOME}/.private_bashprofile"
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 #------------------------------------------------
