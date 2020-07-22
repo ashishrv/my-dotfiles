@@ -39,3 +39,6 @@ iterm2/it2setkeylabel
 iterm2/it2ul
 iterm2/it2universion
 config/antibody/zsh_plugins.sh
+
+iterm2/com.googlecode.iterm2.plist
+config/configstore/update-notifier-npm.json

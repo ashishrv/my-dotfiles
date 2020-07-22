@@ -133,7 +133,7 @@ test -d "${HOME}/.myscripts" &&  export PATH=${HOME}/.myscripts:${PATH}
 #------------------------------------------------
 
 test -e "${PROFILE}/default_profile" && source "${PROFILE}/default_profile"
-#test -e "${HOME}/.private_bashprofile" && source "${HOME}/.private_bashprofile"
+test -e "${HOME}/.private_bashprofile" && source "${HOME}/.private_bashprofile"
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 #------------------------------------------------

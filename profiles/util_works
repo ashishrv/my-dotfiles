@@ -20,7 +20,7 @@ function _cdworks()
     local cur
     COMPREPLY=()
     cur=${COMP_WORDS[COMP_CWORD]}
-    COMPREPLY=($( compgen -W "$(ls -d ${HOME}/works/workspace/*/|awk -F "/" '{print $(NF-2)}')" -- $cur ) )
+    COMPREPLY=($( compgen -W "$(/bin/ls -d ${HOME}/works/workspace/*/|awk -F "/" '{print $(NF-2)}')" -- $cur ) )
 }
 
 
