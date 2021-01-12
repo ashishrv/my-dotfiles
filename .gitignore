@@ -1,4 +1,6 @@
 config/ranger/history
+config/darktable
+config/gtk-2.0
 config/ranger/tagged
 joplin-desktop/
 config/vnote/vnote.log
