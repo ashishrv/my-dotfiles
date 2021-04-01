@@ -7,14 +7,14 @@
 # Handle command completions
 if [[ "$BASH" == "/bin/bash" ]]; then
   test -e "/Applications/Docker.app/Contents/Resources/etc/docker.bash-completion" && source "/Applications/Docker.app/Contents/Resources/etc/docker.bash-completion"
-  test -e "/Applications/Docker.app/Contents/Resources/etc/docker-machine.bash-completion" && source "/Applications/Docker.app/Contents/Resources/etc/docker-machine.bash-completion"
-  test -e "/Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion" && source "/Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion"
+  #test -e "/Applications/Docker.app/Contents/Resources/etc/docker-machine.bash-completion" && source "/Applications/Docker.app/Contents/Resources/etc/docker-machine.bash-completion"
+  #test -e "/Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion" && source "/Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion"
 fi
 
 if [[ "$ZSH_NAME" == "zsh" ]]; then
   test -e "/Applications/Docker.app/Contents/Resources/etc/docker.zsh-completion" && source "/Applications/Docker.app/Contents/Resources/etc/docker.zsh-completion"
-  test -e "/Applications/Docker.app/Contents/Resources/etc/docker-machine.zsh-completion" && source "/Applications/Docker.app/Contents/Resources/etc/docker-machine.zsh-completion"
-  test -e "/Applications/Docker.app/Contents/Resources/etc/docker-compose.zsh-completion" && source "/Applications/Docker.app/Contents/Resources/etc/docker-compose.zsh-completion"
+  #test -e "/Applications/Docker.app/Contents/Resources/etc/docker-machine.zsh-completion" && source "/Applications/Docker.app/Contents/Resources/etc/docker-machine.zsh-completion"
+  #test -e "/Applications/Docker.app/Contents/Resources/etc/docker-compose.zsh-completion" && source "/Applications/Docker.app/Contents/Resources/etc/docker-compose.zsh-completion"
 fi
 
 function dock-help() {

@@ -275,9 +275,9 @@ is_known_hosts_hashed=""
 ssh_config_file=$HOME/.ssh/config
 
 if [ -f "${ssh_config_file}" ]; then
-if [ -z "${is_known_hosts_hashed}" ]; then
-is_known_hosts_hashed=$(awk '/^#/ {next} /HashKnownHosts/ {print $2}' ${ssh_config_file})
-fi
+      if [ -z "${is_known_hosts_hashed}" ]; then
+      is_known_hosts_hashed=$(awk '/^#/ {next} /HashKnownHosts/ {print $2}' ${ssh_config_file})
+      fi
 fi
 
 # assume that by default known hosts file is not hashed
