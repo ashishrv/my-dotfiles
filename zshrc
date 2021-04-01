@@ -1,3 +1,14 @@
+
+zmodload zsh/datetime
+setopt PROMPT_SUBST
+PS4='+%D{%s%.} %N:%i> '
+
+logfile=$(mktemp zsh_profile.XXXXXXXX)
+echo "Logging to $logfile"
+exec 3>&2 2>$logfile
+
+setopt XTRACE
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -152,3 +163,6 @@ source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 #------------------------------------------------
 
 test -e "/usr/local/bin/direnv" && eval "$(direnv hook zsh)"
+
+unsetopt XTRACE
+exec 2>&3 3>&-

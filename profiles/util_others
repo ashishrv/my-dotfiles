@@ -4,7 +4,8 @@
 # Miscellaneous utilities
 #------------------------------------------------
 
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+# export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)" # This is very slow
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr/local/opt/openssl"
 eval "$(rbenv init -)"
 
 #------------------------------------------------

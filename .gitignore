@@ -44,3 +44,4 @@ config/antibody/zsh_plugins.sh
 
 iterm2/com.googlecode.iterm2.plist
 config/configstore/update-notifier-npm.json
+config/iterm2
